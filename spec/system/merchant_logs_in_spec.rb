@@ -2,21 +2,44 @@ require 'rails_helper'
 
 describe 'Mercador faz login' do 
     it 'com sucesso' do 
-        Merchant.create!(email:'mercador@mercadores.com.br', password:'123456', name:'Mercador')
-        visit root_path
+        merchant = create(:merchant)
 
+        visit root_path
         click_on 'Entrar - Mercador'
-        fill_in 'E-mail', with: 'mercador@mercadores.com.br'
-        fill_in 'Senha', with: '123456'
+        fill_in 'E-mail', with: 'alan@mercadores.com.br'
+        fill_in 'Senha', with: 'password'
         click_on 'Log in'
         
         expect(page).to have_content 'Login efetuado com sucesso'
         expect(page).to have_content 'Painel - Mercadores'
         
     end
+
+    it 'com login inexistente' do        
+        visit root_path        
+        click_on 'Entrar - Mercador'
+        fill_in 'E-mail', with: 'john@mercadores.com.br'
+        fill_in 'Senha', with: 'password'
+        click_on 'Log in'
+
+        expect(page).to have_content 'E-mail ou senha inválidos.'
+        
+    end
+
+    it 'com senha incorreta' do
+        merchant = create(:merchant)
+
+        visit root_path
+        click_on 'Entrar - Mercador'
+        fill_in 'E-mail', with: 'alan@mercadores.com.br'
+        fill_in 'Senha', with: 'wrong-password'
+        click_on 'Log in'
+
+        expect(page).to have_content 'E-mail ou senha inválidos.'
+    end
     
     it 'e faz logout' do 
-        merchant = Merchant.create!(email:'mercador@mercadores.com.br', password:'123456', name:'Mercador')
+        merchant = create(:merchant)
         login_as(merchant, scope: :merchant)
 
         visit root_path        

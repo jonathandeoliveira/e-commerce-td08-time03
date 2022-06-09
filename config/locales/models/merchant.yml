@@ -7,6 +7,9 @@ pt-BR:
       models:
         merchant:
           attributes:
+            password:
+              too_short: "deve ter mínimo de %{count} caracteres"
             email:
               invalid: 'Domínio de email inválido.'
+             
       
