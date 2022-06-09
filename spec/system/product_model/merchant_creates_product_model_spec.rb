@@ -3,13 +3,8 @@ require 'rails_helper'
 describe 'Mercador cria produto' do
   it 'a partir da tela inicial' do
     visit root_path
-
-    expect(page).to have_link 'Criar Produto'
-  end
-
-  it 'a partir do formulário' do
-    visit root_path
     click_on 'Criar Produto'
+
     expect(page).to have_content 'Informe as caracteristicas do produto'
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Marca'
@@ -44,6 +39,10 @@ describe 'Mercador cria produto' do
     expect(page).to have_content 'Descrição: Notebook 15 processador intel i7'
     expect(page).to have_content 'Dimensões: 0.3m x 0.45m x 0.15m'
     expect(page).to have_content 'Peso: 6.0kg'
+    result = ProductModel.last
+    expect(result.name).to eq 'Notebook' 
+    expect(result.brand).to eq 'Dell' 
+    expect(result.model).to eq 'Inspiron 15' 
   end
 
   it 'com dados incompletos' do
@@ -73,6 +72,19 @@ describe 'Mercador cria produto' do
     expect(page).to have_content 'Peso não pode ficar em branco'
   end
 
+  it 'com sku repetido' do
+    produto = create(:product_model)
 
-  
+    visit root_path
+    within('nav') do
+      click_on 'Criar Produto'
+    end
+    fill_in 'SKU', with: 'DELL948297'
+    click_on 'Cadastrar'
+
+    expect(page).to have_content 'SKU já está em uso'
+  end
+
+
+
 end
