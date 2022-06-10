@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    attributes:
+      category:
+        name: 'Nome'
+        status: 'Status'

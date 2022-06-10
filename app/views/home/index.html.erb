@@ -2,5 +2,8 @@
 
 <% if merchant_signed_in? %>
     <p> Painel - Mercadores </p>
+    <p><%= link_to 'Categorias', categories_path %></p>    
     <p> <%= link_to 'Logout', destroy_merchant_session_path, method: :delete %> </p>
 <% end %>
+
+    
