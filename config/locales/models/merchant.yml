@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    attributes:
+      merchant:
+        name: 'Nome'
+    errors:
+      models:
+        merchant:
+          attributes:
+            password:
+              too_short: "deve ter mínimo de %{count} caracteres"
+            email:
+              invalid: 'Domínio de email inválido.'
+             
+      
