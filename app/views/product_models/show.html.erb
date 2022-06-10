@@ -1,0 +1,19 @@
+<section id = 'product_model'>
+  <h1>Detalhes sobre o produto: <%= @product_model.name %></h1>
+    <div>
+      <dl>
+         <dt>Produto:</dt>
+      <dd><%= @product_model.name %> <%= @product_model.brand %> <%= @product_model.model %></dd>
+         <dt>SKU:</dt>
+      <dd><%= @product_model.sku %></dd>
+         <dt>Descrição:</dt>
+      <dd><%= @product_model.description %></dd>
+         <dt>Dimensões:</dt>
+      <dd><%= @product_model.height %>m x <%= @product_model.width %>m x <%= @product_model.length %>m</dd>
+         <dt>Peso:</dt>
+      <dd><%= @product_model.weight %>kg</dd>
+      </dl>
+    </div>
+
+
+</section>
