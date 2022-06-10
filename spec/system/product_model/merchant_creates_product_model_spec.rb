@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Mercador cria produto' do
   it 'a partir da tela inicial' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     visit root_path
     click_on 'Criar Produto'
 
@@ -18,6 +21,9 @@ describe 'Mercador cria produto' do
   end
 
   it 'com sucesso' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     visit root_path
     within('nav') do
       click_on 'Criar Produto'
@@ -46,6 +52,9 @@ describe 'Mercador cria produto' do
   end
 
   it 'com dados incompletos' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     visit root_path
     within('nav') do
       click_on 'Criar Produto'
@@ -73,6 +82,9 @@ describe 'Mercador cria produto' do
   end
 
   it 'com sku repetido' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     produto = create(:product_model)
 
     visit root_path
@@ -84,7 +96,4 @@ describe 'Mercador cria produto' do
 
     expect(page).to have_content 'SKU já está em uso'
   end
-
-
-
 end

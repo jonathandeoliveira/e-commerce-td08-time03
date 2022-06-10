@@ -1,4 +1,6 @@
 class ProductModelsController < ApplicationController
+  before_action :authenticate_merchant!
+
   def new
     @product_model = ProductModel.new()
   end
@@ -14,6 +16,10 @@ class ProductModelsController < ApplicationController
 
   def show
     @product_model = ProductModel.find(params[:id])
+  end
+
+  def index
+    @product_models = ProductModel.all
   end
 
 

@@ -14,7 +14,10 @@
     <header>
       <h1>E-Commerce</h1>
       <nav>
-        <%= link_to "Criar Produto", new_product_model_path %>
+        <% if merchant_signed_in? %>
+          <%= link_to "Criar Produto", new_product_model_path %>
+          <%= link_to "Produtos", product_models_path %>
+        <% end %>
       </nav>
     </header>
       <div style = "margin:10px 0px" >
