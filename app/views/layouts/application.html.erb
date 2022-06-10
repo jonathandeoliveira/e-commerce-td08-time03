@@ -14,6 +14,7 @@
     <header>
       <h1>E-Commerce</h1>
       <nav>
+        <%= link_to "Página Inicial", root_path %>
         <% if merchant_signed_in? %>
           <%= link_to "Criar Produto", new_product_model_path %>
           <%= link_to "Produtos", product_models_path %>
@@ -24,10 +25,6 @@
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
       </div>
-    <div>
-    <%= alert %>
-    <%= notice %>
-    </div>
-    <%= yield %>
+      <%= yield %>
   </body>
 </html>

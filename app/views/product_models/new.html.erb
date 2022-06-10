@@ -11,40 +11,44 @@
   <% end %>
   <%= form_with model:(@product_model) do |f| %>
     <div>
-      <%= f.label :name, 'Nome' %>
+      <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
     <div>
-      <%= f.label :brand, 'Marca' %>
+      <%= f.label :brand %>
       <%= f.text_field :brand %>
     </div>
     <div>
-      <%= f.label :model, 'Modelo' %>
+      <%= f.label :model %>
       <%= f.text_field :model %>
     </div>
     <div>
-      <%= f.label :description, 'Descrição' %>
+      <%= f.label :description %>
       <%= f.text_field :description %>
     </div>
     <div>
-      <%= f.label :sku, 'SKU' %>
+      <%= f.label :sku %>
       <%= f.text_field :sku %>
     </div>
     <div>
-      <%= f.label :height, 'Altura' %>
-      <%= f.number_field :height %>
+      <%= f.label :height %>
+      <%= f.number_field :height, step: 0.1 %>
     </div>
     <div>
-      <%= f.label :width, 'Largura' %>
-      <%= f.number_field :width %>
+      <%= f.label :width %>
+      <%= f.number_field :width, step: 0.1 %>
     </div>
     <div>
-      <%= f.label :length, 'Comprimento' %>
-      <%= f.number_field :length %>
+      <%= f.label :length %>
+      <%= f.number_field :length, step: 0.1 %>
     </div>
     <div>
-      <%= f.label :weight, 'Peso' %>
-      <%= f.number_field :weight %>
+      <%= f.label :weight %>
+      <%= f.number_field :weight, step: 0.1 %>
+    </div>
+    <div>
+      <%= f.label :fragile %>
+      <%= check_box :fragile, "Sim" %>
     </div>
     <div>
       <%= f.submit 'Cadastrar' %>

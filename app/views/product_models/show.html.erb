@@ -12,8 +12,12 @@
       <dd><%= @product_model.height %>m x <%= @product_model.width %>m x <%= @product_model.length %>m</dd>
          <dt>Peso:</dt>
       <dd><%= @product_model.weight %>kg</dd>
+      <dt>Frágil?</dt>
+      <% if @product_model.fragile == true %>
+         <dd> Sim </dd>
+      <% else %>
+         <dd>Não</dd>
+      <% end %>
       </dl>
     </div>
-
-
 </section>

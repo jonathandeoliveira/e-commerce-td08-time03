@@ -46,4 +46,15 @@ describe 'Mercador acessa página principal de produtos' do
     expect(page).to have_content 'SKU: DELL948297'
     expect(page).to have_content 'Peso: 6.0kg'
   end
+
+  it 'e volta para página inicial' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
+    visit root_path
+    click_on 'Produtos'
+    click_on 'Página Inicial'
+
+    expect(current_path).to eq root_path
+  end
 end
