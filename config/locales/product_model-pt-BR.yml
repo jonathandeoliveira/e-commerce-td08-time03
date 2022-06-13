@@ -1,16 +1,16 @@
 pt-BR:
   activerecord:
     models:
-      product_model: 'Produto'
+      product_model: "Produto"
     attributes:
-      product_model: 
-        name: 'Nome'
-        brand: 'Marca'
-        model: 'Modelo'
-        sku: 'SKU'
-        height: 'Altura'
-        width: 'Largura'
-        length: 'Comprimento'
-        weight: 'Peso'
-        description: 'Descrição'
-        fragile: 'Frágil'
+      product_model:
+        name: "Nome"
+        brand: "Marca"
+        model: "Modelo"
+        sku: "SKU"
+        height: "Altura"
+        width: "Largura"
+        length: "Comprimento"
+        weight: "Peso"
+        description: "Descrição"
+        fragile: "Frágil"

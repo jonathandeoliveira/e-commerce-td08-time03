@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Mercador cria produto' do
   it 'a partir da tela inicial' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     visit root_path
     click_on 'Criar Produto'
 
@@ -18,6 +21,9 @@ describe 'Mercador cria produto' do
   end
 
   it 'com sucesso' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     visit root_path
     within('nav') do
       click_on 'Criar Produto'
@@ -31,6 +37,7 @@ describe 'Mercador cria produto' do
     fill_in 'Largura', with: '0.45'
     fill_in 'Comprimento', with: '0.15'
     fill_in 'Peso', with: '6'
+    check 'Frágil'
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Produto cadastrado com sucesso'
@@ -43,9 +50,13 @@ describe 'Mercador cria produto' do
     expect(result.name).to eq 'Notebook' 
     expect(result.brand).to eq 'Dell' 
     expect(result.model).to eq 'Inspiron 15' 
+    expect(result.fragile).to be_truthy
   end
 
   it 'com dados incompletos' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     visit root_path
     within('nav') do
       click_on 'Criar Produto'
@@ -73,6 +84,9 @@ describe 'Mercador cria produto' do
   end
 
   it 'com sku repetido' do
+    merchant = create(:merchant)
+
+    login_as(merchant)
     produto = create(:product_model)
 
     visit root_path
@@ -84,7 +98,4 @@ describe 'Mercador cria produto' do
 
     expect(page).to have_content 'SKU já está em uso'
   end
-
-
-
 end
