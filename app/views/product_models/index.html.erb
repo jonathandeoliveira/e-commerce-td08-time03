@@ -4,7 +4,7 @@
       <% @product_models.each do |product| %>
         <dl>
           <dt>Produto:</dt>
-          <dd><%= link_to product.name, product %></dd>
+          <dd><%= link_to product.name, product %> <%= button_to 'Desativar', disable_path(product.id) %></dd>
           <dt>Marca:</dt>
           <dd><%= product.brand %></dd>
           <dt>Modelo:</dt>

@@ -1,9 +1,11 @@
+require 'faker'
+
 FactoryBot.define do
   factory :product_model do
-    name { "Notebook" }
+    sequence(:name) { |n| "Notebook-#{n}" }
     brand { "Dell" }
     model { "Inspiron 15" }
-    sku { "DELL948297" }
+    sequence(:sku) { |n| "DELL948297#{n}" }
     fragile { false }
     description { "Notebook 15 processador intel i7" }
     weight { 6 }
