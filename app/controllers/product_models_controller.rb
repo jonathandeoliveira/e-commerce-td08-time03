@@ -22,13 +22,26 @@ class ProductModelsController < ApplicationController
     @product_models = ProductModel.all
   end
 
+  def disable
+    @product = ProductModel.find(params[:id])
+    if @product.disabled!
+      @product.save
+      redirect_to product_models_path, notice: 'Produto desativado com sucesso'
+    end
+  end
+
+  def enable
+    @product = ProductModel.find(params[:id])
+    if @product.enabled!
+      redirect_to product_models_path, notice: 'Produto ativado com sucesso'
+    end
+  end
+
 
   private
 
   def product_model_params
     params.require(:product_model).permit(:name, :brand, :sku, :model, :fragile,
-                        :description, :weight, :height, :width, :length)
+                        :description, :weight, :height, :width, :length, :status)
   end
-
-
 end

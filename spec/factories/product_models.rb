@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryBot.define do
   factory :product_model do
     name { "Notebook" }

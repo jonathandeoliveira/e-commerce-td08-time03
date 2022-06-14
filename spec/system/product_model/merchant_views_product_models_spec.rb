@@ -9,7 +9,7 @@ describe 'Mercador acessa página principal de produtos' do
 
   it 'através da página inicial' do
     merchant = create(:merchant)
-    produto = create(:product_model)
+    product = create(:product_model)
 
     login_as(merchant)
     visit root_path
@@ -34,14 +34,14 @@ describe 'Mercador acessa página principal de produtos' do
 
   it 'e visualiza detalhes de um produto' do
     merchant = create(:merchant)
-    produto = create(:product_model)
+    product = create(:product_model)
 
     login_as(merchant)
     visit root_path
     click_on 'Produtos'
     click_on 'Notebook'
 
-    expect(current_path).to eq product_model_path(produto) 
+    expect(current_path).to eq product_model_path(product) 
     expect(page).to have_content 'Produto: Notebook Dell Inspiron 15'
     expect(page).to have_content 'SKU: DELL948297'
     expect(page).to have_content 'Peso: 6.0kg'
