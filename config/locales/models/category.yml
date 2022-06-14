@@ -1,6 +1,10 @@
 pt-BR:
   activerecord:
-    attributes:
+    models:
       category:
+        one: 'Categoria'
+        other: 'Categorias'
+    attributes:
+      category:      
         name: 'Nome'
         status: 'Status'

@@ -7,6 +7,10 @@
 </div>
 
 <div>
+  <%= link_to 'Nova Categoria', new_category_path %>
+</div>
+
+<div>
   <dl>
     <% @categories.each do | category |%>
       <dt><%= Category.human_attribute_name(:name)%>:</dt>
@@ -16,4 +20,5 @@
   
     <% end %>
   </dl>
+
 </div>
