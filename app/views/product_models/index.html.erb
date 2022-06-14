@@ -5,9 +5,9 @@
         <dl>
           <dt>Produto:</dt>
           <% if product.enabled? %>
-            <dd><%= link_to product.name, product %> <%= button_to 'Desativar', disabled_product_model_path(product), method: :patch %></dd>
+            <dd><%= link_to product.name, product %> <%= button_to 'Desativar', disable_product_model_path(product), method: :patch %></dd>
           <% elsif product.disabled? %>
-            <dd><%= link_to product.name, product %> <%= button_to 'Ativar', enabled_product_model_path(product), method: :patch %> </dd>
+            <dd><%= link_to product.name, product %> <%= button_to 'Ativar', enable_product_model_path(product), method: :patch %> </dd>
           <%end%>
           <dt>Marca:</dt>
           <dd><%= product.brand %></dd>

@@ -22,7 +22,7 @@ class ProductModelsController < ApplicationController
     @product_models = ProductModel.all
   end
 
-  def disabled
+  def disable
     @product = ProductModel.find(params[:id])
     if @product.disabled!
       @product.save
@@ -30,7 +30,7 @@ class ProductModelsController < ApplicationController
     end
   end
 
-  def enabled
+  def enable
     @product = ProductModel.find(params[:id])
     if @product.enabled!
       redirect_to product_models_path, notice: 'Produto ativado com sucesso'

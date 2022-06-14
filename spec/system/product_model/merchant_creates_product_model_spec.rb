@@ -87,11 +87,11 @@ describe 'Mercador cria produto' do
     merchant = create(:merchant)
 
     login_as(merchant)
-    produto = create(:product_model)
+    product = create(:product_model)
 
     visit root_path
     within('nav') do
-      click_on 'Criar Produto'
+      click_on 'Criar'
     end
     fill_in 'SKU', with: 'DELL948297'
     click_on 'Cadastrar'
