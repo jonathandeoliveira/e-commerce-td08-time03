@@ -35,16 +35,14 @@ class CategoriesController < ApplicationController
 
   def disable
     @category = Category.find(params[:id])
-    if @category.enabled? && @category.disabled!
-      redirect_to categories_path, notice: "Categoria #{@category.name} desativada com sucesso."
-    end
+    @category.disabled!
+    redirect_to categories_path, notice: "Categoria #{@category.name} desativada com sucesso."
   end
 
   def enable
     @category = Category.find(params[:id])
-    if @category.disabled? && @category.enabled!
-      redirect_to categories_path, notice: "Categoria #{@category.name} ativada com sucesso."
-    end
+    @category.enabled!
+    redirect_to categories_path, notice: "Categoria #{@category.name} ativada com sucesso."
   end
 
   private

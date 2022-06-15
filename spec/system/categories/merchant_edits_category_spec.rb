@@ -41,7 +41,7 @@ describe 'mercador edita categorias cadastradas' do
     expect(page).to have_content 'Nome: Eletrônicos'
   end
 
-  it 'sem sucesso' do
+  it 'com o nome em branco' do
     merchant = create(:merchant)
     categories = create_list(:random_category, 3)
 
