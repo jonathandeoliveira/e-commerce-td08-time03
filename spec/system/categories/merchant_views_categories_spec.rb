@@ -19,17 +19,17 @@ describe 'mercador visualiza categorias cadastradas' do
 
   it 'a partir da tela inicial' do
     merchant = create(:merchant)
-    login_as(merchant, scope: :merchant)
-    Category.create!(name: 'Eletrônicos')
-    Category.create!(name: 'Cozinha')
+    first_category = create(:random_category)
+    second_category = create(:random_category)
 
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Categorias'
 
     expect(page).to have_content 'Categorias'
-    expect(page).to have_content 'Nome: Eletrônicos'
+    expect(page).to have_content "Nome: #{first_category.name}"
     expect(page).to have_content 'Status: Ativa'
-    expect(page).to have_content 'Nome: Cozinha'
+    expect(page).to have_content "Nome: #{second_category.name}"
     expect(page).to have_content 'Status: Ativa'
   end
 end

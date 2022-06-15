@@ -11,7 +11,7 @@ describe 'usuário registra nova categoria' do
     expect(response).to redirect_to(categories_path)
   end
 
-  it 'sem sucesso' do
+  it 'sem sucesso, pois nome deve estar presente' do
     merchant = create(:merchant)
     login_as(merchant, scope: :merchant)
 

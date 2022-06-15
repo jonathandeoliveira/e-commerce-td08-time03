@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Mercador cadastra nova categoria' do
-  it 'se autenticado' do
+  it 'e precisa estar autenticado' do
     visit new_category_path
     expect(current_path).to eq new_merchant_session_path
   end
