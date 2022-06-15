@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'usuário registra nova categoria' do
-  it 'e registra nova categoria' do
+  it 'com sucesso' do
     merchant = create(:merchant)
     login_as(merchant, scope: :merchant)
 
