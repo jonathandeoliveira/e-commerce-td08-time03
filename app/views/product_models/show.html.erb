@@ -18,6 +18,18 @@
       <% else %>
          <dd>Não</dd>
       <% end %>
+      <% if @prices.any? %>         
+         <% @prices.each_with_index do |price, i| %>
+            <dt>Preço <%= i+1 %>:</dt>
+            <dd><%= number_to_currency(price.price) %></dd>
+            <dt><%= ProductPrice.human_attribute_name(:start_date)%>:</dt>
+            <dd><%= price.start_date %></dd>
+         <% end %>
+      <% else %>
+         <p>Não existem preços cadastrados</p>
+         <p>Deseja cadastrar preço?</p>
+         <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
+      <% end %>
       </dl>
     </div>
 </section>
