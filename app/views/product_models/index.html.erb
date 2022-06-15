@@ -1,0 +1,25 @@
+<div>
+    <h1>Produtos cadastrados:</h1>
+    <% if @product_models.any? %>
+      <% @product_models.each do |product| %>
+        <dl>
+          <dt>Produto:</dt>
+          <% if product.enabled? %>
+            <dd><%= link_to product.name, product %> <%= button_to 'Desativar', disable_product_model_path(product), method: :patch %></dd>
+          <% elsif product.disabled? %>
+            <dd><%= link_to product.name, product %> <%= button_to 'Ativar', enable_product_model_path(product), method: :patch %> </dd>
+          <%end%>
+          <dt>Marca:</dt>
+          <dd><%= product.brand %></dd>
+          <dt>Modelo:</dt>
+          <dd><%= product.model%></dd>
+          <dt>SKU:</dt>
+          <dd><%= product.sku %></dd>
+          <dt>Situação:</dt>
+          <dd><%= ProductModel.human_attribute_name(product.status) %></dd>
+        </dl>
+      <% end %>
+    <% else %>
+      <p>Não existem produtos cadastrados</p>
+    <% end %>
+</div>
