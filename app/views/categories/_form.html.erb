@@ -1,0 +1,13 @@
+<div>
+
+  <%= form_with model: @category do |f| %>
+    <div>
+    <span> <%= @category.errors.full_messages_for(:name).to_sentence if @category.errors %> </span>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    </div>
+
+    <%= f.submit %>
+  <% end %>
+
+</div>

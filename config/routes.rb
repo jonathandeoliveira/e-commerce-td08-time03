@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     patch 'disable', on: :member
     patch 'enable', on: :member
   end
+  resources :categories, only: %i[index new create]
 end

@@ -1,0 +1,24 @@
+<h2>Categorias</h2>
+
+<div>
+  <% if @categories.empty? %>
+  <p> Não existem categorias cadastradas </p>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to 'Nova Categoria', new_category_path %>
+</div>
+
+<div>
+  <dl>
+    <% @categories.each do | category |%>
+      <dt><%= Category.human_attribute_name(:name)%>:</dt>
+      <dd><%= category.name %></dd>
+      <dt><%= Category.human_attribute_name(:status)%>:</dt>
+      <dd><%= category.status %></dd>
+  
+    <% end %>
+  </dl>
+
+</div>
