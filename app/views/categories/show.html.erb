@@ -8,7 +8,7 @@
 </div>
 
 <section id = 'subcategories'>
-<span> <%= SubCategory.model_name.human%>: </span>
+<span> <%= SubCategory.model_name.human(:count => SubCategory.count)%>: </span>
 
 <% if @sub_categories.any? %>
     <table class="table table-striped" border="1">
