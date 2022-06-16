@@ -2,13 +2,13 @@
 
 <div>
 <dl> 
-<dt> Status: </dt>
+<dt> <%= Category.human_attribute_name(:status) %>: </dt>
 <dd> <%= Category.human_attribute_name(@category.status) %> </dd>
 </dl>
 </div>
 
 <section id = 'subcategories'>
-<span> <%= SubCategory.model_name.human %> </span>
+<span> <%= SubCategory.model_name.human%>: </span>
 <% if @sub_categories.any? %>
     <table class="table table-striped" border="1" class="dataframe">
       <thead>
@@ -28,4 +28,5 @@
   <p> Não existem subcategorias cadastradas.</p>
 <% end %>
 </section>
+
 <%= link_to 'Nova subcategoria', new_category_sub_category_path(@category) %>

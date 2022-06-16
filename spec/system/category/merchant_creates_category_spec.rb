@@ -31,7 +31,7 @@ describe 'Mercador cadastra nova categoria' do
     expect(current_path).to eq categories_path
     expect(page).to have_content 'Categoria criada com sucesso'
     expect(page).to have_content 'Nome: Eletrônicos'
-    expect(page).to have_content 'Status: Ativa'
+    expect(page).to have_content 'Situação: Ativa'
   end
 
   it 'sem sucesso' do

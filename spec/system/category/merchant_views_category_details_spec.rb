@@ -12,8 +12,8 @@ describe 'Usuário vê detalhes de uma categoria' do
 
     expect(current_path).to eq category_path(category)
     expect(page).to have_content "Detalhes sobre a categoria: #{category.name}"
-    expect(page).to have_content 'Status: Ativa'
-    expect(page).to have_content 'Subcategorias:'
+    expect(page).to have_content 'Situação: Ativa'
+    expect(page).to have_content  SubCategory.model_name.human
     expect(page).to have_content 'Não existem subcategorias cadastradas.'
   end
 

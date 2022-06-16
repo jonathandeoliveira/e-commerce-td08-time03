@@ -7,7 +7,7 @@ FactoryBot.define do
   end
 
   factory :category, class: 'category' do
-    name { 'Eletronicos' }
+    sequence(:name) { |n| "Eletronicos#{n}" }
     status { 0 }
   end
 end
