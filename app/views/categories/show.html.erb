@@ -9,21 +9,34 @@
 
 <section id = 'subcategories'>
 <span> <%= SubCategory.model_name.human%>: </span>
+
 <% if @sub_categories.any? %>
-    <table class="table table-striped" border="1" class="dataframe">
+    <table class="table table-striped" border="1">
       <thead>
         <tr>
-          <th> <%= SubCategory.human_attribute_name(:name)%> </th>
-          <th> <%= SubCategory.human_attribute_name(:status)%> </th>
+          <th> <%= SubCategory.human_attribute_name(:name) %> </th>
+          <th> <%= SubCategory.human_attribute_name(:status) %> </th>
+          <th></th>
         </tr>
         </thead>
+
         <tbody>
-          <%  @sub_categories.each do |sb| %>
+          <%  @sub_categories.each do |sb| %>   
+            <tr>       
             <td> <%= sb.name%> </td>
             <td> <%= SubCategory.human_attribute_name(sb.status)%>  </td>
+
+            <% if sb.enabled?  %>
+              <td> <%= button_to 'Desativar', disable_category_sub_category_path(sb), method: :patch %>  </td>
+            <% elsif sb.disabled? %>
+              <td> <%= button_to 'Ativar', enable_category_sub_category_path(sb), method: :patch %>  </td>
+            <% end %>
+
           <% end %>
+          <tr>
         <tbody>
       </table>
+
 <% else %>
   <p> Não existem subcategorias cadastradas.</p>
 <% end %>

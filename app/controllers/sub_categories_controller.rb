@@ -1,4 +1,6 @@
 class SubCategoriesController < ApplicationController
+  before_action :authenticate_merchant!, only: %i[new create update disable enable]
+
   def new
     @category = Category.find(params[:category_id])
     @sub_category = @category.sub_categories.new
@@ -14,6 +16,20 @@ class SubCategoriesController < ApplicationController
       flash.now[:notice] = 'Falha ao criar subcategoria.'
       render 'new'
     end
+  end
+
+  def disable
+    @category = Category.find(params[:category_id])
+    @sub_category = SubCategory.find(params[:id])
+    @sub_category.disabled!
+    redirect_to category_path(@category), notice: "Subcategoria: #{@sub_category.name} desativada com sucesso."
+  end
+
+  def enable
+    @category = Category.find(params[:category_id])
+    @sub_category = SubCategory.find(params[:id])
+    @sub_category.enabled!
+    redirect_to category_path(@category), notice: "Subcategoria: #{@sub_category.name} ativada com sucesso."
   end
 
   private
