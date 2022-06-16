@@ -4,4 +4,6 @@ class ProductModel < ApplicationRecord
   validates :weight, :height, :width, :length, numericality: { greater_than: 0 }
   validates :sku, uniqueness: true
   validates :sku, length: { minimum: 8 }
+
+  has_many :product_prices
 end
