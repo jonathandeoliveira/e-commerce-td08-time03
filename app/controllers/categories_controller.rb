@@ -45,6 +45,11 @@ class CategoriesController < ApplicationController
     redirect_to categories_path, notice: "Categoria #{@category.name} ativada com sucesso."
   end
 
+  def show
+    @category = Category.find(params[:id])
+    @sub_categories = @category.sub_categories
+  end
+
   private
 
   def category_params

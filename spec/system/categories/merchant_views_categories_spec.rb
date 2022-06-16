@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'mercador visualiza categorias cadastradas' do
-  it 'se autenticado' do
+  it 'somente se estiver autenticado' do
     visit categories_path
 
     expect(current_path).to eq new_merchant_session_path

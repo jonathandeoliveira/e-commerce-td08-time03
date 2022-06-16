@@ -8,6 +8,5 @@ pt-BR:
       category:      
         name: 'Nome'
         status: 'Status'
-      category/status:
         enabled: 'Ativa'
         disabled: 'Inativa'

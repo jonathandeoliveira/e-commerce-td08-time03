@@ -1,0 +1,31 @@
+<h1> Detalhes sobre a categoria: <%= @category.name %> </h1>
+
+<div>
+<dl> 
+<dt> Status: </dt>
+<dd> <%= Category.human_attribute_name(@category.status) %> </dd>
+</dl>
+</div>
+
+<section id = 'subcategories'>
+<span> <%= SubCategory.model_name.human %> </span>
+<% if @sub_categories.any? %>
+    <table class="table table-striped" border="1" class="dataframe">
+      <thead>
+        <tr>
+          <th> <%= SubCategory.human_attribute_name(:name)%> </th>
+          <th> <%= SubCategory.human_attribute_name(:status)%> </th>
+        </tr>
+        </thead>
+        <tbody>
+          <%  @sub_categories.each do |sb| %>
+            <td> <%= sb.name%> </td>
+            <td> <%= SubCategory.human_attribute_name(sb.status)%>  </td>
+          <% end %>
+        <tbody>
+      </table>
+<% else %>
+  <p> Não existem subcategorias cadastradas.</p>
+<% end %>
+</section>
+<%= link_to 'Nova subcategoria', new_category_sub_category_path(@category) %>
