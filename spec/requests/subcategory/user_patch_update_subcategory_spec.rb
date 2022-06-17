@@ -3,11 +3,13 @@ require 'rails_helper'
 describe 'usuario muda status de subcategoria' do
   it 'para inativa, sem sucesso, pois necessita autenticação' do
     create(:random_category)
-    create(:sub_category)
+    subcategory = create(:sub_category)
 
     patch('/categories/1/sub_categories/1/disable')
 
     expect(response).to redirect_to new_merchant_session_path
+    subcategory.reload
+    expect(subcategory.status).to eq 'enabled'
   end
 
   it 'para inativa, com sucesso' do

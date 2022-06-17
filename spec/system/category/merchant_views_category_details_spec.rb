@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes de uma categoria' do
+  it 'somente se estiver autenticado' do
+    category = create(:random_category)
+
+    visit category_path(category)
+
+    expect(current_path).to eq new_merchant_session_path
+  end
+
   it 'a partir da página inicial' do
     merchant = create(:merchant)
     category = create(:random_category)
@@ -16,5 +24,4 @@ describe 'Usuário vê detalhes de uma categoria' do
     expect(page).to have_content  SubCategory.model_name.human
     expect(page).to have_content 'Não existem subcategorias cadastradas.'
   end
-
 end

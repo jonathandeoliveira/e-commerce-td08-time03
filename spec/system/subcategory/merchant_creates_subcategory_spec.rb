@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe 'mercador registra nova subcategoria' do
+  it 'e precisa estar autenticado' do
+    category = create(:random_category)
+
+    visit new_category_sub_category_path(category)
+
+    expect(current_path).to eq new_merchant_session_path
+  end
+
   it 'a partir da pagina inicial' do
     merchant = create(:merchant)
     category = create(:random_category)
@@ -19,9 +27,7 @@ describe 'mercador registra nova subcategoria' do
     category = create(:category)
 
     login_as(merchant)
-    visit root_path
-    click_on 'Categorias'
-    click_on "#{category.name}"
+    visit category_path(category)
     click_on 'Nova subcategoria'
     fill_in 'Nome', with: 'Notebooks'
     click_on 'Criar Subcategoria'
@@ -36,8 +42,7 @@ describe 'mercador registra nova subcategoria' do
 
     login_as(merchant)
     visit root_path
-    click_on 'Categorias'
-    click_on "#{category.name}"
+    visit category_path(category)
     click_on 'Nova subcategoria'
     fill_in 'Nome', with: ''
     click_on 'Criar Subcategoria'
@@ -46,15 +51,14 @@ describe 'mercador registra nova subcategoria' do
     expect(page).to have_content 'Falha ao criar subcategoria.'
   end
 
-  it 'e não preenche o campo' do
+  it 'e usa nome repetido' do
     merchant = create(:merchant)
     category = create(:category)
     subcategory = create(:sub_category)
 
     login_as(merchant)
     visit root_path
-    click_on 'Categorias'
-    click_on "#{category.name}"
+    visit category_path(category)
     click_on 'Nova subcategoria'
     fill_in 'Nome', with: "#{subcategory.name}"
     click_on 'Criar Subcategoria'

@@ -1,5 +1,5 @@
 class SubCategoriesController < ApplicationController
-  before_action :authenticate_merchant!, only: %i[new create update disable enable]
+  before_action :authenticate_merchant!, only: %i[new create disable enable]
 
   def new
     @category = Category.find(params[:category_id])
