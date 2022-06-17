@@ -1,0 +1,45 @@
+<h1> Detalhes sobre a categoria: <%= @category.name %> </h1>
+
+<div>
+<dl> 
+<dt> <%= Category.human_attribute_name(:status) %>: </dt>
+<dd> <%= Category.human_attribute_name(@category.status) %> </dd>
+</dl>
+</div>
+
+<section id = 'subcategories'>
+<span> <%= SubCategory.model_name.human(:count => SubCategory.count)%>: </span>
+
+<% if @sub_categories.any? %>
+    <table class="table table-striped" border="1">
+      <thead>
+        <tr>
+          <th> <%= SubCategory.human_attribute_name(:name) %> </th>
+          <th> <%= SubCategory.human_attribute_name(:status) %> </th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+          <%  @sub_categories.each do |sb| %>   
+            <tr>       
+            <td> <%= sb.name%> </td>
+            <td> <%= SubCategory.human_attribute_name(sb.status)%>  </td>
+
+            <% if sb.enabled?  %>
+              <td> <%= button_to 'Desativar', disable_category_sub_category_path(sb), method: :patch %>  </td>
+            <% elsif sb.disabled? %>
+              <td> <%= button_to 'Ativar', enable_category_sub_category_path(sb), method: :patch %>  </td>
+            <% end %>
+
+          <% end %>
+          <tr>
+        <tbody>
+      </table>
+
+<% else %>
+  <p> Não existem subcategorias cadastradas.</p>
+<% end %>
+</section>
+
+<%= link_to 'Nova subcategoria', new_category_sub_category_path(@category) %>

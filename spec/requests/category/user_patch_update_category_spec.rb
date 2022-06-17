@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'usuario atualiza categoria' do
   it 'com sucesso' do
     merchant = create(:merchant)
-    login_as(merchant, scope: :merchant)
     category = create(:random_category)
 
+    login_as(merchant, scope: :merchant)
     patch("/categories/#{category.id}", params: { category: { name: 'Eletrônicos' } })
 
     expect(Category.first.name).to eq 'Eletrônicos'
@@ -14,9 +14,9 @@ describe 'usuario atualiza categoria' do
 
   it 'sem sucesso' do
     merchant = create(:merchant)
-    login_as(merchant, scope: :merchant)
     category = create(:random_category)
 
+    login_as(merchant, scope: :merchant)
     patch("/categories/#{category.id}", params: { category: { name: '' } })
 
     expect(response).to render_template(:edit)
