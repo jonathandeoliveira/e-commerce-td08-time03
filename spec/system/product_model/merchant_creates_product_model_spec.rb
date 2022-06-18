@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'Mercador cria produto' do
+describe 'Mercador cria produto' do  
   it 'a partir da tela inicial' do
     merchant = create(:merchant)
-
+    subcategory = create(:sub_category)
     login_as(merchant)
     visit root_path
     click_on 'Criar Produto'
@@ -18,10 +18,13 @@ describe 'Mercador cria produto' do
     expect(page).to have_field 'Largura'
     expect(page).to have_field 'Comprimento'
     expect(page).to have_field 'Peso'
+    expect(page).to have_field 'Categoria'
   end
 
   it 'com sucesso' do
     merchant = create(:merchant)
+    category = create(:category, name: 'Eletrônicos')
+    subcategory = create(:sub_category, name: 'Notebooks')
 
     login_as(merchant)
     visit root_path
@@ -37,6 +40,7 @@ describe 'Mercador cria produto' do
     fill_in 'Largura', with: '0.45'
     fill_in 'Comprimento', with: '0.15'
     fill_in 'Peso', with: '6'
+    select "#{subcategory.full_description}", from: "#{Category.model_name.human}"
     check 'Frágil'
     click_on 'Cadastrar'
 
@@ -51,10 +55,14 @@ describe 'Mercador cria produto' do
     expect(result.brand).to eq 'Dell' 
     expect(result.model).to eq 'Inspiron 15' 
     expect(result.fragile).to be_truthy
+    expect(result.sub_category.name).to eq 'Notebooks'
   end
+  
 
   it 'com dados incompletos' do
     merchant = create(:merchant)
+    category = create(:category, name: 'Eletrônicos')
+    subcategory = create(:sub_category, name: 'Notebooks')
 
     login_as(merchant)
     visit root_path

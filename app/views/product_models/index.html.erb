@@ -13,6 +13,8 @@
           <dd><%= product.brand %></dd>
           <dt>Modelo:</dt>
           <dd><%= product.model%></dd>
+          <dt><%= Category.model_name.human %>:</dt>
+          <dd><%= product.sub_category.full_description %></dd>
           <dt>SKU:</dt>
           <dd><%= product.sku %></dd>
           <dt>Situação:</dt>
