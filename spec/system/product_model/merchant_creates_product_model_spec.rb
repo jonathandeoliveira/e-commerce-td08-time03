@@ -1,9 +1,20 @@
 require 'rails_helper'
 
-describe 'Mercador cria produto' do  
+describe 'Mercador cria produto' do
+  it 'sem ter criado uma categoria e subcategoria' do
+    merchant = create(:merchant)
+
+    login_as(merchant, scope: :merchant)    
+    visit root_path
+    click_on 'Criar Produto'
+
+    expect(page).to have_content 'Antes de criar algum produto, por favor crie uma categoria para ele.'
+  end
+
   it 'a partir da tela inicial' do
     merchant = create(:merchant)
     subcategory = create(:sub_category)
+
     login_as(merchant)
     visit root_path
     click_on 'Criar Produto'

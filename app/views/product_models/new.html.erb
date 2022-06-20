@@ -9,53 +9,58 @@
       <% end %>
     </ul>
   <% end %>
-  <%= form_with model:(@product_model) do |f| %>
-    <div>
-      <%= f.label :name %>:
-      <%= f.text_field :name %>
-    </div>
-    <div>
-      <%= f.label :brand %>:
-      <%= f.text_field :brand %>
-    </div>
-    <div>
-      <%= f.label :model %>:
-      <%= f.text_field :model %>
-    </div>
-    <div>
-      <%= f.label :description %>:
-      <%= f.text_field :description %>
-    </div>
-    <div>
-      <%= f.label :sku %>:
-      <%= f.text_field :sku %>
-    </div>
-    <div>
-      <%= f.label :height %>:
-      <%= f.number_field :height, step: 0.1 %>
-    </div>
-    <div>
-      <%= f.label :width %>:
-      <%= f.number_field :width, step: 0.1 %>
-    </div>
-    <div>
-      <%= f.label :length %>:
-      <%= f.number_field :length, step: 0.1 %>
-    </div>
-    <div>
-      <%= f.label :weight %>:
-      <%= f.number_field :weight, step: 0.1 %>
-    </div>
-    <div>
-      <%= f.label :sub_category_id, Category.model_name.human %>
-      <%= f.collection_select :sub_category_id, @subcategories, :id, :full_description %>
-    </div>
-    <div>
-      <%= f.label :fragile %>
-      <%= f.check_box :fragile %>
-    </div>
-    <div>
-      <%= f.submit 'Cadastrar' %>
-    </div>
-  <% end %>
+
+  <% if @subcategories.present?%>
+    <%= form_with model:(@product_model) do |f| %>
+      <div>
+        <%= f.label :name %>:
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :brand %>:
+        <%= f.text_field :brand %>
+      </div>
+      <div>
+        <%= f.label :model %>:
+        <%= f.text_field :model %>
+      </div>
+      <div>
+        <%= f.label :description %>:
+        <%= f.text_field :description %>
+      </div>
+      <div>
+        <%= f.label :sku %>:
+        <%= f.text_field :sku %>
+      </div>
+      <div>
+        <%= f.label :height %>:
+        <%= f.number_field :height, step: 0.1 %>
+      </div>
+      <div>
+        <%= f.label :width %>:
+        <%= f.number_field :width, step: 0.1 %>
+      </div>
+      <div>
+        <%= f.label :length %>:
+        <%= f.number_field :length, step: 0.1 %>
+      </div>
+      <div>
+        <%= f.label :weight %>:
+        <%= f.number_field :weight, step: 0.1 %>
+      </div>
+      <div>
+        <%= f.label :sub_category_id, Category.model_name.human %>
+        <%= f.collection_select :sub_category_id, @subcategories, :id, :full_description %>
+      </div>
+      <div>
+        <%= f.label :fragile %>
+        <%= f.check_box :fragile %>
+      </div>
+      <div>
+        <%= f.submit 'Cadastrar' %>
+      </div>
+    <% end %>
+    <% else %>
+      <span>Antes de criar algum produto, por favor crie uma categoria para ele.</span>
+    <% end %>
 </section>
