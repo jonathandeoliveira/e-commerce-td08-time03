@@ -8,11 +8,11 @@ describe 'requisição para mudar status de um produto' do
 
     expect(response).to redirect_to new_merchant_session_path
     product.reload
-    expect(product.status).to eq 'enabled'
+    expect(product.status).to eq 'disabled'
   end
 
   it 'para ativa, sem sucesso, pois necessita autenticação' do
-    product = create(:product_model, status: 0)
+    product = create(:product_model, status: :disabled)
 
     patch enable_product_model_path(product)
 
@@ -23,7 +23,7 @@ describe 'requisição para mudar status de um produto' do
 
   it 'para inativa, com sucesso' do
     merchant = create(:merchant)
-    product = create(:product_model)
+    product = create(:product_model, status: :enabled)
 
     login_as(merchant, scope: :merchant)
     patch disable_product_model_path(product)
@@ -35,8 +35,9 @@ describe 'requisição para mudar status de um produto' do
 
   it 'para ativa, com sucesso' do
     merchant = create(:merchant)
-    product = create(:product_model, status: :disabled)
-
+    product = create(:product_model)
+    price = create(:product_price, product_model: product)
+    
     login_as(merchant, scope: :merchant)
     patch enable_product_model_path(product)
 

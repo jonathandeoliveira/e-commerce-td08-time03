@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      product_price:
+        one: "Preço do produto"
+        other: "Preços do produto"
+    attributes:
+      product_price:
+        price: "Preço"
+        start_date: "Data inicial"
+        end_date: "Data final"

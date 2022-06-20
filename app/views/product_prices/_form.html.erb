@@ -1,0 +1,20 @@
+<div>
+  <%= form_with(model: [@product_model, @price]) do | f | %>
+    <div>
+      <span> <%= @price.errors.full_messages_for(:price).to_sentence if @price.errors[:price] %> </span>
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+    </div>
+    <div>
+      <span> <%= @price.errors.full_messages_for(:start_date).to_sentence if @price.errors[:start_date] %> </span>
+      <%= f.label :start_date %>
+      <%= f.text_field :start_date %>
+    </div>
+     <div>
+      <span> <%= @price.errors.full_messages_for(:end_date).to_sentence if @price.errors[:end_date] %> </span>
+      <%= f.label :end_date %>
+      <%= f.text_field :end_date %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
