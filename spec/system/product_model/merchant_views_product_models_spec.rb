@@ -53,10 +53,12 @@ describe 'Mercador acessa página principal de produtos' do
     merchant = create(:merchant)
 
     login_as(merchant)
-    visit root_path
+    visit root_pathCo
     click_on 'Produtos'
     click_on 'Página Inicial'
 
     expect(current_path).to eq root_path
   end
 end
+
+rails g devise user  name:, registration_number:
