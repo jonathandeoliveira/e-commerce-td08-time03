@@ -20,6 +20,8 @@ describe 'Mercador acessa página principal de produtos' do
     expect(page).to have_content 'Marca: Dell'
     expect(page).to have_content 'Modelo: Inspiron 15'
     expect(page).to have_content 'SKU: DELL948297'
+    expect(page).to have_content "#{product.sub_category.full_description}"
+
   end
 
   it 'e não existem produtos cadastrados' do

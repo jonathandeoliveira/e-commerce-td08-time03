@@ -2,6 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :product_model do
+    sub_category
     name { "Notebook" }
     brand { "Dell" }
     model { "Inspiron 15" }
