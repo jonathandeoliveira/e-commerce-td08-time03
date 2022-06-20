@@ -54,8 +54,8 @@ RSpec.describe ProductPrice, type: :model do
       
       expect(second_price.errors.include? :price).to be true
       expect(third_price.errors.include? :price).to be false
-      expect(second_price.errors[:price]).to include(' não pode ser cadastrado, pois está em incluso em intervalo de datas já existentes')
-      expect(third_price.errors[:price]).not_to include(' não pode ser cadastrado, pois está em incluso em intervalo de datas já existentes')
+      expect(second_price.errors[:price]).to include(' não pode ser cadastrado, pois está incluso em intervalo de datas já existentes')
+      expect(third_price.errors[:price]).not_to include(' não pode ser cadastrado, pois está incluso em intervalo de datas já existentes')
     end
   end
 end

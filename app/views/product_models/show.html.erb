@@ -28,6 +28,8 @@
             <dd><%= I18n.l(price.end_date) %></dd>
             <%= link_to 'Editar preço', edit_product_model_product_price_path(@product_model, price) %>
          <% end %>
+         <p>Deseja cadastrar preço?</p>
+         <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
       <% else %>
          <p>Não existem preços cadastrados</p>
          <p>Deseja cadastrar preço?</p>

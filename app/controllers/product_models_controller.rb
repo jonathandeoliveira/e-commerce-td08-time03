@@ -16,7 +16,7 @@ class ProductModelsController < ApplicationController
 
   def show
     @product_model = ProductModel.find(params[:id])
-    @prices = ProductPrice.all   
+    @prices = ProductPrice.where(product_model: @product_model)   
   end
 
   def index

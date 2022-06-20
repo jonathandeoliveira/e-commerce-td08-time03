@@ -19,4 +19,3 @@ RSpec.describe ProductModel, type: :model do
     it {should validate_length_of(:sku).is_at_least(8)}
   end
 end
-

@@ -1,12 +1,12 @@
 class ProductPricesController < ApplicationController
-  before_action :authenticate_merchant!, only: %i[new]
+  before_action :authenticate_merchant!, only: %i[new create edit update]
+  before_action :set_product_model, only: %i[new create edit update]
+
   def new
-    @product_model = ProductModel.find(params[:product_model_id])
     @price = ProductPrice.new
   end
 
   def create    
-    @product_model = ProductModel.find(params[:product_model_id])
     @price = ProductPrice.new(price_params)
     @price.product_model = @product_model
     if @price.save
@@ -18,15 +18,16 @@ class ProductPricesController < ApplicationController
   end
 
   def edit
-    @product_model = ProductModel.find(params[:product_model_id])
     @price = ProductPrice.find(params[:id])
   end
 
   def update
-    @product_model = ProductModel.find(params[:product_model_id])
     @price = ProductPrice.find(params[:id])
     if @price.update(price_params)
       redirect_to product_model_path(@product_model), notice: 'Edição de preço realizada com sucesso'
+    else
+      flash.now[:notice] = 'Falha ao atualizar preço do produto.'
+      render 'edit'
     end
   end
 
@@ -34,5 +35,9 @@ class ProductPricesController < ApplicationController
 
   def price_params
     my_params = params.require(:product_price).permit(:price, :start_date, :end_date, :product_model_id)
+  end
+
+  def set_product_model
+    @product_model = ProductModel.find(params[:product_model_id])
   end
 end

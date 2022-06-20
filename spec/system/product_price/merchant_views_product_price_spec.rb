@@ -4,7 +4,9 @@ describe "Mercador visualiza preço do produto" do
   it 'a partir da tela inicial' do
     merchant = create(:merchant)
     product = create(:product_model)
-    first_price = create(:product_price, product_model: product, price: 300.99, start_date: 1.day.from_now, end_date: 30.day.from_now)
+    start_date = Date.today + 1
+    end_date = start_date + 29
+    first_price = create(:product_price, product_model: product, price: 300.99, start_date: start_date, end_date: end_date)
     second_price = create(:product_price, product_model: product, price: 280.0, start_date: 31.day.from_now, end_date: 60.day.from_now)
 
     login_as(merchant, scope: :merchant)
@@ -13,6 +15,8 @@ describe "Mercador visualiza preço do produto" do
     click_on product.name
 
     expect(page).to have_content "Preço 1: R$ 300,99"
+    expect(page).to have_content "Data inicial: #{I18n.l(start_date)}"
+    expect(page).to have_content "Data final: #{I18n.l(end_date)}"
     expect(page).to have_content "Preço 2: R$ 280,00"
   end
 
