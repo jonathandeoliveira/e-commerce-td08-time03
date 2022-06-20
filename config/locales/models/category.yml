@@ -7,7 +7,6 @@ pt-BR:
     attributes:
       category:      
         name: 'Nome'
-        status: 'Status'
-      category/status:
+        status: 'Situação'
         enabled: 'Ativa'
         disabled: 'Inativa'

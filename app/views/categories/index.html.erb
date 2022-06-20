@@ -14,16 +14,15 @@
   <dl>
     <% @categories.each do | category |%>
       <dt><%= Category.human_attribute_name(:name)%>:</dt>
-      <dd><%= category.name %></dd>
+      <dd><%= link_to category.name, category %></dd>
       <dt><%= Category.human_attribute_name(:status)%>:</dt>
-      <dd><%= Category.human_attribute_name("status.#{category.status}") %></dd>
+      <dd><%= Category.human_attribute_name(category.status) %></dd>
       <%= link_to 'Editar Categoria', edit_category_path(category) %>
       <% if category.enabled? %>
         <%= button_to 'Desativar', disable_category_path(category), method: :patch %>    
-      <% else %> 
+      <% else %>
         <%= button_to 'Ativar', enable_category_path(category), method: :patch %>    
       <% end %>
     <% end %>
   </dl>
-
 </div>

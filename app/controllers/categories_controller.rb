@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_merchant!, only: %i[index new create edit disable enable]
+  before_action :authenticate_merchant!, only: %i[index show new create edit disable enable]
 
   def index
     @categories = Category.all
@@ -43,6 +43,11 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.enabled!
     redirect_to categories_path, notice: "Categoria #{@category.name} ativada com sucesso."
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @sub_categories = @category.sub_categories
   end
 
   private

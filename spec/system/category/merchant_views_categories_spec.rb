@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'mercador visualiza categorias cadastradas' do
-  it 'se autenticado' do
+  it 'somente se estiver autenticado' do
     visit categories_path
 
     expect(current_path).to eq new_merchant_session_path
@@ -28,8 +28,8 @@ describe 'mercador visualiza categorias cadastradas' do
 
     expect(page).to have_content 'Categorias'
     expect(page).to have_content "Nome: #{first_category.name}"
-    expect(page).to have_content 'Status: Ativa'
+    expect(page).to have_content 'Situação: Ativa'
     expect(page).to have_content "Nome: #{second_category.name}"
-    expect(page).to have_content 'Status: Ativa'
+    expect(page).to have_content 'Situação: Ativa'
   end
 end
