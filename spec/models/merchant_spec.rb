@@ -8,13 +8,12 @@ RSpec.describe Merchant, type: :model do
         second_merchant = build(:merchant)
 
         first_merchant.valid?
+        second_merchant.valid?
+
         first_result = first_merchant.errors.include?(:email)
         expect(first_result).to be true    
-
-        second_merchant.valid?
         second_result = second_merchant.errors.include?(:email)
         expect(second_result).to be false
-        
       end
 
       it 'domínio de email deve ser único' do
@@ -25,9 +24,7 @@ RSpec.describe Merchant, type: :model do
 
         expect(result).to eq false
         expect(second_merchant.errors.full_messages.include? 'domínio de email domínio de email deve ser único')
-
       end
-
     end
 
     context 'tamanho de input' do
@@ -46,9 +43,7 @@ RSpec.describe Merchant, type: :model do
         expect(second_merchant.errors.full_messages.include? 'Senha deve ter mínimo de 6 caracteres').to eq false
         expect(third_merchant.errors.include? :password).to eq false
         expect(third_merchant.errors.full_messages.include? 'Senha deve ter mínimo de 6 caracteres').to eq false
-
       end
     end
   end
-  
 end

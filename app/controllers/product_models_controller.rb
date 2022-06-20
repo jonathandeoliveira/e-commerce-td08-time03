@@ -16,6 +16,7 @@ class ProductModelsController < ApplicationController
 
   def show
     @product_model = ProductModel.find(params[:id])
+    @prices = ProductPrice.where(product_model: @product_model)   
   end
 
   def index
@@ -32,8 +33,18 @@ class ProductModelsController < ApplicationController
 
   def enable
     @product = ProductModel.find(params[:id])
-    if @product.enabled!
-      redirect_to product_models_path, notice: 'Produto ativado com sucesso'
+    prices = @product.product_prices.to_a
+    total_days = 0
+    prices.each do |price|
+      total_days+= price.end_date - price.start_date
+    end
+    if total_days >= 90
+      if @product.enabled!
+        redirect_to product_models_path, notice: 'Produto ativado com sucesso'
+      end
+    else
+      flash[:notice] = "Produto com #{total_days.round} dias cadastrados"
+      redirect_to product_models_path, alert: 'Produto não pode ser ativado: Necessário mínimo de 90 dias de preços cadastrados.' 
     end
   end
 
