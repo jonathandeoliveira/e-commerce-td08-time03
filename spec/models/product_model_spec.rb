@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ProductModel, type: :model do
   describe '#valid?' do
+    subject do
+      product = create(:product_model)
+    end
     it { should validate_presence_of(:brand) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:model) }

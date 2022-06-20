@@ -6,8 +6,13 @@ FactoryBot.define do
     status { 0 }
   end
 
-  factory :category, class: 'category' do
+  factory :categories, class: 'category' do
     sequence(:name) { |n| "Eletronicos#{n}" }
+    status { 0 }
+  end
+
+  factory :category, class: 'category' do
+    sequence(:name) { "Eletronicos" }
     status { 0 }
   end
 end

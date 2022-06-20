@@ -54,10 +54,9 @@ describe 'mercador registra nova subcategoria' do
   it 'e usa nome repetido' do
     merchant = create(:merchant)
     category = create(:category)
-    subcategory = create(:sub_category)
+    subcategory = create(:sub_category, category:category)
 
     login_as(merchant)
-    visit root_path
     visit category_path(category)
     click_on 'Nova subcategoria'
     fill_in 'Nome', with: "#{subcategory.name}"

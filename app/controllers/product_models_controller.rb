@@ -2,7 +2,8 @@ class ProductModelsController < ApplicationController
   before_action :authenticate_merchant!
 
   def new
-    @product_model = ProductModel.new()
+    @product_model = ProductModel.new
+    @subcategories = SubCategory.all
   end
 
   def create
@@ -10,6 +11,7 @@ class ProductModelsController < ApplicationController
     if @product_model.save
       redirect_to @product_model, notice: 'Produto cadastrado com sucesso'
     else
+      @subcategories = SubCategory.all
       render 'new'
    end
   end
@@ -53,6 +55,6 @@ class ProductModelsController < ApplicationController
 
   def product_model_params
     params.require(:product_model).permit(:name, :brand, :sku, :model, :fragile,
-                        :description, :weight, :height, :width, :length, :status)
+                        :description, :weight, :height, :width, :length, :status, :sub_category_id)
   end
 end

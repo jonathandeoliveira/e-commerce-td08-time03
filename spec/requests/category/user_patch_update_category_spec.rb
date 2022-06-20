@@ -12,7 +12,7 @@ describe 'usuario atualiza categoria' do
     expect(response).to redirect_to(categories_path)
   end
 
-  it 'sem sucesso' do
+  it 'sem sucesso, com nome em branco' do
     merchant = create(:merchant)
     category = create(:random_category)
 
