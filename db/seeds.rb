@@ -1,7 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+Merchant.destroy_all
+ProductModel.destroy_all
+Category.destroy_all
+SubCategory.destroy_all
+ProductPrice.destroy_all
+
+# users
+merchant = Merchant.create(name: 'Alan', email: 'alan@mercadores.com.br', password: 'password')
+
+
+# categories
+eletronicos = Category.create(name: 'Eletronicos', status: 0)
+informatica = Category.create(name: 'Informática', status: 0)
+games = Category.create(name: 'Games', status: 0)
+livros = Category.create(name: 'Livros', status: 0)
+eletrodomesticos = Category.create(name: 'Eletrodomésticos', status: 0)
+
+# sub-categories
+computadores = SubCategory.create(name: 'Computadores', category: eletronicos, status: 10)
+computadores = SubCategory.create(name: 'Computadores', category: eletronicos, status: 10)
