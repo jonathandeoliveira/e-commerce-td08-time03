@@ -8,7 +8,6 @@ class ProductModelsController < ApplicationController
 
   def create
     @product_model = ProductModel.new(product_model_params)
-    @product_model.manual.attach(params[:product_model][:manual])
     if @product_model.save
       redirect_to @product_model, notice: 'Produto cadastrado com sucesso'
     else

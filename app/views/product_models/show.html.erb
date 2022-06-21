@@ -37,10 +37,10 @@
             <p>Deseja cadastrar preço?</p>
             <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
          <% end %>
-         <%# if @product_model.manual.attached? %>
+         <%if @product_model.manual.attached? %>
             <dt>Downloads:</dt>
-            <dd><%= link_to 'Manual do produto', product_model_manuals_path(@product_model)  %></dd>
-         <%# end %>
+            <dd><%= link_to 'Manual do produto', @product_model.manual %></dd>
+         <% end %>
       </dl>
     </div>
 </section>

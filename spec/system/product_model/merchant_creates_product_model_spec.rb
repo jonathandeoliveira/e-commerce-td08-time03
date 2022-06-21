@@ -70,7 +70,6 @@ describe 'Mercador cria produto' do
     expect(result.model).to eq 'Inspiron 15' 
     expect(result.fragile).to be_truthy
     expect(result.sub_category.name).to eq 'Notebooks'
-    expect(result.manual).to exist
   end
   
 
