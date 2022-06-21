@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     patch 'disable', on: :member
     patch 'enable', on: :member
     resources :product_prices, only: %i[new create edit update]
+    resources :manuals, only: %i[show]
   end
 end

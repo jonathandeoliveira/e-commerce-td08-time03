@@ -6,4 +6,5 @@ class ProductModel < ApplicationRecord
   validates :sku, uniqueness: true
   validates :sku, length: { minimum: 8 }
   has_many :product_prices
+  has_one_attached :manual
 end

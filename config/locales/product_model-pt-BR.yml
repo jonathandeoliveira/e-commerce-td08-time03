@@ -17,5 +17,6 @@ pt-BR:
         status: "Situação"
         enabled: "Em estoque"
         disabled: "Fora de estoque"
-        sub_category_id: 'Categoria'
-        sub_category: 'Categoria'
+        sub_category_id: "Categoria"
+        sub_category: "Categoria"
+        manual: "Manual do produto"

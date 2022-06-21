@@ -2,41 +2,45 @@
   <h1>Detalhes sobre o produto: <%= @product_model.name %></h1>
     <div>
       <dl>
-      <dt>Produto:</dt>
-      <dd><%= @product_model.name %> <%= @product_model.brand %> <%= @product_model.model %></dd>
-      <dt><%= Category.model_name.human %>:</dt>
-      <dd><%= @product_model.sub_category.full_description %></dd>
-      <dt>Descrição:</dt>
-      <dd><%= @product_model.description %></dd>
-      <dt>Dimensões:</dt>
-      <dd><%= @product_model.height %>m x <%= @product_model.width %>m x <%= @product_model.length %>m</dd>
-      <dt>Peso:</dt>
-      <dd><%= @product_model.weight %>kg</dd>
-      <dt>SKU:</dt>
-      <dd><%= @product_model.sku %></dd>
-      <dt>Frágil?</dt>
-      <% if @product_model.fragile == true %>
-         <dd> Sim </dd>
-      <% else %>
-         <dd>Não</dd>
-      <% end %>
-      <% if @prices.any? %>         
-         <% @prices.each_with_index do |price, i| %>
-            <dt>Preço <%= i+1 %>:</dt>
-            <dd><%= number_to_currency(price.price) %></dd>
-            <dt><%= ProductPrice.human_attribute_name(:start_date)%>:</dt>
-            <dd><%= I18n.l(price.start_date) %></dd>
-            <dt><%= ProductPrice.human_attribute_name(:end_date)%>:</dt>
-            <dd><%= I18n.l(price.end_date) %></dd>
-            <%= link_to 'Editar preço', edit_product_model_product_price_path(@product_model, price) %>
+         <dt>Produto:</dt>
+         <dd><%= @product_model.name %> <%= @product_model.brand %> <%= @product_model.model %></dd>
+         <dt><%= Category.model_name.human %>:</dt>
+         <dd><%= @product_model.sub_category.full_description %></dd>
+         <dt>Descrição:</dt>
+         <dd><%= @product_model.description %></dd>
+         <dt>Dimensões:</dt>
+         <dd><%= @product_model.height %>m x <%= @product_model.width %>m x <%= @product_model.length %>m</dd>
+         <dt>Peso:</dt>
+         <dd><%= @product_model.weight %>kg</dd>
+         <dt>SKU:</dt>
+         <dd><%= @product_model.sku %></dd>
+         <dt>Frágil?</dt>
+         <% if @product_model.fragile == true %>
+            <dd> Sim </dd>
+         <% else %>
+            <dd>Não</dd>
          <% end %>
-         <p>Deseja cadastrar preço?</p>
-         <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
-      <% else %>
-         <p>Não existem preços cadastrados</p>
-         <p>Deseja cadastrar preço?</p>
-         <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
-      <% end %>
+         <% if @prices.any? %>         
+            <% @prices.each_with_index do |price, i| %>
+               <dt>Preço <%= i+1 %>:</dt>
+               <dd><%= number_to_currency(price.price) %></dd>
+               <dt><%= ProductPrice.human_attribute_name(:start_date)%>:</dt>
+               <dd><%= I18n.l(price.start_date) %></dd>
+               <dt><%= ProductPrice.human_attribute_name(:end_date)%>:</dt>
+               <dd><%= I18n.l(price.end_date) %></dd>
+               <%= link_to 'Editar preço', edit_product_model_product_price_path(@product_model, price) %>
+            <% end %>
+            <p>Deseja cadastrar preço?</p>
+            <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
+         <% else %>
+            <p>Não existem preços cadastrados</p>
+            <p>Deseja cadastrar preço?</p>
+            <%= link_to 'Cadastrar preço', new_product_model_product_price_path(@product_model) %>
+         <% end %>
+         <%# if @product_model.manual.attached? %>
+            <dt>Downloads:</dt>
+            <dd><%= link_to 'Manual do produto', product_model_manuals_path(@product_model)  %></dd>
+         <%# end %>
       </dl>
     </div>
 </section>

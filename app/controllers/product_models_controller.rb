@@ -8,6 +8,7 @@ class ProductModelsController < ApplicationController
 
   def create
     @product_model = ProductModel.new(product_model_params)
+    @product_model.manual.attach(params[:product_model][:manual])
     if @product_model.save
       redirect_to @product_model, notice: 'Produto cadastrado com sucesso'
     else
@@ -55,6 +56,6 @@ class ProductModelsController < ApplicationController
 
   def product_model_params
     params.require(:product_model).permit(:name, :brand, :sku, :model, :fragile,
-                        :description, :weight, :height, :width, :length, :status, :sub_category_id)
+                        :description, :weight, :height, :width, :length, :status, :sub_category_id, :manual)
   end
 end
