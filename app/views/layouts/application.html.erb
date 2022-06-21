@@ -15,9 +15,24 @@
       <h1>E-Commerce</h1>
       <nav>
         <%= link_to "Página Inicial", root_path %>
-        <% if merchant_signed_in? %>
-          <%= link_to "Criar Produto", new_product_model_path %>
-          <%= link_to "Produtos", product_models_path %>
+
+        <% if merchant_signed_in? || customer_signed_in? %>
+          <% if merchant_signed_in? %>
+            <p> Painel - Mercadores </p>
+            <%= current_merchant.email %>
+            <%= link_to "Criar Produto", new_product_model_path %>
+            <%= link_to "Produtos", product_models_path %>
+            <%= link_to "Categorias", categories_path %>
+            <%= button_to 'Logout', destroy_merchant_session_path, method: :delete %>
+          <% elsif customer_signed_in? %>
+             <%= current_customer.email %>
+            <%= link_to 'Minha conta' %>
+            <%= link_to 'Meu carrinho' %>
+            <%= button_to 'Logout', destroy_customer_session_path, method: :delete %>
+          <% end %>
+        <% else %>    
+          <%= link_to 'Entrar - Mercador', new_merchant_session_path %>    
+          <%= link_to 'Entrar - Clientes', new_customer_session_path %>
         <% end %>
       </nav>
     </header>
