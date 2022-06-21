@@ -14,7 +14,7 @@ describe 'Mercador muda situação de uma subcategoria' do
     category = create(:random_category)
     create(:sub_category, category: category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Categorias'
     click_on category.name
@@ -31,7 +31,7 @@ describe 'Mercador muda situação de uma subcategoria' do
     category = create(:category)
     subcategory = create(:sub_category, category: category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Categorias'
     click_on category.name
@@ -54,7 +54,7 @@ describe 'Mercador muda situação de uma subcategoria' do
     category = create(:category)
     subcategory = create(:sub_category, category: category, status: :disabled)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Categorias'
     click_on category.name

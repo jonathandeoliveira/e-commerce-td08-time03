@@ -5,7 +5,7 @@ describe 'Mercador muda visibilidade de um produto' do
     merchant = create(:merchant)
     create(:product_model, status: 0)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
 

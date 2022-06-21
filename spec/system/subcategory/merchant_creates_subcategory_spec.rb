@@ -13,7 +13,7 @@ describe 'mercador registra nova subcategoria' do
     merchant = create(:merchant)
     category = create(:random_category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Categorias'
     click_on "#{category.name}"
@@ -26,7 +26,7 @@ describe 'mercador registra nova subcategoria' do
     merchant = create(:merchant)
     category = create(:category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit category_path(category)
     click_on 'Nova subcategoria'
     fill_in 'Nome', with: 'Notebooks'
@@ -40,7 +40,7 @@ describe 'mercador registra nova subcategoria' do
     merchant = create(:merchant)
     category = create(:category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     visit category_path(category)
     click_on 'Nova subcategoria'
@@ -56,7 +56,7 @@ describe 'mercador registra nova subcategoria' do
     category = create(:category)
     subcategory = create(:sub_category, category:category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit category_path(category)
     click_on 'Nova subcategoria'
     fill_in 'Nome', with: "#{subcategory.name}"

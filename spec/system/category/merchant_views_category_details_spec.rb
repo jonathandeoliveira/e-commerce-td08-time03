@@ -13,7 +13,7 @@ describe 'Usuário vê detalhes de uma categoria' do
     merchant = create(:merchant)
     category = create(:random_category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Categorias'
     click_on "#{category.name}"
