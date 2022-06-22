@@ -30,6 +30,7 @@ describe 'Mercador cria produto' do
     expect(page).to have_field 'Comprimento'
     expect(page).to have_field 'Peso'
     expect(page).to have_field 'Categoria'
+    expect(page).to have_content 'Manual do produto'
   end
 
   it 'com sucesso' do
@@ -51,6 +52,7 @@ describe 'Mercador cria produto' do
     fill_in 'Largura', with: '0.45'
     fill_in 'Comprimento', with: '0.15'
     fill_in 'Peso', with: '6'
+    attach_file 'Manual do produto', Rails.root.join('app', 'assets', 'documents', 'manual_example.pdf')
     select "#{subcategory.full_description}", from: "#{Category.model_name.human}"
     check 'Frágil'
     click_on 'Cadastrar'
@@ -61,6 +63,7 @@ describe 'Mercador cria produto' do
     expect(page).to have_content 'Descrição: Notebook 15 processador intel i7'
     expect(page).to have_content 'Dimensões: 0.3m x 0.45m x 0.15m'
     expect(page).to have_content 'Peso: 6.0kg'
+    expect(page).to have_link 'Manual do produto'
     result = ProductModel.last
     expect(result.name).to eq 'Notebook' 
     expect(result.brand).to eq 'Dell' 
