@@ -1,0 +1,12 @@
+<h2>Nossos produtos:</h2>
+
+<dl>
+  <% @products.each do | product |%>
+    <dd><%= product.name %></dd>
+    <% price = product.get_current_price(product.id)%>
+    <% if price.present? %>
+      <dd><%= number_to_currency(price.price)  %></dd>
+    <% end %>
+  <% end %>
+</dl>
+

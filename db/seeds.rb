@@ -1,10 +1,3 @@
-# reset db
-Merchant.destroy_all
-ProductModel.destroy_all
-Category.destroy_all
-SubCategory.destroy_all
-ProductPrice.destroy_all
-
 # users
 merchant = Merchant.create(name: 'Alan', email: 'alan@mercadores.com.br', password: 'password')
 
@@ -21,7 +14,7 @@ computadores = SubCategory.create!(name: 'Computadores', category: eletronicos)
 celulares = SubCategory.create!(name: 'Celulares e Comunicação', category: eletronicos)
 smartwatches = SubCategory.create!(name: 'Smartwatches', category: eletronicos)
 monitores = SubCategory.create!(name: 'Monitores', category: informatica)
-notebooks = SubCategory.create!(name: 'Monitores', category: informatica)
+notebooks = SubCategory.create!(name: 'Notebooks', category: informatica)
 acessorios = SubCategory.create!(name: 'Acessórios', category: informatica)
 playstation = SubCategory.create!(name: 'PlayStation', category: games)
 xbox = SubCategory.create!(name: 'Xbox', category: games)
@@ -46,5 +39,5 @@ idea_preco1 = ProductPrice.create!(price: 2800.0, start_date: Date.today, end_da
 idea_preco2 = ProductPrice.create!(price: 2900.0, start_date: 31.day.from_now, end_date: 61.day.from_now, product_model: ideapad)
 idea_preco3 = ProductPrice.create!(price: 3400.8, start_date: 62.day.from_now, end_date: 92.day.from_now, product_model: ideapad)
 jet_clean_preco1 = ProductPrice.create!(price: 2000.3, start_date: Date.today, end_date: 30.day.from_now, product_model: electrolux_jet_clean)
-jet_clean_preco2 = ProductPrice.create!(price: 1760.5, start_date: 31.today, end_date: 61.day.from_now, product_model: electrolux_jet_clean)
-jet_clean_preco3 = ProductPrice.create!(price: 1950.5, start_date: 62.today, end_date: 92.day.from_now, product_model: electrolux_jet_clean)
+jet_clean_preco2 = ProductPrice.create!(price: 1760.5, start_date: 31.day.from_now, end_date: 61.day.from_now, product_model: electrolux_jet_clean)
+jet_clean_preco3 = ProductPrice.create!(price: 1950.5, start_date: 62.day.from_now, end_date: 92.day.from_now, product_model: electrolux_jet_clean)

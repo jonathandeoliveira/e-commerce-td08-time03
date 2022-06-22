@@ -16,10 +16,10 @@ describe 'Mercador acessa página principal de produtos' do
     click_on 'Produtos'
 
     expect(page).to have_content 'Produtos cadastrados'
-    expect(page).to have_content 'Produto: Notebook'
-    expect(page).to have_content 'Marca: Dell'
+    expect(page).to have_content "Produto: #{product.name}"
+    expect(page).to have_content "Marca: #{product.brand}"
     expect(page).to have_content 'Modelo: Inspiron 15'
-    expect(page).to have_content 'SKU: DELL948297'
+    expect(page).to have_content "SKU: #{product.sku}"
     expect(page).to have_content "#{product.sub_category.full_description}"
 
   end
@@ -41,11 +41,11 @@ describe 'Mercador acessa página principal de produtos' do
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
-    click_on 'Notebook'
+    click_on "#{product.name}"
 
     expect(current_path).to eq product_model_path(product) 
-    expect(page).to have_content 'Produto: Notebook Dell Inspiron 15'
-    expect(page).to have_content 'SKU: DELL948297'
+    expect(page).to have_content "Produto: #{product.name}"
+    expect(page).to have_content "SKU: #{product.sku}"
     expect(page).to have_content 'Peso: 6.0kg'
   end
 

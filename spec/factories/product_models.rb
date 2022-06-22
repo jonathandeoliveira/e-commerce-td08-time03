@@ -3,12 +3,12 @@ require 'faker'
 FactoryBot.define do
   factory :product_model do
     sub_category
-    name { "Notebook" }
-    brand { "Dell" }
+    name { Faker::Commerce.product_name }
+    brand { Faker::Commerce.brand }
     model { "Inspiron 15" }
-    sku { "DELL948297" }
+    sku {  Faker::Commerce.promotion_code }
     fragile { false }
-    description { "Notebook 15 processador intel i7" }
+    description {Faker::Lorem.paragraph }
     weight { 6 }
     height { 0.3 }
     width { 0.45 }
