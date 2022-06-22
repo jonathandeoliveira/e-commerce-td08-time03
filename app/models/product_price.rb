@@ -36,6 +36,6 @@ class ProductPrice < ApplicationRecord
           self.errors.add(:price, ' não pode ser cadastrado, pois está incluso em intervalo de datas já existentes')
         end
       end
-    end    
+    end
   end
 end

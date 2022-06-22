@@ -25,9 +25,9 @@
             <%= link_to "Categorias", categories_path %>
             <%= button_to 'Logout', destroy_merchant_session_path, method: :delete %>
           <% elsif customer_signed_in? %>
-             <%= current_customer.email %>
+            <%= current_customer.email %>
             <%= link_to 'Minha conta' %>
-            <%= link_to 'Meu carrinho' %>
+            <%= link_to 'Meu carrinho', customer_product_items_path(current_customer.id) %>
             <%= button_to 'Logout', destroy_customer_session_path, method: :delete %>
           <% end %>
         <% else %>    

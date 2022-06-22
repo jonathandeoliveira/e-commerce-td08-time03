@@ -47,7 +47,7 @@ group :development, :test do
   gem "faker"
   gem "pry-byebug"
   gem 'rails-controller-testing'
-  gem "rubocop"
+  gem "rubocop-rails"
 end
 
 group :test do

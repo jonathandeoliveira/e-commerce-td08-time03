@@ -41,6 +41,7 @@
             <dt>Downloads:</dt>
             <dd><%= link_to 'Manual do produto', @product_model.manual %></dd>
          <% end %>
+         <%= @product_model.set_current_price %>
       </dl>
     </div>
 </section>

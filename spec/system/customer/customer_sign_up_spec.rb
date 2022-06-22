@@ -44,5 +44,4 @@ describe 'cliente se registra no ecommerce' do
     expect(page).to have_content 'CPF/CNPJ possui formato inválido'
     expect(Customer.count).to eq 0
   end
-
 end

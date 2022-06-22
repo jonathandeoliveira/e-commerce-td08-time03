@@ -26,6 +26,5 @@ describe 'cliente se autentica no ecommerce' do
 
     expect(page).to have_content 'E-mail ou senha inválidos.'
     expect(page).not_to have_content 'Logout'   
-
   end
 end
