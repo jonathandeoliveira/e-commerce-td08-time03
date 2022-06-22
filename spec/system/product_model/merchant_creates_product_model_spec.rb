@@ -15,7 +15,7 @@ describe 'Mercador cria produto' do
     merchant = create(:merchant)
     subcategory = create(:sub_category)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Criar Produto'
 
@@ -38,7 +38,7 @@ describe 'Mercador cria produto' do
     category = create(:category, name: 'Eletrônicos')
     subcategory = create(:sub_category, name: 'Notebooks')
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     within('nav') do
       click_on 'Criar Produto'
@@ -78,7 +78,7 @@ describe 'Mercador cria produto' do
     category = create(:category, name: 'Eletrônicos')
     subcategory = create(:sub_category, name: 'Notebooks')
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     within('nav') do
       click_on 'Criar Produto'
@@ -108,7 +108,7 @@ describe 'Mercador cria produto' do
   it 'com sku repetido' do
     merchant = create(:merchant)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     product = create(:product_model)
 
     visit root_path

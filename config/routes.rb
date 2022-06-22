@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :customers
   devise_for :merchants
   root 'home#index'
   resources :categories, only: %i[index new create edit update show] do

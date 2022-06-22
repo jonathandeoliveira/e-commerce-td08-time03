@@ -11,7 +11,7 @@ describe 'Mercador acessa página principal de produtos' do
     merchant = create(:merchant)
     product = create(:product_model)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
 
@@ -27,7 +27,7 @@ describe 'Mercador acessa página principal de produtos' do
   it 'e não existem produtos cadastrados' do
     merchant = create(:merchant)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
 
@@ -38,7 +38,7 @@ describe 'Mercador acessa página principal de produtos' do
     merchant = create(:merchant)
     product = create(:product_model)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
     click_on 'Notebook'
@@ -52,7 +52,7 @@ describe 'Mercador acessa página principal de produtos' do
   it 'e volta para página inicial' do
     merchant = create(:merchant)
 
-    login_as(merchant)
+    login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
     click_on 'Página Inicial'
