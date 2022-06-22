@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      customer: 'Cliente'
+    attributes:
+      customer:
+        name: 'Nome'
+        registration_number: 'CPF/CNPJ'
+        full_adress: 'Endereço completo'
+        balance: 'Saldo'
+    errors:
+      models:
+        merchant:
+          attributes:
+            password:
+              too_short: "deve ter mínimo de %{count} caracteres"
+            email:
+              invalid: 'Domínio de email inválido.'
