@@ -52,7 +52,7 @@ describe 'Mercador cria produto' do
     fill_in 'Largura', with: '0.45'
     fill_in 'Comprimento', with: '0.15'
     fill_in 'Peso', with: '6'
-    attach_file 'Manual do produto', Rails.root.join('app', 'assets', 'images', 'Projeto Etapa 2 - TD8_v2.pdf')
+    attach_file 'Manual do produto', Rails.root.join('app', 'assets', 'documents', 'manual_example.pdf')
     select "#{subcategory.full_description}", from: "#{Category.model_name.human}"
     check 'Frágil'
     click_on 'Cadastrar'
