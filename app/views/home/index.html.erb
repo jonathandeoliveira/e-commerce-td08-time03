@@ -1,0 +1,8 @@
+<h2>Nossos produtos:</h2>
+<dl>
+  <% @products.each do | product |%>
+    <dd><%= product.name %></dd>
+    <%= number_to_currency(product.product_prices.first.price) %>
+  <% end %>
+</dl>
+

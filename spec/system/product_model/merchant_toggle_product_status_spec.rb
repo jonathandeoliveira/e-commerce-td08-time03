@@ -3,13 +3,13 @@ require 'rails_helper'
 describe 'Mercador muda visibilidade de um produto' do
   it 'a partir da página inicial' do
     merchant = create(:merchant)
-    create(:product_model, status: 0)
+    product = create(:product_model, status: 0)
 
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
 
-    expect(page).to have_content 'Notebook'
+    expect(page).to have_content product.name
     expect(page).to have_button  'Desativar'
     expect(page).not_to have_button 'Ativar'
   end

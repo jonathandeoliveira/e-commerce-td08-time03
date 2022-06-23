@@ -12,7 +12,7 @@ FactoryBot.define do
   end
 
   factory :category, class: 'category' do
-    sequence(:name) { "Eletronicos" }
+    name { Faker::Commerce.department }
     status { 0 }
   end
 end

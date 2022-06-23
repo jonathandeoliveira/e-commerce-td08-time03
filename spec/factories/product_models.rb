@@ -4,11 +4,11 @@ FactoryBot.define do
   factory :product_model do
     sub_category
     name { Faker::Commerce.product_name }
-    brand { "Dell" }
+    brand { Faker::Commerce.brand }
     model { "Inspiron 15" }
-    sku { SecureRandom.alphanumeric(8).upcase }
+    sku {  Faker::Commerce.promotion_code }
     fragile { false }
-    description { "Notebook 15 processador intel i7" }
+    description {Faker::Lorem.paragraph }
     weight { 6 }
     height { 0.3 }
     width { 0.45 }
