@@ -56,4 +56,36 @@ describe 'Usuário vê produtos do ecommerce' do
     expect(page).not_to have_content number_to_currency(price3.price)
     expect(page).not_to have_content number_to_currency(price4.price)
   end
+
+  context 'E navega entre categorias' do
+      it 'e vê selectbox de categorias' do
+        visit root_path
+
+        expect(page).to have_field 'Categorias'
+      end
+
+      it 'e pesquisa produtos de uma categoria' do
+        first_subcategory = create(:sub_category)
+        second_subcategory = create(:sub_category)
+        visible_product = create(:product_model, sub_category: first_subcategory)
+        visible_product2 = create(:product_model, sub_category: first_subcategory)
+        not_visible_product = create(:product_model, sub_category: second_subcategory)
+        first_price = create(:product_price, product_model: visible_product)
+        second_price = create(:product_price, product_model: visible_product2)
+        third_price = create(:product_price, product_model: not_visible_product, price: 599)
+        
+        visit root_path
+        select "#{first_subcategory.full_description}", from: 'Categorias'
+        click_on 'Buscar'
+
+        expect(page).to have_content "Produtos da categoria: #{first_subcategory.full_description}"
+        expect(page).to have_content "#{visible_product.name}"
+        expect(page).to have_content "#{number_to_currency(visible_product.product_prices.first.price)}"
+        expect(page).to have_content "#{visible_product2.name}"
+        expect(page).to have_content "#{number_to_currency(visible_product2.product_prices.first.price)}"
+        expect(page).not_to have_content "#{not_visible_product.name}"
+        expect(page).not_to have_content "#{number_to_currency(not_visible_product.product_prices.first.price)}"
+      end
+  end
+
 end

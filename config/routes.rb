@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     patch 'disable', on: :member
     patch 'enable', on: :member
     resources :sub_categories, only: %i[show new create] do
+      get 'search', on: :collection
       patch 'disable', on: :member
       patch 'enable', on: :member
     end

@@ -1,3 +1,4 @@
+<section id = 'product_list'>
 <h2>Nossos produtos:</h2>
 <dl>
 <% if @products.any?%>
@@ -9,4 +10,13 @@
   <span> Ainda não existem produtos disponíveis</span>
 <% end %>
 </dl>
+</section>
 
+
+<section id = 'query'>
+    <%=form_with(url: search_category_sub_categories_path(@categories), method: :get) do |f| %>
+    <%= f.label :query, 'Categorias' %>:
+    <%= f.collection_select :query, @subcategories, :id, :full_description %>
+    <%= f.submit 'Buscar' %>
+    <% end%>
+</section>

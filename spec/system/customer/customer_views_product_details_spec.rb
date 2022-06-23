@@ -1,6 +1,5 @@
 require 'rails_helper'
 include ActionView::Helpers::NumberHelper
- # todo: n pode visulizar detalhes de um produto desativado
 describe 'usuário visualiza detalhes de produto' do
  
   it 'com sucesso' do

@@ -1,0 +1,13 @@
+<section id = 'product_list'>
+<h2>Produtos da categoria: <%=  @subcategory.full_description %></h2>
+<dl>
+<% if  @product_models.any?%>
+  <%  @product_models.each do | product |%>
+    <dd><%= link_to product.name, product_detail_product_model_path(product) %></dd>
+    <%= number_to_currency(product.product_prices.first.price) %>
+  <% end %>
+<% else %>
+  <span> Ainda não existem produtos disponíveis</span>
+<% end %>
+</dl>
+</section>
