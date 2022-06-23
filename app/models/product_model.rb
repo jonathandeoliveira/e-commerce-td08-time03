@@ -9,8 +9,7 @@ class ProductModel < ApplicationRecord
 
  
   def get_current_price(product_model_id)
-    price = ProductPrice.joins(:product_model).where('product_model_id == ? AND start_date <= ? AND end_date >= ? ',product_model_id, DateTime.now, DateTime.now)
-    return price[0]
+    ProductPrice.joins(:product_model).where('product_model_id == ? AND start_date <= ? AND end_date >= ? ',product_model_id, DateTime.now, DateTime.now).first
   end
 end
 
