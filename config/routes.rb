@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   end
 
   resources :customers do 
-    resources :product_items, only: %i[index new create]
+    resources :product_items, only: %i[index new create destroy]
   end
 end
-
