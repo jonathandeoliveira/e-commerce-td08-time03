@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product_item do
-    customer { nil }
-    product_model { nil }
+    customer
+    product_model
     quantity { 1 }
   end
 end

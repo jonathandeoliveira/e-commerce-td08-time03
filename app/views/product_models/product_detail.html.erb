@@ -1,7 +1,7 @@
 <section id = 'product_model-customer'>
    <h1>Detalhes sobre o produto: <%= @product_model.name %></h1>
-      <div>
-         <dl>
+   <div>
+      <dl>
          <dt>Produto:</dt>
          <dd><%= @product_model.name %> <%= @product_model.brand %> <%= @product_model.model %></dd>
          <dt><%= Category.model_name.human %>:</dt>
@@ -22,17 +22,19 @@
          <% end %>
          <dt>Preço:</dt>
          <dd><%= number_to_currency(@product_model.product_prices.first.price) %></dd>
-         </dl>
-      </div>
+      </dl>
+   </div>
 
-      <div>       
-        <% customer_id = current_customer.id %>  
-        <%= form_with url: customer_product_items_path(customer_id) do |f| %>
-        <%= f.label :quantity, 'Quantidade'%>
-        <%= f.number_field :quantity %>
-        <%= f.hidden_field :product_model_id, value: @product_model.id%>
-        <%= f.submit 'Adicionar ao carrinho'%>
-    <%end%>
-  </div>
-
+   <div>
+      <% if customer_signed_in? %>
+         <%= form_with url: customer_product_items_path(current_customer.id) do |f| %>
+         <%= f.label :quantity, 'Quantidade' %>
+         <%= f.number_field :quantity %>
+         <%= f.hidden_field :product_model_id, value: @product_model.id %>
+         <%= f.submit 'Adicionar ao carrinho' %>
+      <% end %>
+      <% else%>
+         <%= link_to 'Adicionar ao carrinho', new_customer_session_path %>
+      <% end %>
+   </div>
 </section>

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_api_ruby_value
-    response = Faraday.get('http://localhost:4000/api/v1/exchange_rates/current')    
+    response = Faraday.get('http://localhost:4000/api/v1/exchange_rates/current')
     JSON.parse(response.body)["exchange_rate"]["value"].to_d
   end
 end

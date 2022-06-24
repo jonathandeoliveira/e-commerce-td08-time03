@@ -1,16 +1,24 @@
-<h2>Nossos produtos:</h2>
-<p> Valor atual do Rubi <%= number_to_currency(@rate) %> </p>
-
 <% if @products.any? %>
-  <% @products.each do | product |%>  
-    <div class="card bg-white mb-3" style="max-width: 20rem;">
-      <div class="card-header"> <%= product.name %> </div>
-      <div class="card-body">
-        <p class="card-title"><%= product.description %></p>
-        <a class="card-text"> <%= link_to 'Ver', product_detail_product_model_path(product) %> </p>
-      </div>  
+  <div class="container-fluid">
+    <div class="row"> 
+      <div class="col-12">
+        <h2>Nossos produtos:</h2>
+        <p> Valor atual do Rubi <%= number_to_currency(@rate) %> </p>
+      </div>
+      <% @products.each do | product |%>  
+        <div class = "col-sm-12 col-md-3">
+          <div class="card bg-white mb-3" style="max-width: 20rem;">
+            <div class="card-header"> <%= product.name %> </div>
+            <div class="card-body">
+              <p class="card-title"><%= product.description %></p>
+              <%= number_to_currency(product.product_prices.first.price) %>
+              <a class="card-text"> <%= link_to 'Ver', product_detail_product_model_path(product) %> </a>       
+            </div>  
+          </div>  
+        </div> 
+      <% end %>         
+    </div>
   </div>  
-    <% end %>
 <% else %>
   <span> Ainda não existem produtos disponíveis</span>
 <% end %>

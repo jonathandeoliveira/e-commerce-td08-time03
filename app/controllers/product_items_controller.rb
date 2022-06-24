@@ -8,12 +8,13 @@ class ProductItemsController < ApplicationController
   end
 
   def create
-    product_model_id = params[:product_model_id]
     quantity = params[:quantity]
     product_model = ProductModel.find(params[:product_model_id])
-    ProductItem.create!(product_model: product_model, quantity: quantity, customer_id: @customer_id)
 
-    redirect_to customer_product_items_path(product_model_id), notice: "#{product_model.name} adicionado ao carrinho."
+    return redirect_to product_detail_product_model_path(product_model.id), notice: 'A quantidade deve ser maior do que 0' if quantity.to_i < 1
+
+    ProductItem.create(product_model:, quantity:, customer_id: @customer_id)
+    redirect_to customer_product_items_path(product_model.id), notice: "#{product_model.name} adicionado ao carrinho."
   end
 
   def destroy
