@@ -70,6 +70,6 @@ class ProductModelsController < ApplicationController
 
   def product_model_params
     params.require(:product_model).permit(:name, :brand, :sku, :model, :fragile,
-                        :description, :weight, :height, :width, :length, :status, :sub_category_id)
+                        :description, :weight, :height, :width, :length, :status, :sub_category_id, :manual)
   end
 end

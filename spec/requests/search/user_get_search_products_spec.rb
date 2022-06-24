@@ -26,5 +26,4 @@ describe 'Usuário pesquisa produtos' do
     expect(response).to have_http_status 200
     expect(response).to render_template('product_models/search')
   end
-
 end

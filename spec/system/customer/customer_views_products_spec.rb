@@ -113,11 +113,11 @@ describe 'Usuário vê produtos do ecommerce' do
       third_price = create(:product_price, product_model: not_visible_product, price: 599)
       
 
-      visit root_path      
+      visit root_path
       fill_in 'Buscar produto', with: "#{visible_product2.name}"
       within('section#query_product') do
         click_on 'Buscar'
-      end      
+      end
 
       expect(page).to have_content "Resultado da busca por: #{visible_product2.name}"
       expect(page).to have_content "#{visible_product2.name}"
@@ -134,7 +134,7 @@ describe 'Usuário vê produtos do ecommerce' do
       second_price = create(:product_price, product_model: visible_product2)
       third_price = create(:product_price, product_model: not_searched_product, price: 599)
 
-      visit root_path      
+      visit root_path
       fill_in 'Buscar produto', with: "O"
       within('section#query_product') do
         click_on 'Buscar'
@@ -163,12 +163,9 @@ describe 'Usuário vê produtos do ecommerce' do
       fill_in 'Buscar produto', with: "O"
       within('section#query_product') do
         click_on 'Buscar'
-      end      
+      end
 
       expect(page).to have_content "Resultado da busca por: O"
-
     end
-    
   end
-
 end

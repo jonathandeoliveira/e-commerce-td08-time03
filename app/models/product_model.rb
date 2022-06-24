@@ -6,10 +6,6 @@ class ProductModel < ApplicationRecord
   validates :sku, uniqueness: true
   validates :sku, length: { minimum: 8 }
   has_many :product_prices
-
- 
-  def get_current_price(product_model_id)
-    ProductPrice.joins(:product_model).where('product_model_id == ? AND start_date <= ? AND end_date >= ? ',product_model_id, DateTime.now, DateTime.now).first
-  end
+  has_one_attached :manual
 end
 
