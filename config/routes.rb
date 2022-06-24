@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     patch 'enable', on: :member
     resources :product_prices, only: %i[new create edit update]
   end
+
+  resources :customers do 
+    resources :product_items, only: %i[index new create destroy]
+  end
 end

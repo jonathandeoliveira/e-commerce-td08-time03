@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'rspec/expectations'
 
 describe 'mercador edita categorias cadastradas' do
   it 'se estiver autenticado' do

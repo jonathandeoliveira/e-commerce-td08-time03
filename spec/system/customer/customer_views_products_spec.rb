@@ -2,7 +2,6 @@ require 'rails_helper'
 include ActionView::Helpers::NumberHelper
 
 describe 'Usuário vê produtos do ecommerce' do
-
   it 'na página principal' do
     product1 = create(:product_model, status: :enabled)
     product2 = create(:product_model, status: :enabled)

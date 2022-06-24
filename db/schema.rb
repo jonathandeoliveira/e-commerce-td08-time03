@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_21_203741) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_22_202912) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,6 +75,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_203741) do
     t.index ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
   end
 
+  create_table "product_items", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "product_model_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_product_items_on_customer_id"
+    t.index ["product_model_id"], name: "index_product_items_on_product_model_id"
+  end
+
   create_table "product_models", force: :cascade do |t|
     t.string "name"
     t.string "brand"
@@ -114,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_203741) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "product_items", "customers"
+  add_foreign_key "product_items", "product_models"
   add_foreign_key "product_models", "sub_categories"
   add_foreign_key "product_prices", "product_models"
   add_foreign_key "sub_categories", "categories"

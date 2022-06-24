@@ -7,5 +7,7 @@ class ProductModel < ApplicationRecord
   validates :sku, length: { minimum: 8 }
   has_many :product_prices
   has_one_attached :manual
+  has_many :product_items
+
 end
 
