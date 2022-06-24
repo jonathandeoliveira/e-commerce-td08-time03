@@ -17,6 +17,11 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  config.before(:each){
+    json_data = File.read(Rails.root.join('spec/support/json/exchange_value.json'))
+    fake_response = double('faraday_response', status: 200, body: json_data)
+    allow_any_instance_of(Faraday::Connection).to receive(:get).with('http://localhost:4000/api/v1/exchange_rates/current').and_return(fake_response)
+  }
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods

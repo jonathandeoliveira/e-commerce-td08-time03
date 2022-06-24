@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Cliente adiciona item do carrinho' do
+describe 'Cliente adiciona item do carrinho' do  
   it 'e não está autenticado' do
     first_product = create(:product_model, name: 'Notebook')
     second_product = create(:product_model, name: 'Liquidificador')
@@ -19,9 +19,6 @@ describe 'Cliente adiciona item do carrinho' do
   end
 
   it 'com sucesso' do
-    json_data = File.read(Rails.root.join('spec/support/json/exchange_value.json'))
-    fake_response = double("faraday_response", status: 200, body: json_data)
-    allow_any_instance_of(Faraday::Connection).to receive(:get).with("http://localhost:4000/api/v1/exchange_rates/current").and_return(fake_response)
     customer = create(:customer)
     first_product = create(:product_model, name: 'Notebook')
     second_product = create(:product_model, name: 'Liquidificador')
