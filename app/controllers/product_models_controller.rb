@@ -1,5 +1,14 @@
 class ProductModelsController < ApplicationController
-  before_action :authenticate_merchant!, except: :product_detail
+  before_action :authenticate_merchant!, except: %i[product_detail search]
+  
+
+  def product_detail
+    @product_model = ProductModel.find(params[:id])
+    @product_price = ProductPrice.where('product_model_id = ? and start_date <= ? AND end_date >= ? ',@product_model.id ,DateTime.now, DateTime.now).first
+    if @product_model.disabled?
+      redirect_to root_path, alert: 'Erro! Página não encontrada :('
+    end
+  end
 
   def new
     @product_model = ProductModel.new
@@ -56,6 +65,12 @@ class ProductModelsController < ApplicationController
     @product_item = ProductItem.new
     redirect_to root_path, alert: 'Erro! Página não encontrada :(' if @product_model.disabled?
   end
+
+  def search
+    @query = params["query"]
+    @product_models = ProductModel.where("name LIKE ?", "%#{@query}%").where(status: :enabled)
+  end
+
 
   private
 
