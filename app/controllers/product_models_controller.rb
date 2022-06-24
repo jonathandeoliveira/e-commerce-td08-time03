@@ -60,6 +60,12 @@ class ProductModelsController < ApplicationController
   end
 
 
+  def search
+    @query = params["query"]
+    @product_models = ProductModel.where("name LIKE ?", "%#{@query}%").where(status: :enabled)
+  end
+
+
   private
 
   def product_model_params

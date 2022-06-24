@@ -15,7 +15,13 @@
       <h1>E-Commerce</h1>
       <nav>
         <%= link_to "Página Inicial", root_path %>
-
+        <section id = 'query_product'>
+          <%=form_with(url: search_product_models_path(@product), method: :get) do |f| %>
+          <%= f.label :query, 'Buscar produto' %>:
+          <%= f.text_field :query %>         
+          <%= f.submit 'Buscar produto' %>
+          <% end%>
+        </section>
         <% if merchant_signed_in? || customer_signed_in? %>
           <% if merchant_signed_in? %>
             <p> Painel - Mercadores </p>

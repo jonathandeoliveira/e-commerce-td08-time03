@@ -7,7 +7,7 @@
     <%= number_to_currency(product.product_prices.first.price) %>
   <% end %>
 <% else %>
-  <span> Ainda não existem produtos disponíveis</span>
+  <span> Nenhum produto encontrado com os parâmetros da busca ¯\_(ツ)_/¯</span>
 <% end %>
 </dl>
 </section>
@@ -20,3 +20,4 @@
     <%= f.submit 'Buscar' %>
     <% end%>
 </section>
+
