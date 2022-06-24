@@ -107,10 +107,9 @@ describe 'Mercador cria produto' do
 
   it 'com sku repetido' do
     merchant = create(:merchant)
+    product = create(:product_model, sku:'DELL948297')
 
     login_as(merchant, scope: :merchant)
-    product = create(:product_model)
-
     visit root_path
     within('nav') do
       click_on 'Criar'

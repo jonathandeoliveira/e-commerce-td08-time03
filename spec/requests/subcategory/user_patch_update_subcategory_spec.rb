@@ -41,7 +41,7 @@ describe 'usuario muda status de subcategoria' do
   end
 
   it 'para ativa, sem sucesso pois necessita autenticação' do
-    create(:random_category)
+    create(:category)
     create(:sub_category)
 
     patch('/categories/1/sub_categories/1/enable')

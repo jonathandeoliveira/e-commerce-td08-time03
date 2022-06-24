@@ -12,8 +12,13 @@ Rails.application.routes.draw do
   end
 
   resources :product_models, only: %i[new create show index] do
+    get 'product-detail', on: :member
     patch 'disable', on: :member
     patch 'enable', on: :member
     resources :product_prices, only: %i[new create edit update]
+  end
+
+  resources :customers do 
+    resources :product_items, only: %i[index new create destroy]
   end
 end
