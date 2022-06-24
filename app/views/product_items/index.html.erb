@@ -1,5 +1,6 @@
 <h2> Carrinho de compras </h2>
 
+
 <% if @shopping_cart.empty? %>
   <span> Seu carrinho está vazio </span>
 <% else %>
@@ -11,18 +12,22 @@
           <th>Produto</th>
           <th>Quantidade</th>
           <th>Preço unitário</th>
+          <th> Preço Rubis </th>
           <th>Preço total</th>
         </tr>
       </thead>
+      
       <tbody>
         <% @shopping_cart.each do |product| %>
         <tr>
           <td> <%= product.product_model.name %> </td>
           <td> <%= product.quantity %>  </td>
-          <td> <%= product.product_model.product_prices %>  </td>
-          <td> <%= product.product_model.product_prices * product.quantity %> </td>
+          <td> <%= number_to_currency(product.product_model.actual_price) %>  </td>
+          <td> <%= number_with_precision(product.product_model.actual_price / @rate, precision: 2) %> </td>
+          <td> <%= number_with_precision(product.product_model.actual_price * product.quantity / @rate, precision: 2)  %> </td>
         </tr>
+        <% end %>
       </tbody>
     </table>
-      <% end %>
+      
   <% end %>

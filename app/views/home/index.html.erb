@@ -1,8 +1,12 @@
 <h2>Nossos produtos:</h2>
+
 <dl>
+<% if @products.any?%>
   <% @products.each do | product |%>
     <dd><%= product.name %></dd>
     <%= number_to_currency(product.product_prices.first.price) %>
   <% end %>
+<% else %>
+  <span> Ainda não existem produtos disponíveis</span>
+<% end %>
 </dl>
-
