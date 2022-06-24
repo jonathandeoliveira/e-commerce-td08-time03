@@ -3,9 +3,18 @@ class ProductItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @shopping_cart = ProductItem.where(customer_id: current_customer.id)   
+    @shopping_cart = ProductItem.where(customer_id: current_customer.id)
     @rate = get_api_ruby_value
-  end  
+  end
+
+  def create
+    product_model_id = params[:product_model_id]
+    quantity = params[:quantity]
+    product_model = ProductModel.find(params[:product_model_id])
+    product_item = ProductItem.create!(product_model:, quantity:, customer_id: @customer_id)
+
+    redirect_to customer_product_items_path(product_model_id), notice: "#{product_model.name} adicionado ao carrinho."
+  end
 
   def destroy
     product_to_remove = ProductItem.find(params[:id])
@@ -13,7 +22,7 @@ class ProductItemsController < ApplicationController
 
     product_to_remove.destroy
 
-    redirect_to customer_product_items_path(customer_id), notice: "Item removido com sucesso."
+    redirect_to customer_product_items_path(customer_id), notice: 'Item removido com sucesso.'
   end
 
   private
@@ -22,4 +31,3 @@ class ProductItemsController < ApplicationController
     @customer_id = params[:customer_id]
   end
 end
-
