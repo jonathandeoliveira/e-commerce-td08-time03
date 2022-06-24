@@ -40,8 +40,8 @@ describe 'Cliente acessa carrinho' do
     expect(page).to have_content 'Preço total'
     expect(page).to have_content product_item.product_model.name
     expect(page).to have_content second_item.product_model.name
-    expect(page).to have_content "#{first_price.price}"
-    expect(page).to have_content "#{second_price.price}"
+    expect(page).to have_content number_to_currency(first_price.price)
+    expect(page).to have_content number_to_currency(second_price.price)
     expect(page).to have_content "#{product_item.quantity}"
     expect(page).to have_content "#{second_item.quantity}"
   end

@@ -14,7 +14,7 @@ describe 'Cliente remove item do carrinho' do
 
     login_as(customer, scope: :customer)
     visit root_path
-    click_on 'Notebook'
+    first(:link, 'Ver').click
     fill_in 'Quantidade', with: '2'
     click_on 'Adicionar ao carrinho'
 

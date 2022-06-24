@@ -11,7 +11,7 @@ class ProductItemsController < ApplicationController
     product_model_id = params[:product_model_id]
     quantity = params[:quantity]
     product_model = ProductModel.find(params[:product_model_id])
-    product_item = ProductItem.create!(product_model:, quantity:, customer_id: @customer_id)
+    ProductItem.create!(product_model: product_model, quantity: quantity, customer_id: @customer_id)
 
     redirect_to customer_product_items_path(product_model_id), notice: "#{product_model.name} adicionado ao carrinho."
   end

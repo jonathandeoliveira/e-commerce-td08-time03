@@ -1,12 +1,16 @@
 <h2>Nossos produtos:</h2>
-<p> Valor atual do Rubi <%= @rate %> </p>
-<dl>
-<% if @products.any?%>
-  <% @products.each do | product |%>
-    <dd><%= link_to product.name, product_detail_product_model_path(product) %></dd>
-    <%= number_to_currency(product.product_prices.first.price) %>
-  <% end %>
+<p> Valor atual do Rubi <%= number_to_currency(@rate) %> </p>
+
+<% if @products.any? %>
+  <% @products.each do | product |%>  
+    <div class="card bg-white mb-3" style="max-width: 20rem;">
+      <div class="card-header"> <%= product.name %> </div>
+      <div class="card-body">
+        <p class="card-title"><%= product.description %></p>
+        <a class="card-text"> <%= link_to 'Ver', product_detail_product_model_path(product) %> </p>
+      </div>  
+  </div>  
+    <% end %>
 <% else %>
   <span> Ainda não existem produtos disponíveis</span>
 <% end %>
-</dl>
