@@ -29,14 +29,16 @@
         </td>
           <td> <%= number_to_currency(product.product_model.actual_price) %>  </td>
           <td> <%= number_with_precision(product.product_model.actual_price / @rate, precision: 2) %> </td>
-          <td> <%= number_with_precision(product.product_model.actual_price * product.quantity / @rate, precision: 2)  %> </td>
-          <td> <%= button_to 'Remover', customer_product_item_path(product.customer_id, product.id), method: :delete %> </td>
+          <td> <%= number_with_precision(product.calculate_total_product_values / @rate, precision: 2) %></td>
+          <td> <%= button_to 'Remover', customer_product_item_path(product.customer_id, product.id), method: :delete %> </td>          
         </tr>
         <% end %>
       </tbody>
     </table>
+    
     <div class = "container fluid bg-dark text-white col-sm-1 col-md-1 text-center b-1 border-radius">
-      Valor total: <%= number_with_precision(@total_price) %>
+      Valor total <%= number_with_precision(@total_value, precision: 2) %>
     </div>
+    
     <%= button_to 'Limpar carrinho', remove_all_customer_product_items_path(current_customer.id), method: :delete %>     
   <% end %>
