@@ -9,9 +9,5 @@ class ProductModel < ApplicationRecord
   has_one_attached :manual
   has_many :product_items
 
- 
-  def prices
-    ProductPrice.joins(:product_model).where('product_model_id == ? AND start_date <= ? AND end_date >= ? ',product_model_id, DateTime.now, DateTime.now).first
-  end
 end
 

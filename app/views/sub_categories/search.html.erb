@@ -1,0 +1,15 @@
+<section id = 'product_list'>
+<% if @subcategory.present? %>
+<h2>Produtos da categoria: <%=  @subcategory.full_description %></h2>
+<% end %>
+<dl>
+<% if  @product_models.any?%>
+  <%  @product_models.each do | product |%>
+    <dt><%= link_to product.name, product_detail_product_model_path(product) %></dt>
+    <dd><%= number_to_currency(product.product_prices.first.price) %> </dd>
+  <% end %>
+<% else %>
+  <span> Nenhum produto encontrado com os parâmetros da busca ¯\_(ツ)_/¯</span>
+<% end %>
+</dl>
+</section> 

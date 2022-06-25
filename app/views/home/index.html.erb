@@ -1,3 +1,11 @@
+<section id = 'query'>
+    <%=form_with(url: search_category_sub_categories_path(@categories), method: :get) do |f| %>
+    <%= f.label :query, 'Categorias' %>:
+    <%= f.collection_select :query, @subcategories, :id, :full_description %>
+    <%= f.submit 'Buscar' %>
+    <% end%>
+</section>
+
 <% if @products.any? %>
   <div class="container-fluid">
     <div class="row"> 
@@ -8,7 +16,7 @@
       <% @products.each do | product |%>  
         <div class = "col-sm-12 col-md-3">
           <div class="card bg-white mb-3" style="max-width: 20rem;">
-            <div class="card-header"> <%= product.name %> </div>
+            <div class="card-header"><%= link_to product.name, product_detail_product_model_path(product) %></div>
             <div class="card-body">
               <p class="card-title"><%= product.description %></p>
               <%= number_to_currency(product.product_prices.first.price) %>
@@ -20,5 +28,5 @@
     </div>
   </div>  
 <% else %>
-  <span> Ainda não existem produtos disponíveis</span>
+  <span> Nenhum produto encontrado com os parâmetros da busca ¯\_(ツ)_/¯</span>
 <% end %>
