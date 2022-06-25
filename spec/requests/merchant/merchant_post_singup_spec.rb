@@ -12,7 +12,7 @@ describe 'mercador faz request de cadastro' do
   it 'com campos em branco' do
     post("/merchants", params: { merchant: {name: '', email: '', password: '', password_confirmation: ''}})
       
-  expect(Merchant.count).to eq 0
-  expect(response).to render_template('devise/registrations/new')
+    expect(Merchant.count).to eq 0
+    expect(response).to render_template('devise/registrations/new')
   end
 end

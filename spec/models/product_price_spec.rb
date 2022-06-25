@@ -8,7 +8,7 @@ RSpec.describe ProductPrice, type: :model do
     it {should validate_numericality_of(:price).is_greater_than(0)}
     
     it 'data inicial não pode ser passada' do
-      price = build(:product_price, start_date: 1.day.ago)
+      price = build(:product_price, start_date: 2.day.ago)
       
       price.valid?
 
@@ -17,7 +17,7 @@ RSpec.describe ProductPrice, type: :model do
     end
 
     it 'data final não pode ser passada' do
-      price = build(:product_price, start_date: Date.today, end_date: 1.day.ago)
+      price = build(:product_price, start_date: Date.today, end_date: 2.day.ago)
       
       price.valid?
 
@@ -35,7 +35,7 @@ RSpec.describe ProductPrice, type: :model do
     end
 
     it 'data final não pode ser anterior à data inicial' do
-      price = build(:product_price, start_date: Date.today, end_date: 1.day.ago)
+      price = build(:product_price, start_date: Date.today, end_date: 2.day.ago)
       
       price.valid?
 

@@ -26,6 +26,33 @@ class ProductItemsController < ApplicationController
     redirect_to customer_product_items_path(customer_id), notice: 'Item removido com sucesso.'
   end
 
+  def sum_quantity
+    @item = ProductItem.find(params[:id])
+    customer = @item.customer_id
+    @item.quantity += 1
+    @item.save
+
+    redirect_to customer_product_items_path(customer), notice: 'Unidade adicionada com sucesso'
+  end
+
+  def reduce_quantity
+    @item = ProductItem.find(params[:id])
+    customer = @item.customer_id
+    @item.quantity -= 1
+    @item.save
+
+    redirect_to customer_product_items_path(customer), notice: 'Unidade removida com sucesso'
+  end
+
+  def remove_all
+    @shopping_cart = ProductItem.where(customer_id: current_customer.id)
+    @shopping_cart.each do |item|
+      item.destroy
+    end
+
+    redirect_to customer_product_items_path(current_customer.id)
+  end
+
   private
 
   def set_customer
