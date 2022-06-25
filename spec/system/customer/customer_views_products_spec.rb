@@ -4,7 +4,7 @@ include ActionView::Helpers::NumberHelper
 describe 'Usuário vê produtos do ecommerce' do
   it 'na página principal' do
     product1 = create(:product_model, status: :enabled)
-    product2 = create(:product_model, status: :enabled)
+    product2 = create(:product_model, name:'Produto2', status: :enabled)
     price1 = create(:product_price, product_model: product1)
     price2 = create(:product_price, price: 215, product_model: product2)
 
