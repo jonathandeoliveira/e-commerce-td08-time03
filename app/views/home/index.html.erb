@@ -6,6 +6,9 @@
     <% end%>
 </section>
 
+
+
+
 <% if @products.any? %>
   <div class="container-fluid">
     <div class="row"> 
@@ -15,7 +18,12 @@
       </div>
       <% @products.each do | product |%>  
         <div class = "col-sm-12 col-md-3">
-          <div class="card bg-white mb-3" style="max-width: 20rem;">
+          <div class="card bg-white mb-3" style="max-width: 20rem;">  
+            <div class="card-images">
+              <% if product.photos.attached? %>
+                <%= image_tag product.photos.first %>
+              <% end %>
+            </div>          
             <div class="card-header"><%= link_to product.name, product_detail_product_model_path(product) %></div>
             <div class="card-body">
               <p class="card-title"><%= product.description %></p>

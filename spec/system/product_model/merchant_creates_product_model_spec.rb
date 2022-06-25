@@ -52,11 +52,15 @@ describe 'Mercador cria produto' do
     fill_in 'Largura', with: '0.45'
     fill_in 'Comprimento', with: '0.15'
     fill_in 'Peso', with: '6'
-    attach_file 'Manual do produto', Rails.root.join('app', 'assets', 'documents', 'manual_example.pdf')
+    attach_file 'Manual do produto', Rails.root.join('app/assets/documents/manual_example.pdf')   
+    attach_file 'Imagens do produto', [Rails.root.join('app/assets/images/pic_example1.jpg'),
+                                        Rails.root.join('app/assets/images/pic_example1.jpg'),
+                                        Rails.root.join('app/assets/images/pic_example1.jpg')]
     select "#{subcategory.full_description}", from: "#{Category.model_name.human}"
     check 'Frágil'
     click_on 'Cadastrar'
 
+    result = ProductModel.last
     expect(page).to have_content 'Produto cadastrado com sucesso'
     expect(page).to have_content 'Produto: Notebook Dell Inspiron 15'
     expect(page).to have_content 'SKU: DELL948297'
@@ -64,12 +68,19 @@ describe 'Mercador cria produto' do
     expect(page).to have_content 'Dimensões: 0.3m x 0.45m x 0.15m'
     expect(page).to have_content 'Peso: 6.0kg'
     expect(page).to have_link 'Manual do produto'
-    result = ProductModel.last
     expect(result.name).to eq 'Notebook' 
     expect(result.brand).to eq 'Dell' 
     expect(result.model).to eq 'Inspiron 15' 
     expect(result.fragile).to be_truthy
     expect(result.sub_category.name).to eq 'Notebooks'
+    expect(result.manual.attached?).to eq true
+    expect(result.photos.attached?).to eq true
+    expect(result.photos.count).to eq 1
+    # within('div#card-images') do
+    #   expect(page).to have_css("image src=")
+    # end
+ 
+
   end
   
 
