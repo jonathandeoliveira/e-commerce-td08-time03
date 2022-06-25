@@ -7,7 +7,6 @@ describe 'mercador faz request de login' do
     post merchant_session_path( params: {merchant: {email: customer.email, password: customer.password }})
 
     expect(response).to redirect_to root_path
-
   end
 
   it 'sem sucesso, pois campos em branco' do

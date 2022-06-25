@@ -80,8 +80,8 @@ describe 'Mercador cadastra preço para um produto' do
     click_on product.name
     click_on 'Cadastrar preço'
     fill_in 'Preço', with: 300.99
-    fill_in 'Data inicial', with: 1.day.ago
-    fill_in 'Data final', with: 1.day.ago
+    fill_in 'Data inicial', with: 5.day.ago
+    fill_in 'Data final', with: 5.day.ago
     click_on 'Criar Preço do produto'
 
     expect(page).to have_content 'Preço não pode ser cadastrado.'
