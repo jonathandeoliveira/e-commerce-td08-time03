@@ -11,79 +11,67 @@
   </head>
 
   <body>
-    <header>
-      
+    <header> 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
-      <div class="container-fluid">
-       <a class="navbar-brand" href="#">E-Commerce</a>
-       <% if merchant_signed_in? %>
-        <a class="navbar-brand text-muted" href="#"> Painel - Mercadores </a> 
-       <% end %>
-       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-       </button>
-
-         <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <%= link_to "Página Inicial", root_path, :class => "nav-link active" %>
-            </li>  
-        <% if merchant_signed_in? || customer_signed_in? %>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">E-Commerce</a>
           <% if merchant_signed_in? %>
-
-            <li class="nav-item">
-              <%= link_to "Criar Produto", new_product_model_path, :class => "nav-link active" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "Produtos", product_models_path, :class => "nav-link active" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to "Categorias", categories_path, :class => "nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to current_merchant.email, root_path, :class => "nav-link active" %>
-            </li>
-
-            <li class="nav-item">
-             <%= button_to 'Logout', destroy_merchant_session_path, method: :delete, :class => "btn btn-danger my-2 my-sm-0" %>
-             </li>
-
-          <% elsif customer_signed_in? %>
-
-            <li class="nav-item">
-              <%= link_to 'Minha conta', root_path, :class => "nav-link active" %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to 'Meu carrinho', customer_product_items_path(current_customer.id), :class => "nav-link active" %>
-            </li>
-
-            <ul class="navbar-nav"> 
-            <li class="nav-item">
-              <%= link_to current_customer.email, root_path, :class => "nav-link active" %>
-            </li>
-            
-            <li class="nav-item">
-              <%= button_to 'Logout', destroy_customer_session_path, method: :delete, :class => "btn btn-danger my-2 my-sm-0" %>
-            </li>
-            </ul>
-
+            <a class="navbar-brand text-muted" href="#"> Painel - Mercadores </a> 
           <% end %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <% else %>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <%= link_to "Página Inicial", root_path, :class => "nav-link active" %>
+              </li>  
+              <% if merchant_signed_in? || customer_signed_in? %>
 
-        <li class="nav-item">
-          <%= link_to 'Entrar - Mercador', new_merchant_session_path, :class => "nav-link active" %>    
-        </li>
+                <% if merchant_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "Criar Produto", new_product_model_path, :class => "nav-link active" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Produtos", product_models_path, :class => "nav-link active" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Categorias", categories_path, :class => "nav-link active" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to current_merchant.email, root_path, :class => "nav-link active" %>
+                  </li>
+                  <li class="nav-item">
+                  <%= button_to 'Logout', destroy_merchant_session_path, method: :delete, :class => "btn btn-danger my-2 my-sm-0" %>
+                  </li>
+                <% elsif customer_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to 'Minha conta', root_path, :class => "nav-link active" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'Meu carrinho', customer_product_items_path(current_customer.id), :class => "nav-link active" %>
+                  </li>
+                  <ul class="navbar-nav"> 
+                    <li class="nav-item">
+                      <%= link_to current_customer.email, root_path, :class => "nav-link active" %>
+                    </li>
+                    <li class="nav-item">
+                      <%= button_to 'Logout', destroy_customer_session_path, method: :delete, :class => "btn btn-danger my-2 my-sm-0" %>
+                    </li>
+                  </ul>
+                <% end %>
 
-        <li class="nav-item">
-          <%= link_to 'Entrar - Clientes', new_customer_session_path, :class => "nav-link active" %>
-        </li>
-        <% end %>
-
-        </div>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Entrar - Mercador', new_merchant_session_path, :class => "nav-link active" %>    
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'Entrar - Clientes', new_customer_session_path, :class => "nav-link active" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
@@ -91,7 +79,7 @@
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
       </div>
-      </div>
+      
       <%= yield %>
   </body>
 </html>
