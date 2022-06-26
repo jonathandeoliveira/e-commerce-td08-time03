@@ -11,7 +11,6 @@ describe 'Mercador faz login' do
     click_on 'Log in'
 
     expect(page).to have_content 'Login efetuado com sucesso'
-    expect(page).to have_content 'Painel - Mercadores'
   end
 
   it 'com login inexistente' do
@@ -44,6 +43,5 @@ describe 'Mercador faz login' do
     click_on 'Logout'
 
     expect(page).to have_content 'Logout efetuado com sucesso'
-    expect(page).not_to have_content 'Painel - Mercadores'
   end
 end
