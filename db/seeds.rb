@@ -1,9 +1,9 @@
 # users
-merchant = Merchant.create(name: 'Alan', email: 'alan@mercadores.com.br', password: 'password')
-jonathan = Merchant.create(name: 'Jonathan', email: 'jonathan@mercadores.com.br', password: 'password')
-raif = Merchant.create(name: 'Raif', email: 'jonathan@mercadores.com.br', password: 'password')
-margarete = Merchant.create(name: 'Margarete', email: 'margarete@mercadores.com.br', password: 'password')
-lucas =  Merchant.create(name: 'Lucas', email: 'lucas@mercadores.com.br', password: 'password')
+merchant = Merchant.create!(name: 'Alan', email: 'alan@mercadores.com.br', password: 'password')
+jonathan = Merchant.create!(name: 'Jonathan', email: 'jonathan@mercadores.com.br', password: 'password')
+raif = Merchant.create!(name: 'Raif', email: 'jonathan@mercadores.com.br', password: 'password')
+margarete = Merchant.create!(name: 'Margarete', email: 'margarete@mercadores.com.br', password: 'password')
+lucas =  Merchant.create!(name: 'Lucas', email: 'lucas@mercadores.com.br', password: 'password')
 
 # categories
 eletronicos = Category.create!(name: 'Eletronicos', status: 0)

@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 
   resources :customers do 
     resources :product_items, only: %i[index new create destroy]
+    get 'account', on: :member
   end
 end
