@@ -45,5 +45,4 @@ describe 'requisição para mudar status de um produto' do
     product.reload
     expect(product.status).to eq 'enabled'
   end
-
 end

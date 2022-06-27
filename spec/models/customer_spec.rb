@@ -12,8 +12,6 @@ RSpec.describe Customer, type: :model do
     it { should_not allow_value('12345678000190').for(:registration_number) }
     it { should validate_uniqueness_of(:registration_number) }
     it {should validate_numericality_of(:balance)}
-
-  end
-  
+  end 
 end
 

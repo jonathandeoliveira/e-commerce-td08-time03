@@ -19,5 +19,4 @@ describe 'Cliente faz request de cadastro' do
     expect(Customer.count).to eq 0
     expect(response).to render_template('customers/registrations/new')
   end
-  
 end

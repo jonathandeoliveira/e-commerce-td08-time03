@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Cliente adiciona item do carrinho' do  
+describe 'Cliente adiciona item no carrinho' do  
   it 'e não está autenticado' do
     first_product = create(:product_model, name: 'Notebook')
     second_product = create(:product_model, name: 'Liquidificador')

@@ -1,12 +1,12 @@
 <h2> Carrinho de compras </h2>
-
+<% @total_price = 0 %>
 
 <% if @shopping_cart.empty? %>
   <span> Seu carrinho está vazio </span>
 <% else %>
   <h3>Produtos selecionados:</h3>
   
-    <table class = "table table-striped table-hover">
+    <table class = "table table-striped table-hover ">
       <thead>
         <tr>
           <th>Produto</th>
@@ -19,9 +19,14 @@
       
       <tbody>
         <% @shopping_cart.each do |product| %>
+        <% @total_price +=  product.product_model.actual_price * product.quantity / @rate %>
         <tr>
           <td> <%= product.product_model.name %> </td>
-          <td> <%= product.quantity %>  </td>
+         <td>
+          <%= button_to '-', reduce_quantity_customer_product_item_path(product.customer_id, product.id), method: :patch %>
+          <%= product.quantity %> 
+          <%= button_to '+', sum_quantity_customer_product_item_path(product.customer_id, product.id), method: :patch %>
+        </td>
           <td> <%= number_to_currency(product.product_model.actual_price) %>  </td>
           <td> <%= number_with_precision(product.product_model.actual_price / @rate, precision: 2) %> </td>
           <td> <%= number_with_precision(product.product_model.actual_price * product.quantity / @rate, precision: 2)  %> </td>
@@ -30,5 +35,8 @@
         <% end %>
       </tbody>
     </table>
-          
+    <div class = "container fluid bg-dark text-white col-sm-1 col-md-1 text-center b-1 border-radius">
+      Valor total: <%= number_with_precision(@total_price) %>
+    </div>
+    <%= button_to 'Limpar carrinho', remove_all_customer_product_items_path(current_customer.id), method: :delete %>     
   <% end %>

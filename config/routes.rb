@@ -20,8 +20,12 @@ Rails.application.routes.draw do
     resources :product_prices, only: %i[new create edit update]
   end
 
-  resources :customers do 
-    resources :product_items, only: %i[index new create destroy]
-    get 'account', on: :member
-  end
+    resources :customers do 
+      get 'account', on: :member
+      resources :product_items, only: %i[index new create destroy] do
+        patch 'sum_quantity', on: :member
+        patch 'reduce_quantity', on: :member
+        delete 'remove_all', on: :collection
+      end
+    end
 end
