@@ -76,11 +76,6 @@ describe 'Mercador cria produto' do
     expect(result.manual.attached?).to eq true
     expect(result.photos.attached?).to eq true
     expect(result.photos.count).to eq 3
-    # within('div#card-images') do
-    #   expect(page).to have_css("image src=")
-    # end
- 
-
   end
   
 
