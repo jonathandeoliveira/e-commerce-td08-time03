@@ -52,7 +52,7 @@
                   </li>
                 <% elsif customer_signed_in? %>
                   <li class="nav-item">
-                    <%= link_to 'Minha conta', root_path, :class => "nav-link active" %>
+                    <%= link_to 'Minha conta', account_customer_path(current_customer), :class => "nav-link active" %>
                   </li>
                   <li class="nav-item">
                     <%= link_to 'Meu carrinho', customer_product_items_path(current_customer.id), :class => "nav-link active" %>
