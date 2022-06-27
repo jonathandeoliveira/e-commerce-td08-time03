@@ -48,10 +48,15 @@
         <%= f.label :weight %>:
         <%= f.number_field :weight, step: 0.1 %>
       </div>
+       <div>
+          <%= f.label :photos %>:
+          <%= f.file_field :photos, multiple: true %>
+      </div>    
       <div>
           <%= f.label :manual %>:
           <%= f.file_field :manual, multiple: false %>
       </div>
+      
       <div>
         <%= f.label :sub_category_id, Category.model_name.human %>
         <%= f.collection_select :sub_category_id, @subcategories, :id, :full_description %>
