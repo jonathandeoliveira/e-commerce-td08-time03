@@ -21,6 +21,7 @@ describe 'Mercador acessa página principal de produtos' do
     expect(page).to have_content 'Modelo: Inspiron 15'
     expect(page).to have_content "SKU: #{product.sku}"
     expect(page).to have_content "#{product.sub_category.full_description}"
+    
 
   end
 
@@ -37,7 +38,8 @@ describe 'Mercador acessa página principal de produtos' do
   it 'e visualiza detalhes de um produto' do
     merchant = create(:merchant)
     product = create(:product_model)
-
+    product.photos.attach(io: File.open('app/assets/images/pic_example2.jpg'), filename: 'pic_example2.jpg')
+    
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
@@ -47,6 +49,7 @@ describe 'Mercador acessa página principal de produtos' do
     expect(page).to have_content "Produto: #{product.name}"
     expect(page).to have_content "SKU: #{product.sku}"
     expect(page).to have_content 'Peso: 6.0kg'
+    expect(page).to have_css 'img[src*="pic_example2.jpg"]'
   end
 
   it 'e volta para página inicial' do
