@@ -10,6 +10,6 @@ module RateApiConsumerService
     end
   rescue StandardError => e
     puts "Error: #{e.message}"
-    0
+    1
   end
 end

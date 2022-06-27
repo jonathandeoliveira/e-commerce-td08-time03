@@ -1,0 +1,21 @@
+<div>
+  <h1> Pedidos realizados </h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Código do pedido</th>
+        <th>Valor</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.code, customer_order_path(order.customer_id, order) %></td>
+          <td><%= order.total_value %></td>
+          <td><%# order.status %></td>  
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

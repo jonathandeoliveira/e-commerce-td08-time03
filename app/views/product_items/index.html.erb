@@ -1,6 +1,4 @@
 <h2> Carrinho de compras </h2>
-<% @total_price = 0 %>
-
 <% if @shopping_cart.empty? %>
   <span> Seu carrinho está vazio </span>
 <% else %>
@@ -19,7 +17,6 @@
       
       <tbody>
         <% @shopping_cart.each do |product| %>
-        <% @total_price +=  product.product_model.actual_price * product.quantity / @rate %>
         <tr>
           <td> <%= product.product_model.name %> </td>
          <td>
@@ -39,6 +36,8 @@
     <div class = "container fluid bg-dark text-white col-sm-1 col-md-1 text-center b-1 border-radius">
       Valor total <%= number_with_precision(@total_value, precision: 2) %>
     </div>
-    
+    <%= link_to 'Finalizar pedido', new_customer_order_path(current_customer.id) %>     
     <%= button_to 'Limpar carrinho', remove_all_customer_product_items_path(current_customer.id), method: :delete %>     
   <% end %>
+
+  

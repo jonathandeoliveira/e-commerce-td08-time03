@@ -13,6 +13,16 @@ describe 'Usuário finaliza compra' do
     login_as(customer, scope: :customer)
     visit root_path
     click_on 'Meu carrinho'
-    # click_on 'Finalizar compra'
+    click_on 'Finalizar pedido'
+    click_on 'Confirmar'
+
+    expect(page).to have_content 'Pedido realizado com sucesso'
+    expect(page).to have_content 'Pedidos realizados'
+    expect(page).to have_content 'Código do pedido'
+    expect(page).to have_content 'Status do pedido'
+    expect(page).to have_content "#{first_item.name}"
+    expect(page).to have_content "#{second_item.name}"
+    expect(page).to have_content "#{first_item.quantity}"
+    expect(page).to have_content "#{second_item.quantity}"
   end
 end

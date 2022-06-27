@@ -22,7 +22,7 @@
             <ul class="navbar-nav me-auto">
               <section id = 'query_product'>
               <%=form_with(url: search_product_models_path(@product), method: :get) do |f| %>
-              <%= f.text_field :query, :placeholder => "Buscar produto" %>         
+              <%= f.text_field :query, :placeholder => "Buscar produto", :class => "mt-1" %>         
               <%= f.submit 'Buscar produto' %>
               <% end %>
               </section>
@@ -45,7 +45,7 @@
                   </li>
                 <% elsif customer_signed_in? %>
                   <li class="nav-item">
-                    <%# link_to 'Minha conta', root_path, :class => "nav-link active" %>
+                    <%= link_to 'Minha conta', root_path, :class => "nav-link active" %>
                   </li>
                   <li class="nav-item">
                     <%= link_to 'Meu carrinho', customer_product_items_path(current_customer.id), :class => "nav-link active" %>
