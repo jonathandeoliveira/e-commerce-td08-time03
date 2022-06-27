@@ -4,11 +4,13 @@
       <dl>
          <div class="card-images">
             <% if @product_model.photos.attached? %>
-                  <%= @product_model.photos.each do |photo|%>
-                  <%= image_tag photo%>
+               <%= @product_model.photos.each do |photo|%>
+                  <div class="img-container">
+                        <%= image_tag photo, :class => "img-photo"%>
+                  </div>
                <% end %>
             <% end %>
-         </div>
+         </div> 
          <dt><%= ProductModel.model_name.human %>:</dt>
          <dd><%= @product_model.name %></dd>
          <dt><%= ProductModel.human_attribute_name(:brand) %>:</dt>

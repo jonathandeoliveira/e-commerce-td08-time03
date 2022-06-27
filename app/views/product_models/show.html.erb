@@ -5,10 +5,12 @@
             <div class="card-images">
                   <% if @product_model.photos.attached? %>
                         <%= @product_model.photos.each do |photo|%>
-                        <%= image_tag photo%>
+                        <div class="img-container">
+                           <%= image_tag photo, :class => "img-photo"%>
+                        </div>
                      <% end %>
                   <% end %>
-            </div>
+            </div> 
             <dl>
             <dt>Produto:</dt>
             <dd><%= @product_model.name %> <%= @product_model.brand %> <%= @product_model.model %></dd>

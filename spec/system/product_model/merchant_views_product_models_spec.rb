@@ -21,8 +21,6 @@ describe 'Mercador acessa página principal de produtos' do
     expect(page).to have_content 'Modelo: Inspiron 15'
     expect(page).to have_content "SKU: #{product.sku}"
     expect(page).to have_content "#{product.sub_category.full_description}"
-    
-
   end
 
   it 'e não existem produtos cadastrados' do
@@ -39,7 +37,7 @@ describe 'Mercador acessa página principal de produtos' do
     merchant = create(:merchant)
     product = create(:product_model)
     product.photos.attach(io: File.open('app/assets/images/pic_example2.jpg'), filename: 'pic_example2.jpg')
-    
+
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
