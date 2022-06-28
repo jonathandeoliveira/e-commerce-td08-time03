@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes de um pedido' do
-  it 'a partir da página de pedidos' do
+  xit 'a partir da página de pedidos' do
     customer = create(:customer, email: 'mondser@energy.com', registration_number: '112.454.555-28')
     first_product = create(:product_model, status: 'enabled')
     second_product = create(:product_model, status: 'enabled')

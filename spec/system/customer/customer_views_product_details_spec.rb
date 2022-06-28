@@ -13,7 +13,7 @@ describe 'usuário visualiza detalhes de produto' do
 
     expect(page).to have_content "Detalhes sobre o produto: #{product2.name}"
     expect(page).to have_content "Produto: #{product2.name} #{product2.brand} #{product2.model}"
-    expect(page).to have_content "Preço: #{number_to_currency(product2.product_prices.first.price)}"  
+    expect(page).to have_content "Preço: RB #{number_with_precision(product2.current_price, precision: 2)}"  
     expect(page).to have_content "Categoria: #{product2.sub_category.full_description}"
     expect(page).to have_content "Descrição: #{product2.description}"
     expect(page).to have_content "Dimensões: #{product2.height}m x #{product2.width}m x #{product2.length}m"
