@@ -3,9 +3,11 @@ class ProductItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @shopping_cart = ProductItem.where(customer_id: current_customer.id)
-    @rate = RateApiConsumerService.rate_api_consumer
-    @total_value = sum_total / @rate
+    @shopping_cart = ProductItem.where(customer_id: current_customer.id, order_id: nil)
+    @total_value = 0
+    @shopping_cart.each do |item|
+      @total_value += item.sum_total 
+    end
   end
 
   def create
@@ -52,15 +54,6 @@ class ProductItemsController < ApplicationController
     end
 
     redirect_to customer_product_items_path(current_customer.id)
-  end
-
-  def sum_total
-    shopping_cart = ProductItem.where(customer_id: current_customer.id)
-    total_value = 0
-    shopping_cart.each do |p|
-      total_value += p.calculate_total_product_values
-    end
-    total_value
   end
 
   private

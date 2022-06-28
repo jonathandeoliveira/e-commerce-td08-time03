@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order do
-    code { "MyString" }
+    customer
     total_value { "9.99" }
-    customer { nil }
+    address {customer.full_adress}
   end
 end

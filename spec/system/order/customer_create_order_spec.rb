@@ -9,6 +9,7 @@ describe 'Usuário finaliza compra' do
     second_price = create(:product_price, product_model: second_product, price: 500.99, start_date: Date.today, end_date: 100.day.from_now)
     first_item = create(:product_item, customer: customer, product_model: product)
     second_item = create(:product_item, customer: customer, product_model: second_product)
+    allow(SecureRandom).to receive(:alphanumeric).and_return('QUINZCARACTERES')
 
     login_as(customer, scope: :customer)
     visit root_path
@@ -17,12 +18,9 @@ describe 'Usuário finaliza compra' do
     click_on 'Confirmar'
 
     expect(page).to have_content 'Pedido realizado com sucesso'
-    expect(page).to have_content 'Pedidos realizados'
     expect(page).to have_content 'Código do pedido'
+    expect(page).to have_content 'QUINZCARACTERES'
     expect(page).to have_content 'Status do pedido'
-    expect(page).to have_content "#{first_item.name}"
-    expect(page).to have_content "#{second_item.name}"
-    expect(page).to have_content "#{first_item.quantity}"
-    expect(page).to have_content "#{second_item.quantity}"
+    expect(page).to have_content 'Pendente de pagamento'
   end
 end

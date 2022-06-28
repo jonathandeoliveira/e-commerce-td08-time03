@@ -1,8 +1,13 @@
 class Order < ApplicationRecord
+  validates :total_value, :address, presence: true
+  validates :code, uniqueness: true
+  validates :code, length: { minimum: 15 }
   belongs_to :customer
   has_many :product_items
-  before_create :generate_code
+  before_validation :generate_code
   after_create :associate_products_to_order
+
+  enum status: { pending: 0, paid: 5, refused: 10 }
 
   private
   def generate_code
@@ -10,7 +15,8 @@ class Order < ApplicationRecord
   end
 
   def associate_products_to_order
-      ProductItem.where(order_id: nil, customer: self.customer).each do |p|
+    products = customer.product_items.where(order_id: nil)
+    products.each do |p|
       p.update(order_id: self.id)
     end
   end

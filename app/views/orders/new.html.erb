@@ -5,6 +5,7 @@
         <tr>
           <th>Produto</th>
           <th>Quantidade</th>
+          <th>Preço unitário</th>
           <th>Preço total</th>
         </tr>
       </thead>
@@ -12,15 +13,22 @@
       <tbody>
         <% @shopping_cart.each do |product| %>
           <tr>
-            <td> <%# product.product_model.name %> </td>
-            <td> <%# product.quantity %> </td>
-            <td> <%# number_with_precision(product.calculate_total_product_values / @rate, precision: 2) %></td>         
+            <td> <%= product.product_model.name %> </td>
+            <td> <%= product.quantity %> </td>
+            <td> <%= number_with_precision product.product_model.current_price, precision: 2 %>
+            <td> <%= number_with_precision product.calculate_total_product_values, precision: 2 %></td>         
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= form_with model: @order, url: customer_orders_path(current_customer.id), method: :post do |f| %>
-      <%= f.hidden_field :customer_id, value: current_customer.id %>
-      <%= f.submit 'Confirmar' %>
-    <% end %>
+    <div>
+      <p>Endereço de entrega:</p>
+      <p><%= current_customer.full_adress %></p>
+    </div>
+    <div>
+      <%= form_with model: @order, url: customer_orders_path(current_customer.id), method: :post do |f| %>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.submit 'Confirmar' %>
+      <% end %>
+    </div>
 </div>

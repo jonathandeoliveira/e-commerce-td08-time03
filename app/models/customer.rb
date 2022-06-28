@@ -10,6 +10,7 @@ class Customer < ApplicationRecord
   validates :balance, numericality: true
 
   has_many :product_items
+  has_many :orders
 
 
   def cpf_or_cpnj

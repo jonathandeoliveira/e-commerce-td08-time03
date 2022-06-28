@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      order: "Pedido"
+    attributes:
+      order:
+        code: "Código do pedido"
+        total_value: "Valor total"
+        address: "Endereço"
+        customer: "Cliente"
+        status: "Situação do pedido"
+        pending: "Pendente de pagamento"
+        paid: "Pago"
+        refused: "Recusado"

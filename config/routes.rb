@@ -10,8 +10,7 @@ Rails.application.routes.draw do
       patch 'disable', on: :member
       patch 'enable', on: :member
     end
-  end
-  
+  end  
 
   resources :product_models, only: %i[new create show index] do
     get 'product-detail', on: :member
@@ -22,7 +21,8 @@ Rails.application.routes.draw do
   end
 
   resources :customers do 
-    resources :orders
+    resources :orders, only: %i[new create index show]
+    get 'account', on: :member
     resources :product_items, only: %i[index new create destroy] do
       patch 'sum_quantity', on: :member
       patch 'reduce_quantity', on: :member
