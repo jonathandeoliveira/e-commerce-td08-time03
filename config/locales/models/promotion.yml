@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      promotion:
+        one: "Promoção"
+        other: "Promoções"
+    attributes:
+      promotion:
+        name: "Nome"
+        code: "Código do cupom"
+        used_quantity: "Quantidade de cupons usada"
+        max_quantity: "Quantidade de cupons criados"
+        status: "Situação"
+        discount_percent: "Percentual de desconto"
+        max_discount_money: "Valor máximo de desconto"
+        start_date: "Data inicial"
+        end_date: "Data final"
+        active: "Ativa"
+        inactive: "Expirada"

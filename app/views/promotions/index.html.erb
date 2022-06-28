@@ -1,0 +1,25 @@
+<h2>Todas as promoções:</h2>
+<%= link_to "Criar nova promoção", new_promotion_path %>
+
+<section id="promotions">
+  <div class="container">
+  <div class="col">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th><%= Promotion.model_name.human %></th>
+          <th><%= Promotion.human_attribute_name(:code) %></th>
+          <th><%= Promotion.human_attribute_name(:status) %> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @promotions.each do | promotion | %>
+          <tr>
+            <td><%= link_to promotion.name, promotion %></td>
+            <td><%= promotion.code %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
