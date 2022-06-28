@@ -21,7 +21,7 @@
             <dd>Não</dd>
          <% end %>
          <dt>Preço:</dt>
-         <dd><%= number_to_currency(@product_model.product_prices.first.price) %></dd>
+         <dd>RB <%= number_with_precision(@product_model.current_price, precision: 2) %></dd>
       </dl>
    </div>
 
