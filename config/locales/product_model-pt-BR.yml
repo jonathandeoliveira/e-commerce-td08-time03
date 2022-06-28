@@ -21,3 +21,7 @@ pt-BR:
         sub_category: "Categoria"
         manual: "Manual do produto"
         photos: "Imagens do produto"
+        dimension: "Dimensões"
+        true: "Sim"
+        false: "Não"
+        price: "Preço"

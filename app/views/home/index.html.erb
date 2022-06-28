@@ -18,7 +18,9 @@
           <div class="card bg-white mb-3" style="max-width: 20rem;">  
             <div class="card-images">
               <% if product.photos.attached? %>
-                <%= image_tag product.photos.first %>
+                <div class="img-index-container">
+                <%= image_tag product.photos.first ,:class => "img-photo" %>
+                </div>
               <% end %>
             </div>          
             <div class="card-header"><%= link_to product.name, product_detail_product_model_path(product) %></div>
