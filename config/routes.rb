@@ -29,4 +29,7 @@ Rails.application.routes.draw do
       delete 'remove_all', on: :collection
     end
   end
+
+  get 'merchant-order-index', to: "orders#merchant_index"
+  get 'merchant-order-show/:id', to: "orders#merchant_show", as: :merchant_order
 end

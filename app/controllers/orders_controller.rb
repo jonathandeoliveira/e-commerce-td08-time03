@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_user
-  before_action :set_customer
+  before_action :authenticate_merchant!, only: %i[merchant_index merchant_show]
+  before_action :set_customer, except: :merchant_index
 
   def new
     @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)
@@ -10,7 +11,6 @@ class OrdersController < ApplicationController
   def index
     @shopping_cart = ProductItem.where(customer_id: @customer)
     @orders = Order.where(customer_id: @customer) if customer_signed_in? 
-    @orders = Order.all if merchant_signed_in?
   end
 
   def create
@@ -30,11 +30,30 @@ class OrdersController < ApplicationController
     @product_items = ProductItem.where(order_id: @order.id)
   end
 
-  private
+  def merchant_index
+    @orders = Order.all if merchant_signed_in?
+  end
+
+  def merchant_show
+    @order = Order.find(params[:id])
+    @product_items = ProductItem.where(order_id: @order.id)
+  end
+
+  private 
   def calculate_total_value_cart
     total = 0
     customer = Customer.find(@customer)
     products = customer.product_items.where(order_id: nil)
+    products.each do |product_value|
+      total += product_value.calculate_total_product_values
+    end
+    total
+  end
+
+  def calculate_total_order
+    total = 0
+    order = Order.find(params[:id])
+    products = order.customer.product_items
     products.each do |product_value|
       total += product_value.calculate_total_product_values
     end
