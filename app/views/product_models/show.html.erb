@@ -2,6 +2,15 @@
    <% if merchant_signed_in? %>
       <h1>Detalhes sobre o produto: <%= @product_model.name %></h1>
       <div>
+            <div class="card-images">
+                  <% if @product_model.photos.attached? %>
+                        <% @product_model.photos.each do |photo|%>
+                           <div class="img-container">
+                              <%= image_tag photo, :class => "img-photo"%>
+                           </div>
+                     <% end %>
+                  <% end %>
+            </div> 
             <dl>
             <dt>Produto:</dt>
             <dd><%= @product_model.name %> <%= @product_model.brand %> <%= @product_model.model %></dd>
@@ -42,6 +51,7 @@
                <dt>Downloads:</dt>
                <dd><%= link_to 'Manual do produto', @product_model.manual %></dd>
             <% end %>
+
          </dl>
       </div>
    <% end %>
