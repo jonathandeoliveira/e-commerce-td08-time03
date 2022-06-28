@@ -10,4 +10,7 @@ class ApplicationController < ActionController::Base
     ProductModel.where(status: :enabled).joins(:product_prices).where('start_date <= ? AND end_date >= ? ', DateTime.now, DateTime.now)
   end
 
+  def set_user
+    customer_signed_in? ? authenticate_customer! : authenticate_merchant!
+  end
 end

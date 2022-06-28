@@ -34,19 +34,19 @@
             <dd><%=  ProductModel.human_attribute_name(:false) %></dd>
          <% end %>
          <dt><%= ProductModel.human_attribute_name(:price)%>:</dt>
-         <dd><%= number_to_currency(@product_model.product_prices.first.price) %></dd>
+         <dd>RB <%= number_with_precision(@product_model.current_price, precision: 2) %></dd>
       </dl>
    </div>
 
    <div>
       <% if customer_signed_in? %>
          <%= form_with url: customer_product_items_path(current_customer.id) do |f| %>
-         <%= f.label :quantity, 'Quantidade' %>
-         <%= f.number_field :quantity %>
-         <%= f.hidden_field :product_model_id, value: @product_model.id %>
-         <%= f.submit 'Adicionar ao carrinho' %>
-      <% end %>
-      <% else%>
+            <%= f.label :quantity, 'Quantidade' %>
+            <%= f.number_field :quantity %>
+            <%= f.hidden_field :product_model_id, value: @product_model.id %>
+            <%= f.submit 'Adicionar ao carrinho' %>
+         <% end %>
+      <% else %>
          <%= link_to 'Adicionar ao carrinho', new_customer_session_path %>
       <% end %>
    </div>

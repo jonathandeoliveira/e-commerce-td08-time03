@@ -21,8 +21,8 @@ describe 'Cliente acessa carrinho' do
 
   it 'e vê os produtos adicionados' do
     customer = create(:customer)
-    product = create(:product_model, name: 'Notebook')
-    second_product = create(:product_model, name: 'TV')
+    product = create(:product_model, name: 'Notebook', status: 'enabled')
+    second_product = create(:product_model, name: 'TV', status: 'enabled')
     first_price = create(:product_price, product_model: product, price: 300.99, start_date: Date.today, end_date: 100.day.from_now)
     second_price = create(:product_price, product_model: second_product, price: 500.99, start_date: Date.today, end_date: 100.day.from_now)
     product_item = create(:product_item, customer: customer, product_model: product)
@@ -40,8 +40,8 @@ describe 'Cliente acessa carrinho' do
     expect(page).to have_content 'Preço total'
     expect(page).to have_content product_item.product_model.name
     expect(page).to have_content second_item.product_model.name
-    expect(page).to have_content number_to_currency(first_price.price)
-    expect(page).to have_content number_to_currency(second_price.price)
+    expect(page).to have_content product.current_price.round(2)
+    expect(page).to have_content second_product.current_price.round(2)
     expect(page).to have_content "#{product_item.quantity}"
     expect(page).to have_content "#{second_item.quantity}"
   end

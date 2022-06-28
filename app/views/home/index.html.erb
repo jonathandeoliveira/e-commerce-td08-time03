@@ -6,9 +6,6 @@
     <% end%>
 </section>
 
-
-
-
 <% if @products.any? %>
   <div class="container-fluid">
     <div class="row"> 
@@ -29,7 +26,7 @@
             <div class="card-header"><%= link_to product.name, product_detail_product_model_path(product) %></div>
             <div class="card-body">
               <p class="card-title"><%= product.description %></p>
-              <%= number_to_currency(product.product_prices.first.price) %>
+              RB <%= number_with_precision(product.current_price, precision: 2) %>
               <a class="card-text"> <%= link_to 'Ver', product_detail_product_model_path(product) %> </a>       
             </div>  
           </div>  

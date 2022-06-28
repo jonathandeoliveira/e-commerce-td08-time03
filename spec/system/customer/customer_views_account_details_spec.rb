@@ -12,7 +12,7 @@ describe 'usuário cliente acessa sua conta' do
     customer = create(:customer)
     login_as(customer, scope: :customer)
     visit root_path
-    click_on 'Minha conta'
+    click_on customer.email
 
     expect(current_path).to eq account_customer_path(customer)
     expect(page).to have_content 'Detalhes da sua conta'

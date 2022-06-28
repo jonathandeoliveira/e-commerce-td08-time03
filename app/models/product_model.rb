@@ -9,6 +9,10 @@ class ProductModel < ApplicationRecord
   has_one_attached :manual
   has_many_attached :photos
   has_many :product_items
+
+  def current_price
+    price = product_prices.where('start_date <= ? AND end_date >= ? ', DateTime.now, DateTime.now).first.price
+    rate = RateApiConsumerService.rate_api_consumer
+    final_price =  price / rate
+  end
 end
-
-

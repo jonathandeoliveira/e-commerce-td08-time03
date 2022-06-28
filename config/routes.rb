@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       patch 'disable', on: :member
       patch 'enable', on: :member
     end
-  end
+  end  
 
   resources :product_models, only: %i[new create show index] do
     get 'product-detail', on: :member
@@ -20,12 +20,16 @@ Rails.application.routes.draw do
     resources :product_prices, only: %i[new create edit update]
   end
 
-    resources :customers do 
-      get 'account', on: :member
-      resources :product_items, only: %i[index new create destroy] do
-        patch 'sum_quantity', on: :member
-        patch 'reduce_quantity', on: :member
-        delete 'remove_all', on: :collection
-      end
+  resources :customers do 
+    resources :orders, only: %i[new create index show]
+    get 'account', on: :member
+    resources :product_items, only: %i[index new create destroy] do
+      patch 'sum_quantity', on: :member
+      patch 'reduce_quantity', on: :member
+      delete 'remove_all', on: :collection
     end
+  end
+
+  get 'merchant-order-index', to: "orders#merchant_index"
+  get 'merchant-order-show/:id', to: "orders#merchant_show", as: :merchant_order
 end
