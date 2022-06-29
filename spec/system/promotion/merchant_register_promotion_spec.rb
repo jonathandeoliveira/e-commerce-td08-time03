@@ -26,7 +26,6 @@ describe 'Mercador cadastra uma promoção' do
       sub_category4= create(:sub_category, name:'Subcategoria4')
       sub_category5 = create(:sub_category, name:'Subcategoria5')
       
-
       login_as(merchant, scope: :merchant)
       visit root_path
       click_on 'Promoções'
@@ -48,5 +47,6 @@ describe 'Mercador cadastra uma promoção' do
       expect(result.name).to eq 'Semana dos Eletrônicos'
       expect(result.used_quantity).to eq nil
       expect(result.discount_percent).to eq 5
+      expect(result.sub_categories.first.name).to eq 'Subcategoria1'
     end
 end
