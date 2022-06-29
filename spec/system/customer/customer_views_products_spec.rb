@@ -13,8 +13,8 @@ describe 'Usuário vê produtos do ecommerce' do
     expect(page).to have_content 'Nossos produtos:'
     expect(page).to have_content product1.name
     expect(page).to have_content product2.name
-    expect(page).to have_content number_to_currency(price1.price)
-    expect(page).to have_content number_to_currency(price2.price)
+    expect(page).to have_content "RB #{number_with_precision(product1.current_price, precision: 2)}"
+    expect(page).to have_content "RB #{number_with_precision(product2.current_price, precision: 2)}"
   end
 
   it 'e não vê produtos cadastrados' do
@@ -32,9 +32,9 @@ describe 'Usuário vê produtos do ecommerce' do
     visit root_path
 
     expect(page).not_to have_content product1.name
-    expect(page).not_to have_content number_to_currency(price1.price)
+    expect(page).not_to have_content "RB #{number_with_precision(product1.current_price, precision: 2)}"
     expect(page).to have_content product2.name
-    expect(page).to have_content number_to_currency(price2.price)
+    expect(page).to have_content "RB #{number_with_precision(product2.current_price, precision: 2)}"
   end
 
   it 'e vê o preço na data correta' do
@@ -50,8 +50,8 @@ describe 'Usuário vê produtos do ecommerce' do
     expect(page).to have_content 'Nossos produtos:'
     expect(page).to have_content product1.name
     expect(page).to have_content product2.name
-    expect(page).to have_content number_to_currency(price1.price)
-    expect(page).to have_content number_to_currency(price2.price)
+    expect(page).to have_content "RB #{number_with_precision(product1.current_price, precision: 2)}"
+    expect(page).to have_content "RB #{number_with_precision(product2.current_price, precision: 2)}"
     expect(page).not_to have_content number_to_currency(price3.price)
     expect(page).not_to have_content number_to_currency(price4.price)
   end
@@ -120,7 +120,7 @@ describe 'Usuário vê produtos do ecommerce' do
 
       expect(page).to have_content "Resultado da busca por: #{visible_product2.name}"
       expect(page).to have_content "#{visible_product2.name}"
-      expect(page).to have_content "#{number_to_currency(visible_product2.product_prices.first.price)}"
+      expect(page).to have_content "#{number_with_precision(visible_product2.current_price, precision: 2)}"
     end
 
     it 'e busca múltiplos itens' do
@@ -141,11 +141,11 @@ describe 'Usuário vê produtos do ecommerce' do
 
       expect(page).to have_content "Resultado da busca por: O"
       expect(page).to have_content "Lego"
-      expect(page).to have_content "#{number_to_currency(visible_product2.product_prices.first.price)}"
+      expect(page).to have_content "#{number_with_precision(visible_product2.current_price, precision: 2)}"
       expect(page).to have_content "Laptop da Xuxa"
-      expect(page).to have_content "#{number_to_currency(visible_product.product_prices.first.price)}"
+      expect(page).to have_content "#{number_with_precision(visible_product.current_price, precision: 2)}"
       expect(page).not_to have_content "Massinha"
-      expect(page).not_to have_content "#{number_to_currency(not_searched_product.product_prices.first.price)}"
+      expect(page).not_to have_content "#{number_with_precision(not_searched_product.current_price, precision: 2)}"
     end
 
     it 'e não encontra resultados na busca' do

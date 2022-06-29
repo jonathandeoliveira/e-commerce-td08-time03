@@ -56,7 +56,7 @@ describe 'Mercador acessa página principal de produtos' do
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
-    click_on 'Página Inicial'
+    click_on 'E-Commerce'
 
     expect(current_path).to eq root_path
   end

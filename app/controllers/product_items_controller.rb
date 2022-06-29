@@ -1,10 +1,13 @@
 class ProductItemsController < ApplicationController
   before_action :set_customer
   before_action :authenticate_customer!
-  before_action :api_retrieve_rubi_value
 
   def index
-    @shopping_cart = ProductItem.where(customer_id: current_customer.id)
+    @shopping_cart = ProductItem.where(customer_id: current_customer.id, order_id: nil)
+    @total_value = 0
+    @shopping_cart.each do |item|
+      @total_value += item.sum_total 
+    end
   end
 
   def create
@@ -57,10 +60,5 @@ class ProductItemsController < ApplicationController
 
   def set_customer
     @customer_id = params[:customer_id]
-  end
-
-  def api_retrieve_rubi_value
-    response = Faraday.get('http://localhost:4000/api/v1/exchange_rates/current')
-    @rate = JSON.parse(response.body)["exchange_rate"]["value"].to_d
   end
 end

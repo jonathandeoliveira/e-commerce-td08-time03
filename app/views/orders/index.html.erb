@@ -1,0 +1,32 @@
+<div>
+  <div class="container">
+  <h2>  Meus pedidos </h2>
+  </div>
+  <div class="container">
+    <div class="col">
+  <% if @orders.present? %>
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Código do pedido</th>
+          <th>Valor</th>
+          <th>Status do pedido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.code, customer_order_path(order.customer_id, order) %></td>
+            <td>RB <%= order.total_value %></td>
+            <td><%= Order.human_attribute_name(order.status) %></td>  
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+  <span> Não existem pedidos realizados </span>
+  <% end %>
+
+  </div>
+  </div>
+</div>
