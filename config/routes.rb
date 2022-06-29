@@ -32,4 +32,10 @@ Rails.application.routes.draw do
 
   get 'merchant-order-index', to: "orders#merchant_index"
   get 'merchant-order-show/:id', to: "orders#merchant_show", as: :merchant_order
+
+  namespace :api do
+    namespace :v1 do
+      resources :orders, only: %i[create]
+    end
+  end
 end
