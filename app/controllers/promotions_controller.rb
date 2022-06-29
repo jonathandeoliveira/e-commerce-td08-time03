@@ -19,6 +19,9 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.new(promotion_params)
     if @promotion.save
       redirect_to  promotion_path(@promotion), notice: "Promoção cadastrada com sucesso"
+    else 
+      flash.now[:alert] ='Erro! Não foi possível cadastrar nova promoção :('
+      render 'new'
     end
   end
 

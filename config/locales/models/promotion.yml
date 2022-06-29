@@ -17,3 +17,4 @@ pt-BR:
         end_date: "Data final"
         active: "Ativa"
         inactive: "Expirada"
+        sub_category_ids: "Subcategoria"

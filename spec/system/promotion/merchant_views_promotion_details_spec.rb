@@ -4,11 +4,9 @@ describe 'mercador vê detalhes de uma promoção' do
   it 'com sucesso' do
     merchant = create(:merchant)
     sub_category1 = create(:sub_category, name:'Subcategoria1')
-    sub_category2 = create(:sub_category,name:'Subcategoria2')
-    promotion = create(:promotion)
-    promotion_category1 = create(:promotion_category, promotion: promotion, sub_category: sub_category1)
-    promotion_category1 = create(:promotion_category, promotion: promotion, sub_category: sub_category2)
-
+    sub_category2 = create(:sub_category, name:'Subcategoria2')
+    promotion = create(:promotion, sub_categories:[sub_category1,sub_category2])   
+    
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Promoções'
@@ -32,9 +30,7 @@ describe 'mercador vê detalhes de uma promoção' do
     merchant = create(:merchant)
     sub_category1 = create(:sub_category, name:'Subcategoria1')
     sub_category2 = create(:sub_category,name:'Subcategoria2')
-    promotion = create(:promotion)
-    promotion_category1 = create(:promotion_category, promotion: promotion, sub_category: sub_category1)
-    promotion_category1 = create(:promotion_category, promotion: promotion, sub_category: sub_category2)
+    promotion = create(:promotion, sub_categories:[sub_category1,sub_category2])
 
     visit promotion_path(promotion)
     expect(current_path).not_to eq promotion_path(promotion)
