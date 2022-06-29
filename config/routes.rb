@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       patch 'disable', on: :member
       patch 'enable', on: :member
     end
-  end  
+  end
 
   resources :product_models, only: %i[new create show index] do
     get 'product-detail', on: :member
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :product_prices, only: %i[new create edit update]
   end
 
-  resources :customers do 
+  resources :customers do
     resources :orders, only: %i[new create index show]
     get 'account', on: :member
     resources :product_items, only: %i[index new create destroy] do
@@ -35,7 +35,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :orders, only: %i[create]
+      scope :orders do
+        post 'update_status', to: "orders#update_status"
+      end
     end
   end
 end

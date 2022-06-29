@@ -6,9 +6,9 @@ FactoryBot.define do
     name { Faker::Commerce.product_name }
     brand { Faker::Commerce.brand }
     model { "Inspiron 15" }
-    sku {  Faker::Commerce.promotion_code }
+    sku { Faker::Commerce.promotion_code }
     fragile { false }
-    description {Faker::Lorem.paragraph }
+    description { Faker::Lorem.paragraph }
     weight { 6 }
     height { 0.3 }
     width { 0.45 }
