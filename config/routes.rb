@@ -22,10 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :customers do 
-<<<<<<< HEAD
-=======
     resources :orders, only: %i[new create index show]
->>>>>>> f88d4f83b8510750f87a031acdcdd7a78ecf3317
     get 'account', on: :member
     resources :product_items, only: %i[index new create destroy] do
       patch 'sum_quantity', on: :member
@@ -34,11 +31,8 @@ Rails.application.routes.draw do
     end
   end
 
-<<<<<<< HEAD
   resources :promotions, only: %i[index new create show]
 
-=======
   get 'merchant-order-index', to: "orders#merchant_index"
   get 'merchant-order-show/:id', to: "orders#merchant_show", as: :merchant_order
->>>>>>> f88d4f83b8510750f87a031acdcdd7a78ecf3317
 end
