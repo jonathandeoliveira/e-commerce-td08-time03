@@ -25,8 +25,7 @@
       <%= f.label(:max_discount_money) %>
       <%= f.number_field(:max_discount_money) %>
     </div>
-    <span><%= f.label :sub_category_ids, 'Selecione as categorias que deseja aplicar promoção:' %> <br/> </span> 
-
+    <p> <%= f.label :sub_category_ids, 'Selecione as categorias que deseja aplicar promoção:' %> </p>
     <div class="form-checkboxes">
       <%= f.collection_check_boxes(:sub_category_ids, @sub_categories, :id, :name) do |b| %>
         <%= b.label class:"subcategory" do %>
@@ -34,5 +33,6 @@
         <% end %>
       <% end %>
     </div>
+    <p style="padding: 15px 0 0 80px"><%= f.submit %></p>
   <% end %>
 </div>

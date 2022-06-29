@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::NumberHelper
 
 describe 'Mercador cadastra uma promoção' do
     it 'a partir da página inicial' do
@@ -40,5 +41,12 @@ describe 'Mercador cadastra uma promoção' do
       find(:css, "#promotion_sub_category_ids_1").set(true)
       find(:css, "#promotion_sub_category_ids_3").set(true)
       find(:css, "#promotion_sub_category_ids_5").set(true)
+      click_on 'Criar Promoção'
+
+      result = Promotion.last
+      expect(page).to have_content 'Promoção cadastrada com sucesso'
+      expect(result.name).to eq 'Semana dos Eletrônicos'
+      expect(result.used_quantity).to eq nil
+      expect(result.discount_percent).to eq 5
     end
 end
