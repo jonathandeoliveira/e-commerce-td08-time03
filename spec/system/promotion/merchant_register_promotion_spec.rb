@@ -16,13 +16,14 @@ describe 'Mercador cadastra uma promoção' do
       expect(page).to have_link 'Criar nova promoção'
     end
 
-    xit 'com sucesso' do
+    it 'com sucesso' do
       merchant = create(:merchant)
-      sub_category1 = create(:subcategory)
-      sub_category2 = create(:subcategory)
-      sub_category3 = create(:subcategory)
-      sub_category4= create(:subcategory)
-      sub_category5 = create(:subcategory)
+      category = create(:category)
+      sub_category1 = create(:sub_category, category: category, name:'Subcategoria1')
+      sub_category2 = create(:sub_category, category: category, name:'Subcategoria2')
+      sub_category3 = create(:sub_category, category: category, name:'Subcategoria3')
+      sub_category4= create(:sub_category, name:'Subcategoria4')
+      sub_category5 = create(:sub_category, name:'Subcategoria5')
       
 
       login_as(merchant, scope: :merchant)
@@ -34,12 +35,10 @@ describe 'Mercador cadastra uma promoção' do
       fill_in 'Data inicial', with: Date.today
       fill_in 'Data final', with: 7.days.from_now
       fill_in 'Quantidade de cupons', with: 50
-      fill_in 'Percentagem de desconto', with: 5
-      fill_in 'Desconto máximo(em reais)', with: 100
-      find(:css, "#sub_categoryID[value=1").set(true)
-      find(:css, "#sub_categoryID[value=2").set(true)
-      find(:css, "#sub_categoryID[value=5").set(true)
-
-      expect(page).to have_content ''
+      fill_in 'Percentual de desconto', with: 5
+      fill_in 'Valor máximo de desconto', with: 100
+      find(:css, "#promotion_sub_category_ids_1").set(true)
+      find(:css, "#promotion_sub_category_ids_3").set(true)
+      find(:css, "#promotion_sub_category_ids_5").set(true)
     end
 end

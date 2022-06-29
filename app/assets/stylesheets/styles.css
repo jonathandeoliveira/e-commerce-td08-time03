@@ -13,3 +13,40 @@
   max-width: 100%;
   max-height: 100%;  
 }
+
+.form-promotions{
+  width: 100%;
+  max-height: 100%;
+}
+
+.form-checkboxes{
+  width: 300px;
+  height: 300px;
+  margin-left: 50px;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+/* 
+.form-check-boxes input{
+  display: inline-block;
+  width: 100%;
+  border-radius: 900px;
+  box-sizing: border-box;
+  padding: 3px;
+  color: red;
+} */
+
+.form-check-boxes input{
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 50px;
+  border: 3px solid transparent;
+  margin-bottom: 15px;
+}
+
+.subcategory{
+ padding: 5px 0px 2px;
+ display: block;
+ border-radius: 50px;
+}

@@ -9,4 +9,9 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.find(params[:id])    
   end
 
+  def new
+    @sub_categories = SubCategory.all
+    @promotion = Promotion.new
+  end
+
 end

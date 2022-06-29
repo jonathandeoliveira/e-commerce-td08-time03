@@ -1,0 +1,38 @@
+<div class="form-promotions">
+  <h2>Cadastro de nova promoção:</h2>
+  <%= form_with(model: @promotion) do |f| %>
+    <div>
+      <%= f.label(:name) %>
+      <%= f.text_field(:name) %>
+    </div>
+    <div>
+      <%= f.label(:start_date) %>
+      <%= f.date_field(:start_date) %>
+    </div>
+    <div>
+      <%= f.label(:end_date) %>
+      <%= f.date_field(:end_date) %> 
+    </div>
+    <div>
+      <%= f.label(:max_quantity) %>
+      <%= f.number_field(:max_quantity) %>
+    </div>
+    <div>
+      <%= f.label(:discount_percent) %>
+      <%= f.number_field(:discount_percent) %>
+    </div>
+    <div>
+      <%= f.label(:max_discount_money) %>
+      <%= f.number_field(:max_discount_money) %>
+    </div>
+    <span><%= f.label :sub_category_ids, 'Selecione as categorias que deseja aplicar promoção:' %> <br/> </span> 
+
+    <div class="form-checkboxes">
+      <%= f.collection_check_boxes(:sub_category_ids, @sub_categories, :id, :name) do |b| %>
+        <%= b.label class:"subcategory" do %>
+        <%= b.check_box class:"box" %>  <%= b.text  %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
