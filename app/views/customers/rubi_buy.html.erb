@@ -1,5 +1,9 @@
 <div>
   <h1>Compra de créditos em Rubi</h1>
+  <div>
+    <p>Seu saldo é: <%= current_customer.balance %></p>
+    <p>A cotação do Rubi no dia de hoje é: 1RB equivale a <%= number_to_currency(@rate) %></p>
+  </div>
   <%= form_with do |f| %>
     <div>
       <%= f.label :real_amount, 'Valor em reais' %>

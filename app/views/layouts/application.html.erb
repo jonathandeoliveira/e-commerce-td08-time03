@@ -55,7 +55,7 @@
                     <%= link_to 'Meus pedidos', customer_orders_path(current_customer.id), :class => "nav-link active" %>
                   </li> 
                   <li class="nav-item">
-                    <%= link_to "Saldo: #{current_customer.balance}", account_customer_path(current_customer), :class => "nav-link active" %>
+                    <%= link_to "Saldo: #{number_with_precision current_customer.balance, precision: 2}", account_customer_path(current_customer), :class => "nav-link active" %>
                   </li>                 
                   <ul class="navbar-nav"> 
                     <li class="nav-item">

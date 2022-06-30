@@ -6,7 +6,9 @@ class CustomersController < ApplicationController
 
   def account; end
 
-  def rubi_buy; end
+  def rubi_buy
+    @rate = RateApiConsumerService.rate_api_consumer
+  end
 
   def send_credit_request
     customer = Customer.find(params[:customer_id])
@@ -14,7 +16,7 @@ class CustomersController < ApplicationController
     balance_to_add = CustomerAddRubiService.add_credit(customer, amount)
     customer.balance += balance_to_add
     customer.save!
-    redirect_to root_path, notice: 'Solicitação enviada'
+    redirect_to account_customer_path(current_customer), notice: 'Solicitação enviada'
   end
 
   def update_customer_balance
