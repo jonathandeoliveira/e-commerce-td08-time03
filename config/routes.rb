@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       scope :orders do
-        post 'update_status', to: "orders#update_status"
+        patch 'update_status', to: "orders#update_status"
       end
     end
   end

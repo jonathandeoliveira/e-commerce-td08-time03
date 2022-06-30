@@ -35,7 +35,5 @@ describe 'usuário cliente acessa sua conta' do
     expect(page).to have_content "Erro! Página não encontrada :("
     expect(page).not_to have_content "Saldo: #{unauthorized_customer.balance}"
     expect(page).not_to have_content "Nome: #{unauthorized_customer.name}"
-
   end
-
 end

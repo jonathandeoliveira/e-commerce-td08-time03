@@ -8,7 +8,7 @@ describe 'Muda status de pedido' do
       code = first_order.code
       order_params = { client_order: { order_code: "#{code}", order_status: 'paid' } }
 
-      post '/api/v1/orders/update_status', params: order_params
+      patch '/api/v1/orders/update_status', params: order_params
 
       first_order.reload
       expect(first_order.status).to eq 'paid'
@@ -20,7 +20,7 @@ describe 'Muda status de pedido' do
       code = first_order.code
       order_params = { client_order: { order_code: "1", order_status: 'paid' } }
 
-      post '/api/v1/orders/update_status', params: order_params
+      patch '/api/v1/orders/update_status', params: order_params
 
       first_order.reload
       expect(response).to have_http_status 404
@@ -33,7 +33,7 @@ describe 'Muda status de pedido' do
       code = first_order.code
       order_params = { client_order: { order_code: "#{code}", order_status: 'wrong' } }
 
-      post '/api/v1/orders/update_status', params: order_params
+      patch '/api/v1/orders/update_status', params: order_params
 
       first_order.reload
       expect(response).to have_http_status 406
@@ -46,7 +46,7 @@ describe 'Muda status de pedido' do
       code = first_order.code
       order_params = { client_order: { order_status: 'pending' } }
 
-      post '/api/v1/orders/update_status', params: order_params
+      patch '/api/v1/orders/update_status', params: order_params
 
       first_order.reload
       expect(response).to have_http_status 406
