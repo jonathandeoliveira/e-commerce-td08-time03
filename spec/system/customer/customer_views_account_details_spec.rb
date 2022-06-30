@@ -14,6 +14,7 @@ describe 'usuário cliente acessa sua conta' do
     visit root_path
     click_on customer.email
 
+    customer.reload
     expect(current_path).to eq account_customer_path(customer)
     expect(page).to have_content 'Detalhes da sua conta'
     expect(page).to have_content "Saldo: #{customer.balance}"

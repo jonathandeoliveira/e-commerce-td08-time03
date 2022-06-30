@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     if current_customer.balance > @order.total_value
       if @order.save!
         OrderDataService.send_order(@order)
-        redirect_to customer_orders_path(@customer), notice: 'Pedido realizado com sucesso'
+        redirect_to customer_orders_path(@customer), notice: 'Compra realizada com sucesso'
       else
         flash.now[:notice] = 'Falha ao criar pedido'
         render 'new'

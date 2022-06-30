@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
     balance_to_add = CustomerAddRubiService.add_credit(customer, amount)
     customer.balance += balance_to_add
     customer.save!
-    redirect_to account_customer_path(current_customer), notice: 'Solicitação enviada'
+    redirect_to account_customer_path(current_customer), notice: 'Solicitação de créditos realizada com sucesso'
   end
 
   def update_customer_balance

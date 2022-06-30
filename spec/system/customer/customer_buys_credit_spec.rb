@@ -11,7 +11,8 @@ describe 'Usuário compra crédito de rubis' do
     fill_in 'Valor em reais', with: 1000
     click_on 'Comprar'
 
-    expect(page).to have_content 'Compra realizada com sucesso'
+    customer.reload
+    expect(page).to have_content 'Solicitação de créditos realizada com sucesso'
     expect(page).to have_content "Saldo disponível: #{customer.balance}"
   end
 end
