@@ -45,11 +45,24 @@ describe 'Mercador cadastra uma promoção' do
       
       result = Promotion.last
       expect(page).to have_content 'Promoção cadastrada com sucesso'
+      expect(page).to have_content "Detalhes da promoção: Semana dos Eletrônicos"
+      expect(page).to have_content 'Situação: Ativa'
+      expect(page).to have_content "Data inicial: #{result.start_date}"
+      expect(page).to have_content "Data final: #{result.end_date}"
+      expect(page).to have_content "Quantidade de cupons criados: 50"
+      expect(page).to have_content "Quantidade de cupons usada: 0"
+      expect(page).to have_content "Percentual de desconto: 5%"
+      expect(page).to have_content "Valor máximo de desconto: R$ 100,00"
+      expect(page).to have_content "Categorias em promoção:"
+      expect(page).to have_content "Subcategoria1"
+      expect(page).to have_content "Subcategoria3"
+      expect(page).to have_content "Subcategoria5"
       expect(result.name).to eq 'Semana dos Eletrônicos'
       expect(result.used_quantity).to eq 0
       expect(result.discount_percent).to eq 5
       expect(result.sub_categories.first.name).to eq 'Subcategoria1'
-      expect(result.code). to eq '8DIGITOS'
+      expect(result.code).to eq '8DIGITOS'
+      expect(result.status).to eq 'active'
     end
 
     it 'se estiver autenticado' do

@@ -1,5 +1,5 @@
 class Promotion < ApplicationRecord  
-  enum status: { inactive:0, active: 1 }
+  enum status: { active:0, inactive: 1 }
   has_many :promotion_categories
   has_many :sub_categories, :through => :promotion_categories
 
@@ -11,7 +11,6 @@ class Promotion < ApplicationRecord
   before_validation :generate_code, on: :create
   
   private 
-
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase
   end
