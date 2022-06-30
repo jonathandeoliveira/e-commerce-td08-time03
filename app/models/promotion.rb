@@ -10,6 +10,15 @@ class Promotion < ApplicationRecord
   validate :date_is_future, :start_date_differs_from_end_date, :end_date_is_future_from_start_date
   before_validation :generate_code, on: :create
   
+
+  def check_promotion_validation
+    if Date.today > self.end_date || self.used_quantity >= self.max_quantity
+     self.inactive!
+    end
+    self
+  end
+
+
   private 
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase

@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_customer, except: :merchant_index
 
   def new
+    @promotion = Promotion.where(status: :active)
     @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)
     @order = Order.new
   end

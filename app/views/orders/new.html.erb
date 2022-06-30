@@ -26,9 +26,14 @@
       <p><%= current_customer.full_adress %></p>
     </div>
     <div>
+      <%=form_with(url: search_coupon_promotion_path(@promotion), method: :post) do |f| %>
+        <%= f.label I18n.t(:coupon) %>
+        <%= f.text_field :coupon, :placeholder => "Insira seu cupom aqui", :class => "mt-1" %>
+        <%= f.submit 'Aplicar cupom' %>  
+      <% end %>
       <%= form_with model: @order, url: customer_orders_path(current_customer.id), method: :post do |f| %>
         <%= f.hidden_field :customer_id, value: current_customer.id %>
-        <%= f.submit 'Confirmar' %>
+        <p><%= f.submit 'Confirmar' %></p>
       <% end %>
     </div>
 </div>

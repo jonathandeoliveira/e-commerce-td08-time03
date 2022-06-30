@@ -1,5 +1,6 @@
 pt-BR:
   activerecord:
+    coupon: "Cupom de desconto"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

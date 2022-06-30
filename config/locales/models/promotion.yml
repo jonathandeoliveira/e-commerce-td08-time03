@@ -18,3 +18,5 @@ pt-BR:
         active: "Ativa"
         inactive: "Expirada"
         sub_category_ids: "Subcategoria"
+  coupon: "Cupom de desconto"
+        
