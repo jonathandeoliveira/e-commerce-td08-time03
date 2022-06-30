@@ -13,6 +13,6 @@ describe 'Usuário compra crédito de rubis' do
 
     customer.reload
     expect(page).to have_content 'Solicitação de créditos realizada com sucesso'
-    expect(page).to have_content "Saldo disponível: #{customer.balance}"
+    expect(page).to have_content "Saldo: #{customer.balance}"
   end
 end

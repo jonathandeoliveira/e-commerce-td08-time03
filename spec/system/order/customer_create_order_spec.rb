@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário finaliza compra' do
   it 'a partir do carrinho de compras' do
-    customer = create(:customer)
+    customer = create(:customer, balance: 10000)
     product = create(:product_model, name: 'Notebook', status: 'enabled')
     second_product = create(:product_model, name: 'TV', status: 'enabled')
     first_price = create(:product_price, product_model: product, price: 300.99, start_date: Date.today, end_date: 100.day.from_now)
@@ -17,7 +17,7 @@ describe 'Usuário finaliza compra' do
     click_on 'Finalizar pedido'
     click_on 'Confirmar'
 
-    expect(page).to have_content 'Pedido realizado com sucesso'
+    expect(page).to have_content 'Compra realizada com sucesso'
     expect(page).to have_content 'Código do pedido'
     expect(page).to have_content 'QUINZCARACTERES'
     expect(page).to have_content 'Status do pedido'

@@ -1,6 +1,6 @@
 <section id="customer-info">
   <h2>Detalhes da sua conta</h2>
-  <span><%= Customer.human_attribute_name(:balance)%>: <%= number_with_precision @customer.balance, precision: 2 %></span> <br/>
+  <span><%= Customer.human_attribute_name(:balance)%>: <%= @customer.balance %></span> <br/>
   <span><%= Customer.human_attribute_name(:name)%>: <%= @customer.name %></span> <br/>
   <span><%= Customer.human_attribute_name(:registration_number)%>: <%= @customer.registration_number %></span> <br/>
   <span><%= Customer.human_attribute_name(:email)%>: <%= @customer.email %></span> <br/>
