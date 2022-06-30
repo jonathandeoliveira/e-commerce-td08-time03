@@ -10,21 +10,22 @@ class OrdersController < ApplicationController
 
   def index
     @shopping_cart = ProductItem.where(customer_id: @customer)
-    @orders = Order.where(customer_id: @customer) if customer_signed_in? 
+    @orders = Order.where(customer_id: @customer) if customer_signed_in?
   end
 
   def create
-    product_items = ProductItem.where(customer_id: @customer, order_id: nil)
+    rate = RateApiConsumerService.rate_api_consumer
     address = current_customer.full_adress
-    @order = Order.new(customer_id: @customer, total_value: calculate_total_value_cart, address: address)
+    @order = Order.new(customer_id: @customer, total_value: calculate_total_value_cart, address: address, rate: rate)
     if @order.save!
+      OrderDataService.send_order(@order)
       redirect_to customer_orders_path(@customer), notice: 'Pedido realizado com sucesso'
     else
       flash.now[:notice] = 'Falha ao criar pedido'
       render 'new'
-    end    
+    end
   end
-  
+
   def show
     @order = Order.find(params[:id])
     @product_items = ProductItem.where(order_id: @order.id)
@@ -39,7 +40,8 @@ class OrdersController < ApplicationController
     @product_items = ProductItem.where(order_id: @order.id)
   end
 
-  private 
+  private
+
   def calculate_total_value_cart
     total = 0
     customer = Customer.find(@customer)

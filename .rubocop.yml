@@ -1,9 +1,0 @@
-inherit_from: ../.rubocop.yml
-
-require: rubocop-rails
-
-AllCops: 
-  Exclude: /spec
-
-Metrics/ClassLength:
-  Enabled: false

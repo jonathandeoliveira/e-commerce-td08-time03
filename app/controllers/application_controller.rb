@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :full_adress, :registration_number])
   end
 
-  def set_current_price
-    ProductModel.where(status: :enabled).joins(:product_prices).where('start_date <= ? AND end_date >= ? ', DateTime.now, DateTime.now)
-  end
-
   def set_user
     customer_signed_in? ? authenticate_customer! : authenticate_merchant!
   end
