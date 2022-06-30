@@ -14,14 +14,23 @@ class CustomersController < ApplicationController
     customer = Customer.find(params[:customer_id])
     amount = params[:real_amount]
     balance_to_add = CustomerAddRubiService.add_credit(customer, amount)
-    customer.balance += balance_to_add
-    customer.save!
-    redirect_to account_customer_path(current_customer), notice: 'Solicitação de créditos realizada com sucesso'
+
+    if balance_to_add.nil?
+      redirect_to account_customer_path(current_customer), notice: 'Falha na solicitação, tente novamente mais tarde'
+    else
+      customer.balance += balance_to_add
+      customer.save!
+      redirect_to account_customer_path(current_customer), notice: 'Solicitação de créditos realizada com sucesso'
+    end
   end
 
   def update_customer_balance
-    @customer.balance = consumed_balance
-    @customer.save!
+    if consumed_balance.nil?
+      @customer.balance
+    else
+      @customer.balance = consumed_balance
+      @customer.save!
+    end
   end
 
   def check_customer
