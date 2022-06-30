@@ -1,0 +1,10 @@
+<div>
+  <h1>Compra de créditos em Rubi</h1>
+  <%= form_with do |f| %>
+    <div>
+      <%= f.label :real_amount, 'Valor em reais' %>
+      <%= f.number_field :real_amount %>
+      <%= f.submit 'Comprar' %>
+    </div>
+  <% end %>
+</div>

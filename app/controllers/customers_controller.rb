@@ -1,10 +1,21 @@
 class CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_customer
-  before_action :update_customer_balance
-  before_action :check_customer, only: :account
+  before_action :set_customer, except: %i[send_credit_request rubi_buy]
+  before_action :update_customer_balance, except: %i[send_credit_request rubi_buy]
+  before_action :check_customer, except: %i[send_credit_request rubi_buy]
 
   def account; end
+
+  def rubi_buy; end
+
+  def send_credit_request
+    customer = Customer.find(params[:customer_id])
+    amount = params[:real_amount]
+    balance_to_add = CustomerAddRubiService.add_credit(customer, amount)
+    customer.balance += balance_to_add
+    customer.save!
+    redirect_to root_path, notice: 'Solicitação enviada'
+  end
 
   def update_customer_balance
     @customer.balance = consumed_balance

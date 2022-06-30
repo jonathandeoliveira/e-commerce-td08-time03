@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_user
   before_action :authenticate_merchant!, only: %i[merchant_index merchant_show]
-  before_action :set_customer, except: :merchant_index
+  before_action :set_customer, except: %i[merchant_index merchant_show]
 
   def new
     @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)
