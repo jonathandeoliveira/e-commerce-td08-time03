@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag 'ecommerce.svg' %>
+    <%= favicon_link_tag 'ecommerce5.svg' %>
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "styles" %>
     <%= javascript_importmap_tags %>
@@ -79,6 +79,14 @@
       </div>
       <div class="container-fluid">
       <%= yield %>
+      </div>
+      
+       <!-- <div style="display: block; margin: auto; text-align: center; margin-top: 50px">
+        <script src="https://apis.google.com/js/platform.js"></script>
+        <div class="g-ytsubscribe" data-channelid="UCo3kBFCAEjwnx8CPjJjv-Ew" data-layout="full" data-count="hidden"></div>
+      </div> -->
+      <div style="margin: 50px 0; display: flex; align-items: center; justify-content: center; width: 100%">
+        <a style="display: block; text-align:  center; color: #555; text-decoration: none; margin-right: 15px; " href="http://localhost:3000/" target="_blank"><i class="fas fa-home" style="color: #1da1f2; margin-right: 5px;"></i>ecommerce.com.br</a>
       </div>
   </body>
 </html>
