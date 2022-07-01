@@ -6,10 +6,11 @@ class Order < ApplicationRecord
   has_many :product_items
   before_validation :generate_code
   after_create :associate_products_to_order
-
   enum status: { pending: 0, paid: 5, refused: 10 }
 
+
   private
+
   def generate_code
     self.code = SecureRandom.alphanumeric(15).upcase
   end

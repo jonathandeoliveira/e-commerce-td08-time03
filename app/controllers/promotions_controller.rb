@@ -40,14 +40,12 @@ class PromotionsController < ApplicationController
       elsif @promotion.active?
         @shopping_cart = ProductItem.where(customer_id: @customer.id, order_id: nil)
         address = current_customer.full_adress
-        @order = Order.new(customer_id: @customer.id, total_value: (calculate_total_value_cart - total_discount), address: address)
+        @order = Order.new(customer_id: @customer.id, total_value: total_with_descount, address: address)
         flash.now[:notice] = 'Cupom aplicado com sucesso'
         return render 'orders/new'
       end
     end
   end
-
-
 
   private
 
@@ -62,25 +60,27 @@ class PromotionsController < ApplicationController
   end
 
   def total_discount
-    discount = []
+    discount = 0
     @shopping_cart.each do |product|
       if @promotion.sub_categories.include?(product.product_model.sub_category) 
         #product.product_model.current_price =product.product_model.current_price + product.product_model.current_price * ((@promotion.discount_percent).to_f)/100
         value = ((product.product_model.current_price * ((@promotion.discount_percent).to_f/100)) * product.quantity)
-        discount << [value.to_f]
+        discount += BigDecimal(value)
       end
-      discount = discount.sum
-      if discount[0] > @promotion.max_discount_money
-        discount[0] = @promotion.max_discount_money
-      else
-        discount[0].to_d
-      end
+    end
+    if discount > @promotion.max_discount_money
+      @promotion.max_discount_money
+    else
+      discount
     end
   end
 
-  
+  def total_with_descount
+    @discount_price = calculate_total_value_cart - BigDecimal(total_discount)
+  end
 
   def promotion_params
     params.require(:promotion).permit(:name,:code,:start_date,:end_date,:max_quantity, :discount_percent, :max_discount_money, :sub_category_ids => [])
   end
 end
+

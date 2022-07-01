@@ -57,6 +57,7 @@ describe 'cliente aplica cupom de desconto à compra' do
     fill_in 'coupon', with: "#{promotion.code}"
     click_on 'Aplicar cupom'
     
+    
     expect(page).to have_content 'Cupom aplicado com sucesso'
     expect(page).to have_content '855'
     expect(page).to have_content '2375' 
