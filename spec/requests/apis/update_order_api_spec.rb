@@ -6,7 +6,7 @@ describe 'Muda status de pedido' do
       customer = create(:customer)
       first_order = create(:order, customer: customer, address: customer.full_adress)
       code = first_order.code
-      order_params = { client_order: { order_code: "#{code}", order_status: 'paid' } }
+      order_params = {order_code: "#{code}", order_status: 'paid'  }
 
       patch '/api/v1/orders/update_status', params: order_params
 
@@ -18,7 +18,7 @@ describe 'Muda status de pedido' do
       customer = create(:customer)
       first_order = create(:order, customer: customer, address: customer.full_adress)
       code = first_order.code
-      order_params = { client_order: { order_code: "1", order_status: 'paid' } }
+      order_params = { order_code: "1", order_status: 'paid' }
 
       patch '/api/v1/orders/update_status', params: order_params
 
@@ -31,7 +31,7 @@ describe 'Muda status de pedido' do
       customer = create(:customer)
       first_order = create(:order, customer: customer, address: customer.full_adress)
       code = first_order.code
-      order_params = { client_order: { order_code: "#{code}", order_status: 'wrong' } }
+      order_params = { order_code: "#{code}", order_status: 'wrong' } 
 
       patch '/api/v1/orders/update_status', params: order_params
 
@@ -44,7 +44,7 @@ describe 'Muda status de pedido' do
       customer = create(:customer)
       first_order = create(:order, customer: customer, address: customer.full_adress)
       code = first_order.code
-      order_params = { client_order: { order_status: 'pending' } }
+      order_params = { order_status: 'pending' }
 
       patch '/api/v1/orders/update_status', params: order_params
 
