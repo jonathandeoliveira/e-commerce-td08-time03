@@ -1,8 +1,11 @@
 <section id="customer-info">
-<h2>Detalhes da sua conta</h2>
-<span><%= Customer.human_attribute_name(:balance)%>: <%= @customer.balance %></span> <br/>
-<span><%= Customer.human_attribute_name(:name)%>: <%= @customer.name %></span> <br/>
-<span><%= Customer.human_attribute_name(:registration_number)%>: <%= @customer.registration_number %></span> <br/>
-<span><%= Customer.human_attribute_name(:email)%>: <%= @customer.email %></span> <br/>
-<span><%= Customer.human_attribute_name(:full_adress)%>: <%= @customer.full_adress %></span> <br/>
+  <h2>Detalhes da sua conta</h2>
+  <span><%= Customer.human_attribute_name(:balance)%>: <%= @customer.balance %></span> <br/>
+  <span><%= Customer.human_attribute_name(:name)%>: <%= @customer.name %></span> <br/>
+  <span><%= Customer.human_attribute_name(:registration_number)%>: <%= @customer.registration_number %></span> <br/>
+  <span><%= Customer.human_attribute_name(:email)%>: <%= @customer.email %></span> <br/>
+  <span><%= Customer.human_attribute_name(:full_adress)%>: <%= @customer.full_adress %></span> <br/>
+  <div>
+    <%= link_to 'Comprar crédito', customer_rubi_buy_path(@customer.id) %>
+  </div>
 </section>

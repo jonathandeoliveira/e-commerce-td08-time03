@@ -11,6 +11,6 @@ class ProductItem < ApplicationRecord
   def sum_total
     total_value = 0
     total_value += self.calculate_total_product_values
-    total_value 
+    total_value
   end
 end
