@@ -1,6 +1,12 @@
 <section>
-  <h1>Cadastro de produto</h1>
-  <p>Informe as caracteristicas do produto</p>
+    <div class="container">
+  <h2 class="text-center display-4"> Cadastro de produto  </h2>
+</div>
+  <h5 class="text-center">Informe as caracteristicas do produto</h5>
+
+
+  
+  <div class="d-flex justify-content-center text-center">
   <% if(@product_model.errors.any?) %>
     <p>Preencha corretamente o formulário</p>
     <ul>
@@ -12,64 +18,65 @@
 
   <% if @subcategories.present?%>
     <%= form_with model:(@product_model) do |f| %>
-      <div>
-        <%= f.label :name %>:
+      <div class="row mb-3">
+        <%= f.label :name %>
         <%= f.text_field :name %>
       </div>
-      <div>
-        <%= f.label :brand %>:
+      <div class="row mb-3">
+        <%= f.label :brand %>
         <%= f.text_field :brand %>
       </div>
-      <div>
-        <%= f.label :model %>:
+      <div class="row mb-3">
+        <%= f.label :model %>
         <%= f.text_field :model %>
       </div>
-      <div>
-        <%= f.label :description %>:
+      <div class="row mb-3">
+        <%= f.label :description %>
         <%= f.text_field :description %>
       </div>
-      <div>
-        <%= f.label :sku %>:
+      <div class="row mb-3">
+        <%= f.label :sku %>
         <%= f.text_field :sku %>
       </div>
-      <div>
-        <%= f.label :height %>:
+      <div class="row mb-3">
+        <%= f.label :height %>
         <%= f.number_field :height, step: 0.1 %>
       </div>
-      <div>
-        <%= f.label :width %>:
+      <div class="row mb-3">
+        <%= f.label :width %>
         <%= f.number_field :width, step: 0.1 %>
       </div>
-      <div>
-        <%= f.label :length %>:
+      <div class="row mb-3">
+        <%= f.label :length %>
         <%= f.number_field :length, step: 0.1 %>
       </div>
-      <div>
-        <%= f.label :weight %>:
+      <div class="row mb-3">
+        <%= f.label :weight %>
         <%= f.number_field :weight, step: 0.1 %>
       </div>
-       <div>
-          <%= f.label :photos %>:
+       <div class="row mb-3">
+          <%= f.label :photos %>
           <%= f.file_field :photos, multiple: true %>
       </div>    
-      <div>
-          <%= f.label :manual %>:
+      <div class="row mb-3">
+          <%= f.label :manual %>
           <%= f.file_field :manual, multiple: false %>
       </div>
       
-      <div>
+      <div class="row mb-3">
         <%= f.label :sub_category_id, Category.model_name.human %>
         <%= f.collection_select :sub_category_id, @subcategories, :id, :full_description %>
       </div>
-      <div>
+      <div class="row mb-3">
         <%= f.label :fragile %>
         <%= f.check_box :fragile %>
       </div>
       <div>
-        <%= f.submit 'Cadastrar' %>
+        <%= f.submit 'Cadastrar', :class => "btn btn-primary mt-3" %>
       </div>
     <% end %>
     <% else %>
       <span>Antes de criar algum produto, por favor crie uma categoria para ele.</span>
     <% end %>
+</div>    
 </section>
