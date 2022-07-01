@@ -14,36 +14,32 @@
             <th>Preço total</th>
             <th>Ação</th>
           </tr>
-        </thead>        
+        </thead>
         <tbody>
           <% @shopping_cart.each do |product| %>
-          <tr>
-            <td> <%= product.product_model.name %> </td>
-          <td>
-            <%= button_to '-', reduce_quantity_customer_product_item_path(product.customer_id, product.id), method: :patch, :class => "btn bg-danger border-radius-50 text-white" %>
-            <%= product.quantity %> 
-            <%= button_to '+', sum_quantity_customer_product_item_path(product.customer_id, product.id), method: :patch, :class => "btn bg-danger border-radius-50 text-white"  %>
-          </td>
-            <td> <%= number_with_precision(product.product_model.current_price, precision: 2)  %> </td>
-            <td> <%= product.calculate_total_product_values %></td>
-            <td> <%= button_to 'Remover', customer_product_item_path(product.customer_id, product.id), method: :delete, :class => "btn btn-danger" %> </td>          
-          </tr>
+            <tr>
+              <td> <%= product.product_model.name %> </td>
+              <td>
+                <%= button_to '-', reduce_quantity_customer_product_item_path(product.customer_id, product.id), method: :patch, :class => "btn bg-danger border-radius-50 text-white" %>
+                <%= product.quantity %>
+                <%= button_to '+', sum_quantity_customer_product_item_path(product.customer_id, product.id), method: :patch, :class => "btn bg-danger border-radius-50 text-white"  %>
+              </td>
+              <td> <%= number_with_precision(product.product_model.current_price, precision: 2)  %> </td>
+              <td> <%= product.calculate_total_product_values %></td>
+              <td> <%= button_to 'Remover', customer_product_item_path(product.customer_id, product.id), method: :delete, :class => "btn btn-danger" %> </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
-      
       <div class = "container fluid bg-dark text-white col-sm-1 col-md-1 text-center b-1 border-radius">
         Valor total <%= number_with_precision(@total_value, precision: 2) %>
       </div>
-
     </div>
-      <div class="d-flex justify-content-center mt-5">
-        <%= button_to 'Limpar carrinho', remove_all_customer_product_items_path(current_customer.id), method: :delete, :class => "btn btn-danger p-2" %> 
-      </div>
-      <div class="d-flex justify-content-center mt-2">
-        <%= link_to 'Finalizar pedido', new_customer_order_path(current_customer.id), :class =>"btn btn-primary p-2" %>    
-      </div>  
-    <% end %>
-  
+    <div class="d-flex justify-content-center mt-5">
+      <%= button_to 'Limpar carrinho', remove_all_customer_product_items_path(current_customer.id), method: :delete, :class => "btn btn-danger p-2" %>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+      <%= link_to 'Finalizar pedido', new_customer_order_path(current_customer.id), :class =>"btn btn-primary p-2" %>
+    </div>
+  <% end %>
 </div>
-  

@@ -15,11 +15,11 @@
           <td><%= product.product_model.name %> </td>
           <td><%= product.quantity %> </td>
           <td><%= number_with_precision product.product_model.current_price, precision: 2 %>
-          <td><%= number_with_precision product.calculate_total_product_values, precision: 2 %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+            <td><%= number_with_precision product.calculate_total_product_values, precision: 2 %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <div>
       <p>Endereço de entrega:</p>
       <p><%= current_customer.full_adress %></p>
@@ -30,4 +30,4 @@
         <%= f.submit 'Confirmar' %>
       <% end %>
     </div>
-</div>
+  </div>

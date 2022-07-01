@@ -1,12 +1,11 @@
-  <div class="d-flex justify-content-center text-center">
+  
+<div class="d-flex justify-content-center text-center">
   <%= form_with model: @category do |f| %>
     <div class="row">
-    <span> <%= @category.errors.full_messages_for(:name).to_sentence if @category.errors %> </span>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <span> <%= @category.errors.full_messages_for(:name).to_sentence if @category.errors %> </span>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
     </div>
-
     <%= f.submit 'Cadastrar', :class => "btn btn-primary mt-3" %>
   <% end %>
-
 </div>

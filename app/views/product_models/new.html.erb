@@ -1,82 +1,77 @@
 <section>
-    <div class="container">
-  <h2 class="text-center display-4"> Cadastro de produto  </h2>
-</div>
+  <div class="container">
+    <h2 class="text-center display-4"> Cadastro de produto  </h2>
+  </div>
   <h5 class="text-center">Informe as caracteristicas do produto</h5>
-
-
-  
   <div class="d-flex justify-content-center text-center">
-  <% if(@product_model.errors.any?) %>
-    <p>Preencha corretamente o formulário</p>
-    <ul>
-      <% @product_model.errors.full_messages.each do |m| %>
-        <li><%= m %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <% if @subcategories.present?%>
-    <%= form_with model:(@product_model) do |f| %>
-      <div class="row mb-3">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :brand %>
-        <%= f.text_field :brand %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :model %>
-        <%= f.text_field :model %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :sku %>
-        <%= f.text_field :sku %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :height %>
-        <%= f.number_field :height, step: 0.1 %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :width %>
-        <%= f.number_field :width, step: 0.1 %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :length %>
-        <%= f.number_field :length, step: 0.1 %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :weight %>
-        <%= f.number_field :weight, step: 0.1 %>
-      </div>
-       <div class="row mb-3">
+    <% if(@product_model.errors.any?) %>
+      <p>Preencha corretamente o formulário</p>
+      <ul>
+        <% @product_model.errors.full_messages.each do |m| %>
+          <li><%= m %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @subcategories.present?%>
+      <%= form_with model:(@product_model) do |f| %>
+        <div class="row mb-3">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :brand %>
+          <%= f.text_field :brand %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :model %>
+          <%= f.text_field :model %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :sku %>
+          <%= f.text_field :sku %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :height %>
+          <%= f.number_field :height, step: 0.1 %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :width %>
+          <%= f.number_field :width, step: 0.1 %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :length %>
+          <%= f.number_field :length, step: 0.1 %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :weight %>
+          <%= f.number_field :weight, step: 0.1 %>
+        </div>
+        <div class="row mb-3">
           <%= f.label :photos %>
           <%= f.file_field :photos, multiple: true %>
-      </div>    
-      <div class="row mb-3">
+        </div>
+        <div class="row mb-3">
           <%= f.label :manual %>
           <%= f.file_field :manual, multiple: false %>
-      </div>
-      
-      <div class="row mb-3">
-        <%= f.label :sub_category_id, Category.model_name.human %>
-        <%= f.collection_select :sub_category_id, @subcategories, :id, :full_description %>
-      </div>
-      <div class="row mb-3">
-        <%= f.label :fragile %>
-        <%= f.check_box :fragile %>
-      </div>
-      <div>
-        <%= f.submit 'Cadastrar', :class => "btn btn-primary mt-3" %>
-      </div>
-    <% end %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :sub_category_id, Category.model_name.human %>
+          <%= f.collection_select :sub_category_id, @subcategories, :id, :full_description %>
+        </div>
+        <div class="row mb-3">
+          <%= f.label :fragile %>
+          <%= f.check_box :fragile %>
+        </div>
+        <div>
+          <%= f.submit 'Cadastrar', :class => "btn btn-primary mt-3" %>
+        </div>
+      <% end %>
     <% else %>
       <span>Antes de criar algum produto, por favor crie uma categoria para ele.</span>
     <% end %>
-</div>    
+  </div>
 </section>

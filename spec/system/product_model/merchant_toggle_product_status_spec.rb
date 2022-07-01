@@ -26,7 +26,8 @@ describe 'Mercador muda visibilidade de um produto' do
     expect(page).to have_button 'Ativar'
     expect(page).not_to have_button 'Desativar'
     expect(page).to have_content 'Produto desativado com sucesso'
-    expect(page).to have_content 'Situação: Fora de estoque'
+    expect(page).to have_content 'Situação'
+    expect(page).to have_content 'Fora de estoque'
     product = product.reload
     result = product.status
     expect(result).to eq 'disabled'
@@ -47,7 +48,8 @@ describe 'Mercador muda visibilidade de um produto' do
     expect(page).not_to have_button 'Ativar'
     expect(page).to have_button 'Desativar'
     expect(page).to have_content 'Produto ativado com sucesso'
-    expect(page).to have_content 'Situação: Em estoque'
+    expect(page).to have_content 'Situação'
+    expect(page).to have_content 'Em estoque'
     product = product.reload
     result = product.status
     expect(result).to eq 'enabled'

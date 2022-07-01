@@ -1,31 +1,31 @@
 <div>
   <div class="container">
-  <h2 class="text-center display-4 mb-5"> Meus pedidos </h2>
+    <h2 class="text-center display-4 mb-5"> Meus pedidos </h2>
   </div>
-    <div class="container">
-      <div class="col">
-        <% if @orders.present? %>
-          <table class="table table-striped table-hover">
-            <thead class="table-dark">
+  <div class="container">
+    <div class="col">
+      <% if @orders.present? %>
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Código do pedido</th>
+              <th>Valor</th>
+              <th>Status do pedido</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
               <tr>
-                <th>Código do pedido</th>
-                <th>Valor</th>
-                <th>Status do pedido</th>
+                <td><%= link_to order.code, customer_order_path(order.customer_id, order) %></td>
+                <td>RB <%= number_with_precision order.total_value, precision: 2 %></td>
+                <td><%= Order.human_attribute_name(order.status) %></td>
               </tr>
-            </thead>
-            <tbody>
-              <% @orders.each do |order| %>
-                <tr>
-                  <td><%= link_to order.code, customer_order_path(order.customer_id, order) %></td>
-                  <td>RB <%= number_with_precision order.total_value, precision: 2 %></td>
-                  <td><%= Order.human_attribute_name(order.status) %></td>  
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <% else %>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
         <span> Não existem pedidos realizados </span>
-        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
