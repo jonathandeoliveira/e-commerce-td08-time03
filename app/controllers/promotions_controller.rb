@@ -70,10 +70,10 @@ class PromotionsController < ApplicationController
         discount << [value.to_f]
       end
       discount = discount.sum
-      if discount > @promotion.max_discount_money
-        discount = @promotion.max_discount_money
+      if discount[0] > @promotion.max_discount_money
+        discount[0] = @promotion.max_discount_money
       else
-        discount.to_d
+        discount[0].to_d
       end
     end
   end

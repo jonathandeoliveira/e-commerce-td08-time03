@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_merchant!, only: %i[index show new create edit disable enable]
+  before_action :authenticate_merchant!
 
   def index
     @categories = Category.all

@@ -17,7 +17,7 @@
         <% @orders.each do |order| %>
           <tr>
             <td><%= link_to order.code, customer_order_path(order.customer_id, order) %></td>
-            <td>RB <%= order.total_value %></td>
+            <td>RB <%= number_with_precision order.total_value, precision: 2 %></td>
             <td><%= Order.human_attribute_name(order.status) %></td>  
           </tr>
         <% end %>

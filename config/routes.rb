@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       patch 'disable', on: :member
       patch 'enable', on: :member
     end
-  end  
+  end
 
   resources :product_models, only: %i[new create show index] do
     get 'product-detail', on: :member
@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   end
 
   resources :customers do 
-    resources :orders, only: %i[new create index show]    
+    get 'rubi_buy', to: 'customers#rubi_buy'
+    post 'rubi_buy', to: 'customers#send_credit_request'
+    resources :orders, only: %i[new create index show]
     get 'account', on: :member
     resources :product_items, only: %i[index new create destroy] do
       patch 'sum_quantity', on: :member
@@ -34,7 +36,14 @@ Rails.application.routes.draw do
   resources :promotions, only: %i[index new create show] do
     post 'search-coupon', on: :member    
   end
-  
-  get 'merchant-order-index', to: "orders#merchant_index"
-  get 'merchant-order-show/:id', to: "orders#merchant_show", as: :merchant_order
+  get 'merchant-order-index', to: 'orders#merchant_index'
+  get 'merchant-order-show/:id', to: 'orders#merchant_show', as: :merchant_order
+
+  namespace :api do
+    namespace :v1 do
+      scope :orders do
+        patch 'update_status', to: 'orders#update_status'
+      end
+    end
+  end
 end

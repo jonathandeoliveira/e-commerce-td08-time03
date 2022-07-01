@@ -1,12 +1,12 @@
 class ProductPricesController < ApplicationController
-  before_action :authenticate_merchant!, only: %i[new create edit update]
-  before_action :set_product_model, only: %i[new create edit update]
+  before_action :authenticate_merchant!
+  before_action :set_product_model
 
   def new
     @price = ProductPrice.new
   end
 
-  def create    
+  def create
     @price = ProductPrice.new(price_params)
     @price.product_model = @product_model
     if @price.save

@@ -1,12 +1,12 @@
 class SubCategoriesController < ApplicationController
-  before_action :authenticate_merchant!, only: %i[new create disable enable]
+  before_action :authenticate_merchant!, except: :search
 
   def search
     @select = params["query"]
     @subcategory = SubCategory.find_by(id:@select)
     @product_models = ProductModel.where(sub_category_id:@subcategory)
   end
-  
+
   def new
     @category = Category.find(params[:category_id])
     @sub_category = @category.sub_categories.new
