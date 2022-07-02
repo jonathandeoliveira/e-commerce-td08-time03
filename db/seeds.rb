@@ -1,5 +1,5 @@
 # users
-puts('### Criando mercadores')
+puts('### Criando mercadores ###')
 merchant = Merchant.create!(name: 'Alan', email: 'alan@mercadores.com.br', password: 'password')
 jonathan = Merchant.create!(name: 'Jonathan', email: 'jonathan@mercadores.com.br', password: 'password')
 raif = Merchant.create!(name: 'Raif', email: 'raif@mercadores.com.br', password: 'password')
@@ -7,23 +7,24 @@ margarete = Merchant.create!(name: 'Margarete', email: 'margarete@mercadores.com
 lucas = Merchant.create!(name: 'Lucas', email: 'lucas@mercadores.com.br', password: 'password')
 
 # customers
-puts('### Criando usuários')
+puts('### Criando usuários ###')
 joao = Customer.create!(name: 'João Almeida', password: '123456', email: 'joao@email.com', registration_number: '123.456.789-00', full_adress: 'Alameda Santos, 1293 conj 73, Jardim Paulista, São Paulo - SP')
 erika = Customer.create!(name: 'Erika Campos', password: '123456', email: 'erika@email.com', registration_number: '987.654.321-01', full_adress: 'Alameda Santos, 1293 conj 73, Jardim Paulista, São Paulo - SP')
 luana = Customer.create!(name: 'Luana Sales', password: '123456', email: 'luana@email.com', registration_number: '555.851.100-76', full_adress: 'Av. da Casa da Luana Sales, 859, Jardim Carvalho, São Paulo - SP')
 apple_inc = Customer.create!(name: 'Apple Inc.', password: '123456', email: 'apple@email.com', registration_number: '99.521.666/0001-98', full_adress: 'Rua da Apple, 100, Vale do Silício, Portão - RS')
 
 # categories
-puts('### Criando categorias')
+puts('### Criando categorias ###')
 eletronicos = Category.create!(name: 'Eletronicos', status: 0)
 informatica = Category.create!(name: 'Informática', status: 0)
 games = Category.create!(name: 'Games', status: 0)
 livros = Category.create!(name: 'Livros', status: 0)
 eletrodomesticos = Category.create!(name: 'Eletrodomésticos', status: 0)
 veiculos = Category.create!(name: 'Veículos', status: 0)
+casa = Category.create!(name: 'Casa e Decoração', status: 0)
 
 # sub-categories
-puts('### Criando subcategorias')
+puts('### Criando subcategorias ###')
 computadores = SubCategory.create!(name: 'Computadores', category: eletronicos)
 celulares = SubCategory.create!(name: 'Celulares e Comunicação', category: eletronicos)
 smartwatches = SubCategory.create!(name: 'Smartwatches', category: eletronicos)
@@ -41,17 +42,17 @@ geladeiras = SubCategory.create!(name: 'Geladeiras e Freezers', category: eletro
 fogoes = SubCategory.create!(name: 'Fogões e Fornos', category: eletrodomesticos)
 teclados = SubCategory.create!(name: 'Teclados', category: eletronicos)
 eletricos = SubCategory.create!(name: 'Elétricos', category: veiculos)
+cozinha = SubCategory.create!(name: 'Cozinha', category: casa)
 # products
-puts('### Criando produtos')
+puts('### Criando produtos ###')
 ideapad = ProductModel.create!(name: 'Notebook Lenovo IdeaPad', brand: 'Lenovo', sku: 'LENOVOIDEA', model: 'IdeaPad 3i i3', description: 'Notebook 15.6 Memória 8GB CPU: Core i3-10110U', weight: 2, height: 2, width: 36, length: 25, sub_category: notebooks, status: 0)
 ideapad.photos.attach(io: File.open(Rails.root.join('app/assets/images/notebook1.jpg')), filename: 'notebook1.jpg')
 ideapad.photos.attach(io: File.open(Rails.root.join('app/assets/images/notebook2.jpg')), filename: 'notebook2.jpg')
 ideapad.photos.attach(io: File.open(Rails.root.join('app/assets/images/notebook3.jpg')), filename: 'notebook3.jpg')
 
-
 electrolux_jet_clean = ProductModel.create!(name: 'Máquina de Lavar Electrolux', brand: 'Electrolux', sku: 'JETCLEAN13CARE', model: 'Jet & Clean', description: 'Máquina de Lavar 13kg Essential Care 220V', weight: 30, height: 105.2, width: 59.1, length: 66.5, sub_category: lavadoras, status: 0)
-electrolux_jet_clean.photos.attach(io: File.open(Rails.root.join('app/assets/images/Eletrolux1.png')), filename: 'Eletrolux1.png')
 electrolux_jet_clean.photos.attach(io: File.open(Rails.root.join('app/assets/images/Eletrolux2.jpg')), filename: 'Eletrolux2.jpg')
+electrolux_jet_clean.photos.attach(io: File.open(Rails.root.join('app/assets/images/Eletrolux1.png')), filename: 'Eletrolux1.png')
 
 iphone = ProductModel.create!(name: 'iPhone 11', brand: 'Apple', sku: 'IPHONE11-128GB', model: 'iPhone 11 Branco', description: 'iPhone 128GB desbloqueado', weight: 0.2, height: 15, width: 7.5, length: 0.8, sub_category: celulares, status: 0)
 iphone.photos.attach(io: File.open(Rails.root.join('app/assets/images/iphone1.jpg')), filename: 'iphone1.jpg')
@@ -74,13 +75,14 @@ batmobile.photos.attach(io: File.open(Rails.root.join('app/assets/images/batmove
 batmobile.photos.attach(io: File.open(Rails.root.join('app/assets/images/batmovel2.jpg')), filename: 'batmovel2.jpg')
 
 blackshark = ProductModel.create!(name: 'Black Shark 4', brand: 'Xiaomi', sku: 'BL4CK-SH4RK', model: 'Black Shark 4', fragile: true, description: 'Celular Gamer', weight: 0.1, height: 0.1, width: 0.1, length: 0.1, sub_category: celulares, status:0)
-blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/black-shark1.png')), filename: 'black-shark1.png')
+blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark1.jpg')), filename: 'black-shark1.jpg')
 blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark2.jpg')), filename: 'blackshark2.jpg')
 blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark3.jpg')), filename: 'blackshark3.jpg')
 
+caneca = ProductModel.create!(name: 'Caneca Demon Slayer', brand: 'Canecas Ltda', sku: 'C4N3C4-AN1M3', model: 'Zenitsu', fragile: true, description: 'Caneca Anime', weight: 0.1, height: 0.1, width: 0.1, length: 0.1, sub_category: cozinha, status:0)
 
 # product-prices
-puts('### Criando preços')
+puts('### Criando preços ###')
 iphone_preco1 = ProductPrice.create!(price: 4000.5, start_date: Date.today, end_date: 30.day.from_now, product_model: iphone)
 iphone_preco2 = ProductPrice.create!(price: 3700.5, start_date: 31.day.from_now, end_date: 61.day.from_now, product_model: iphone)
 iphone_preco3 = ProductPrice.create!(price: 3950.0, start_date: 62.day.from_now, end_date: 92.day.from_now, product_model: iphone)
@@ -100,6 +102,8 @@ polystation_preco1 = ProductPrice.create!(price: 2999.99, start_date: Date.today
 batmobile_preco1 = ProductPrice.create!(price: 4459999.99, start_date: Date.today, end_date: 90.day.from_now, product_model: batmobile)
 
 blackshark_preco1 = ProductPrice.create!(price: 2999.99, start_date: Date.today, end_date: 90.day.from_now, product_model: blackshark)
+
+caneca_preco1 = ProductPrice.create!(price: 39.99, start_date: Date.today, end_date: 90.day.from_now, product_model: caneca)
 
 # product items (shopping cart)
 first_product_item = ProductItem.create!(customer: joao, product_model: iphone, quantity: 2)
