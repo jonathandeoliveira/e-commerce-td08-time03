@@ -8,25 +8,38 @@ class OrdersController < ApplicationController
     @orders = Order.where(customer_id: @customer) if customer_signed_in?
   end
 
-  def new
-    @promotion = Promotion.where(status: :active)
+  def new    
     @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)
-    @order = Order.new
-    
+    @order = Order.new    
   end
 
 
   def create
     rate = RateApiConsumerService.rate_api_consumer
     address = current_customer.full_adress
-    @order = Order.new(customer_id: @customer, total_value: calculate_total_value_cart, address:, rate:)
-    if @valid_promotion.present?
-      @order_cupom
-      @order.promotion = @valid_promotion.code
-    end
+    @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)   
+    @total_sum = calculate_total_value_cart
+    @promotion_id = nil
+    
+    @order_params = params.permit(:customer_id, :promotion_id)   
+    
+    if @order_params[:promotion_id].present?
+      @promotion = Promotion.find(@order_params[:promotion_id].to_i)     
+      @discount = calculate_discount
+      @discount = verify_discount_value
+      @total_value = calculate_total_value_cart - @discount      
+      @order = Order.new(customer_id: @customer, total_value: @total_value, address:, rate:)      
+    else
+      @order = Order.new(customer_id: @customer, total_value: calculate_total_value_cart, address:, rate:)
+    end   
+        
     if current_customer.balance > @order.total_value
       if @order.save!
         OrderDataService.send_order(@order)
+        if @promotion.present?
+          @promotion.used_quantity += 1
+          @promotion.save
+        end
         redirect_to customer_orders_path(@customer), notice: 'Compra realizada com sucesso'
       else
         flash.now[:notice] = 'Falha ao criar pedido'
@@ -53,36 +66,28 @@ class OrdersController < ApplicationController
   end
 
   def search_coupon    
-    @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)    
+    @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)   
+    @total_sum = calculate_total_value_cart
+    @promotion_id = nil
+
     @coupon = params[:coupon]
-    @customer = current_customer
+    #@customer = current_customer    
     @promotion = Promotion.find_by(code: @coupon)
     @order_cupom = Order.new
     if @promotion.present?
       valid_promotion = @promotion.check_promotion_validation
       if valid_promotion.active?  
-        flash[:notice] = 'Cupom adicionado com sucesso'        
-        redirect_to customer_order_with_coupon_path(@customer)    
-        @order_cupom.promotion = valid_promotion.code
-        @discount = calculate_discount
-        @discount = verify_discount_value
-        #binding.pry
+        flash[:notice] = 'Cupom aplicado com sucesso'       
+        @promo_id = @promotion.id        
+      elsif valid_promotion.inactive? || valid_promotion.used_quantity >= valid_promotion.max_quantity
+        flash[:notice] = 'Cupom expirado'       
+        @promo_id = @promotion.id 
       end
+    else
+      flash[:alert] = 'Cupom não existe'
     end
+    render 'new'
   end
-
-  def order_with_coupon
-    @customer = current_customer
-    @shopping_cart = ProductItem.where(customer_id: @customer, order_id: nil)
-    @coupon = params[:coupon]
-    @promotion = Promotion.find_by(code: @coupon)
-    binding.pry
-  end
-
-  def send_cupom_params
-    binding.pry
-  end
-
 
   def calculate_discount
     @discount = 0
@@ -113,10 +118,6 @@ class OrdersController < ApplicationController
       total += product_value.calculate_total_product_values
     end
     total
-  end
-
-  def total_with_descount
-    @discount = calculate_total_value_cart - BigDecimal(total_discount)
   end
 
   def set_customer
