@@ -2,7 +2,7 @@
   <h2 class="text-center display-7 mb-5">Detalhes sobre o produto: <%= @product_model.name %></h2>
   <div class="d-flex text-center justify-content-center">
     <dl>
-      <div class="card-images">
+      <div class="img-thumbnail rounded mx-auto d-block">
         <% if @product_model.photos.attached? %>
           <% @product_model.photos.each do |photo|%>
             <div class="img-container">
@@ -11,31 +11,31 @@
           <% end %>
         <% end %>
       </div>
-        <div class="card text-dark bg-light mb-3" style="width: 35rem;">
-          <div class="card-body">
-            <h5 class="card-title">  <%= ProductModel.model_name.human %>: <%= @product_model.name %> </h5>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:brand) %>: <%= @product_model.brand %></p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:model) %>: <%= @product_model.model %></p>
-            <p class="card-text"><%= Category.model_name.human %>: <%= @product_model.sub_category.full_description %></p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:description) %>: <%= @product_model.description %></p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:dimension) %>: <%= @product_model.height %>m x <%= @product_model.width %>m x <%= @product_model.length %>m</p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:weight) %>: <%= @product_model.weight %>kg</p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:sku)%>: <%= @product_model.sku %></p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:fragile)%>? <% if @product_model.fragile == true %> <%=  ProductModel.human_attribute_name(:true) %> <% else %> <%=  ProductModel.human_attribute_name(:false) %><% end %></p>
-            <p class="card-text"><%= ProductModel.human_attribute_name(:price)%>: RB <%= number_with_precision(@product_model.current_price, precision: 2) %></p>
-            <p class="card-text">
-            </div>
+      <div class="card text-dark bg-light mb-3">
+        <div class="card-body">
+          <h5 class="card-title">  <%= ProductModel.model_name.human %>: <%= @product_model.name %> </h5>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:brand) %>: <%= @product_model.brand %></p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:model) %>: <%= @product_model.model %></p>
+          <p class="card-text"><%= Category.model_name.human %>: <%= @product_model.sub_category.full_description %></p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:description) %>: <%= @product_model.description %></p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:dimension) %>: <%= @product_model.height %>m x <%= @product_model.width %>m x <%= @product_model.length %>m</p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:weight) %>: <%= @product_model.weight %>kg</p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:sku)%>: <%= @product_model.sku %></p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:fragile)%>? <% if @product_model.fragile == true %> <%=  ProductModel.human_attribute_name(:true) %> <% else %> <%=  ProductModel.human_attribute_name(:false) %><% end %></p>
+          <p class="card-text"><%= ProductModel.human_attribute_name(:price)%>: RB <%= number_with_precision(@product_model.current_price, precision: 2) %></p>
+          <p class="card-text">
           </div>
-          <div class="d-flex text-center justify-content-center">
-            <% if customer_signed_in? %>
-              <%= form_with url: customer_product_items_path(current_customer.id) do |f| %>
-                <%= f.label :quantity, 'Quantidade' %>
-                <%= f.number_field :quantity %>
-                <%= f.hidden_field :product_model_id, value: @product_model.id %>
-                <%= f.submit 'Adicionar ao carrinho', :class => "btn btn-primary" %>
-              <% end %>
-            <% else %>
-              <%= link_to 'Adicionar ao carrinho', new_customer_session_path, :class => "btn btn-primary" %>
+        </div>
+        <div class="d-flex text-center justify-content-center">
+          <% if customer_signed_in? %>
+            <%= form_with url: customer_product_items_path(current_customer.id) do |f| %>
+              <%= f.label :quantity, 'Quantidade' %>
+              <%= f.number_field :quantity %>
+              <%= f.hidden_field :product_model_id, value: @product_model.id %>
+              <%= f.submit 'Adicionar ao carrinho', :class => "btn btn-primary" %>
             <% end %>
-          </div>
-        </section>
+          <% else %>
+            <%= link_to 'Adicionar ao carrinho', new_customer_session_path, :class => "btn btn-primary" %>
+          <% end %>
+        </div>
+      </section>
