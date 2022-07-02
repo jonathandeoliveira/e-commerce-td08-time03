@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   def create
     rate = RateApiConsumerService.rate_api_consumer
     address = current_customer.full_adress
-    @order = Order.new(customer_id: @customer, total_value: calculate_total_value_cart, address: address, rate: rate)
+    @order = Order.new(customer_id: @customer, total_value: calculate_total_value_cart, address:, rate:)
     if current_customer.balance > @order.total_value
       if @order.save!
         OrderDataService.send_order(@order)
@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
         render 'new'
       end
     else
-      redirect_to customer_rubi_buy_path(@customer), notice: 'Saldo insuficiente, por favor realize a compra de créditos em Rubis para finalizar o procedimento'
+      redirect_to customer_rubi_buy_path(@customer),
+                  notice: 'Saldo insuficiente, por favor realize a compra de créditos em Rubis para finalizar o procedimento'
     end
   end
 
@@ -50,16 +51,6 @@ class OrdersController < ApplicationController
     total = 0
     customer = Customer.find(@customer)
     products = customer.product_items.where(order_id: nil)
-    products.each do |product_value|
-      total += product_value.calculate_total_product_values
-    end
-    total
-  end
-
-  def calculate_total_order
-    total = 0
-    order = Order.find(params[:id])
-    products = order.customer.product_items
     products.each do |product_value|
       total += product_value.calculate_total_product_values
     end
