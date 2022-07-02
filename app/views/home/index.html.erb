@@ -1,16 +1,19 @@
+ <div class="d-flex justify-content-end">
 <section id = 'query'>
   <%=form_with(url: search_category_sub_categories_path(@categories), method: :get) do |f| %>
     <%= f.label :query, 'Categorias', :class => "fs-4" %>
     <%= f.collection_select :query, @subcategories, :id, :full_description %>
-    <%= f.submit 'Buscar' %>
+    <%= f.submit 'Buscar', :class => "btn btn-primary" %>
   <% end%>
 </section>
+</div>
+
 <% if @products.any? %>
   <div class="col-12">
-    <h2 class="text-center">Nossos produtos:</h2>
+    <h2 class="text-center display-5 mb-5">Nossos produtos:</h2>
   </div>
   <section style="background-color: #eee;">
-    <div class="container-fluid">
+    <div class="container-fluid p-5">
       <div class="row">
         <% @products.each do | product |%>
           <div class = "col-sm-12 col-md-3">
