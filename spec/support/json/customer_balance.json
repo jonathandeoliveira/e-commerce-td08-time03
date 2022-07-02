@@ -1,5 +1,7 @@
 {
-  "client": { 
-    "real_amount": "real_amount"
+  "json_data": {
+    "client": {  },
+    "company": {  },
+    "real_amount": 1000
   }
 }
