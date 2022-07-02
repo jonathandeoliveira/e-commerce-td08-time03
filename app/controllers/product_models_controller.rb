@@ -1,6 +1,5 @@
 class ProductModelsController < ApplicationController
   before_action :authenticate_merchant!, except: %i[product_detail search]
-  
 
   def product_detail
     @product_model = ProductModel.find(params[:id])
@@ -70,7 +69,6 @@ class ProductModelsController < ApplicationController
     @query = params["query"]
     @product_models = ProductModel.where("name LIKE ?", "%#{@query}%").where(status: :enabled)
   end
-
 
   private
 
