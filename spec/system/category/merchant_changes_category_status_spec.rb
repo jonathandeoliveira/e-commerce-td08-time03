@@ -4,7 +4,7 @@ describe 'mercador altera status da categoria para' do
   it 'inativa com sucesso' do
     merchant = create(:merchant)
     login_as(merchant, scope: :merchant)
-    categories = create_list(:categories, 3)
+    categories = create_list(:category, 3)
 
     visit root_path
     click_on 'Categorias'

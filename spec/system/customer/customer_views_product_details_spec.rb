@@ -3,7 +3,7 @@ include ActionView::Helpers::NumberHelper
 describe 'usuário visualiza detalhes de produto' do
  
   it 'com sucesso' do
-    product1 = create(:product_model, status: :enabled)
+    product1 = create(:product_model,name:'nome1', status: :enabled)
     product2 = create(:product_model, status: :enabled)   
     price1 = create(:product_price, price: 105, product_model: product1)
     price2 = create(:product_price, price: 215, product_model: product2)

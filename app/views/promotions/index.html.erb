@@ -1,0 +1,27 @@
+<div class="text-center">
+<h2 class="text-center display-7 mb-5">Todas as promoções:</h2>
+<%= link_to "Criar nova promoção", new_promotion_path, :class => "btn btn-primary mb-3" %>
+
+<section id="promotions">
+  <div class="container">
+  <div class="col">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th><%= Promotion.model_name.human %></th>
+          <th><%= Promotion.human_attribute_name(:code) %></th>
+          <th><%= Promotion.human_attribute_name(:status) %> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @promotions.each do | promotion | %>
+          <tr>
+            <td><%= link_to promotion.name, promotion %></td>
+            <td><%= promotion.code %></td>
+            <td><%= Promotion.human_attribute_name(promotion.status) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

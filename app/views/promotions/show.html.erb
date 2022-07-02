@@ -1,0 +1,26 @@
+<h2>Detalhes da promoção: <%= @promotion.name %></h2>
+
+<section id="promotion-details">
+  <dl>
+    <dt><%= Promotion.human_attribute_name(:code) %>:</dt>
+    <dd><%= @promotion.code %></dd>
+    <dt><%= Promotion.human_attribute_name(:status) %>:</dt>
+    <dd><%= Promotion.human_attribute_name(@promotion.status)%></dd>
+    <dt><%= Promotion.human_attribute_name(:start_date) %>:</dt>
+    <dd><%= @promotion.start_date %></dd>
+    <dt><%= Promotion.human_attribute_name(:end_date) %>:</dt>
+    <dd><%= @promotion.end_date %></dd>
+    <dt><%= Promotion.human_attribute_name(:max_quantity) %>:</dt>
+    <dd><%= @promotion.max_quantity %></dd>
+    <dt><%= Promotion.human_attribute_name(:used_quantity) %>:</dt>
+    <dd><%= @promotion.used_quantity %></dd>
+    <dt><%= Promotion.human_attribute_name(:discount_percent) %>:</dt>
+    <dd><%= @promotion.discount_percent %>%</dd>
+    <dt><%= Promotion.human_attribute_name(:max_discount_money) %>:</dt>
+    <dd><%= number_to_currency(@promotion.max_discount_money) %></dd>
+    <dt>Categorias em promoção:</dt>
+    <% @promotion.sub_categories.each do | sc |%>
+      <dd><%= sc.name %></dd>
+    <%end%>
+  </dl>
+</section>

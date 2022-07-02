@@ -8,10 +8,10 @@ lucas = Merchant.create!(name: 'Lucas', email: 'lucas@mercadores.com.br', passwo
 
 # customers
 puts('### Criando usuários ###')
-joao = Customer.create!(name: 'João Almeida', password: '123456', email: 'joao@email.com', registration_number: '123.456.789-00', full_adress: 'Alameda Santos, 1293 conj 73, Jardim Paulista, São Paulo - SP')
-erika = Customer.create!(name: 'Erika Campos', password: '123456', email: 'erika@email.com', registration_number: '987.654.321-01', full_adress: 'Alameda Santos, 1293 conj 73, Jardim Paulista, São Paulo - SP')
-luana = Customer.create!(name: 'Luana Sales', password: '123456', email: 'luana@email.com', registration_number: '555.851.100-76', full_adress: 'Av. da Casa da Luana Sales, 859, Jardim Carvalho, São Paulo - SP')
-apple_inc = Customer.create!(name: 'Apple Inc.', password: '123456', email: 'apple@email.com', registration_number: '99.521.666/0001-98', full_adress: 'Rua da Apple, 100, Vale do Silício, Portão - RS')
+joao = Customer.create!(name: 'João Almeida', password: '123456', email: 'joao@email.com', registration_number: '123.456.789-00', full_adress: 'Alameda Santos, 1293 conj 73, Jardim Paulista, São Paulo - SP', balance: 10000)
+erika = Customer.create!(name: 'Erika Campos', password: '123456', email: 'erika@email.com', registration_number: '987.654.321-01', full_adress: 'Alameda Santos, 1293 conj 73, Jardim Paulista, São Paulo - SP', balance: 10000)
+luana = Customer.create!(name: 'Luana Sales', password: '123456', email: 'luana@email.com', registration_number: '555.851.100-76', full_adress: 'Av. da Casa da Luana Sales, 859, Jardim Carvalho, São Paulo - SP', balance: 10000)
+apple_inc = Customer.create!(name: 'Apple Inc.', password: '123456', email: 'apple@email.com', registration_number: '99.521.666/0001-98', full_adress: 'Rua da Apple, 100, Vale do Silício, Portão - RS', balance: 10000)
 
 # categories
 puts('### Criando categorias ###')
@@ -80,6 +80,8 @@ blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blacks
 blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark3.jpg')), filename: 'blackshark3.jpg')
 
 caneca = ProductModel.create!(name: 'Caneca Demon Slayer', brand: 'Canecas Ltda', sku: 'C4N3C4-AN1M3', model: 'Zenitsu', fragile: true, description: 'Caneca Anime', weight: 0.1, height: 0.1, width: 0.1, length: 0.1, sub_category: cozinha, status:0)
+caneca.photos.attach(io: File.open(Rails.root.join('app/assets/images/caneca1.jpg')), filename: 'caneca1.jpg')
+caneca.photos.attach(io: File.open(Rails.root.join('app/assets/images/caneca2.jpg')), filename: 'caneca2.jpg')
 
 # product-prices
 puts('### Criando preços ###')
@@ -106,10 +108,14 @@ blackshark_preco1 = ProductPrice.create!(price: 2999.99, start_date: Date.today,
 caneca_preco1 = ProductPrice.create!(price: 39.99, start_date: Date.today, end_date: 90.day.from_now, product_model: caneca)
 
 # product items (shopping cart)
+puts('### Criando carrinho de compras ###')
 first_product_item = ProductItem.create!(customer: joao, product_model: iphone, quantity: 2)
 second_product_item = ProductItem.create!(customer: joao, product_model: ideapad, quantity: 1)
 third_product_item = ProductItem.create!(customer: erika, product_model: ideapad, quantity: 5)
 
 # promotions
-#first_promotion = Promotion.create!(name: 'CAMPUSDESCONTO', start_date: Date.today, end_date: 30.day.from_now, max_quantity: 20, used_quantity: 0, discount_percent: 5, max_discount_money: 0.4, sub_categories: [computadores, celulares])
-#second_promotion = Promotion.create!(name: 'SUPERDESCONTO', start_date: 30.day.from_now, end_date: 60.day.from_now, max_quantity: 20, used_quantity: 0, discount_percent: 15, max_discount_money: 0.4, sub_categories: [lavadoras, geladeiras, smartwatches, computadores])
+puts('### Criando promoções ###')
+first_promotion = Promotion.create!(name: 'CAMPUS DESCONTO', start_date: Date.today, end_date: 30.day.from_now, max_quantity: 20, used_quantity: 0, discount_percent: 5, max_discount_money: 0.4, sub_categories: [computadores, celulares])
+second_promotion = Promotion.create!(name: 'RUBY ON RAILS', start_date: Date.today, end_date: 60.day.from_now, max_quantity: 20, used_quantity: 0, discount_percent: 15, max_discount_money: 0.4, sub_categories: [lavadoras, geladeiras, smartwatches, computadores])
+one_use_promotion = Promotion.create!(name: '1 USO RESTANTE', start_date: Date.today, end_date: 30.day.from_now, max_quantity: 20, used_quantity: 19, discount_percent: 5, max_discount_money: 0.4, sub_categories: [teclados, celulares])
+used_promotion = Promotion.create!(name: 'MÁXIMO DE USOS', start_date: Date.today, end_date: 30.day.from_now, max_quantity: 20, used_quantity: 20, discount_percent: 5, max_discount_money: 0.4, sub_categories: [teclados, celulares])
