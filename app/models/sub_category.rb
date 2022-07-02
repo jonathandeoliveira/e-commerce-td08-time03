@@ -11,5 +11,4 @@ class SubCategory < ApplicationRecord
     category = self.category.name
     "#{category}: #{name}"
   end
-
 end
