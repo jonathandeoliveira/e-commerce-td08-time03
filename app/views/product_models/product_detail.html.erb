@@ -23,7 +23,9 @@
           <p class="card-text"><%= ProductModel.human_attribute_name(:sku)%>: <%= @product_model.sku %></p>
           <p class="card-text"><%= ProductModel.human_attribute_name(:fragile)%>? <% if @product_model.fragile == true %> <%=  ProductModel.human_attribute_name(:true) %> <% else %> <%=  ProductModel.human_attribute_name(:false) %><% end %></p>
           <p class="card-text"><%= ProductModel.human_attribute_name(:price)%>: RB <%= number_with_precision(@product_model.current_price, precision: 2) %></p>
-          <p class="card-text">
+          <%if @product_model.manual.attached? %>
+          <p class="card-text"><%= link_to 'Manual do produto', @product_model.manual, :class => "btn btn-dark" %></p>
+          <% end %>
           </div>
         </div>
         <div class="d-flex text-center justify-content-center">

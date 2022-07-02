@@ -49,39 +49,46 @@ ideapad = ProductModel.create!(name: 'Notebook Lenovo IdeaPad', brand: 'Lenovo',
 ideapad.photos.attach(io: File.open(Rails.root.join('app/assets/images/notebook1.jpg')), filename: 'notebook1.jpg')
 ideapad.photos.attach(io: File.open(Rails.root.join('app/assets/images/notebook2.jpg')), filename: 'notebook2.jpg')
 ideapad.photos.attach(io: File.open(Rails.root.join('app/assets/images/notebook3.jpg')), filename: 'notebook3.jpg')
+ideapad.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 electrolux_jet_clean = ProductModel.create!(name: 'Máquina de Lavar Electrolux', brand: 'Electrolux', sku: 'JETCLEAN13CARE', model: 'Jet & Clean', description: 'Máquina de Lavar 13kg Essential Care 220V', weight: 30, height: 105.2, width: 59.1, length: 66.5, sub_category: lavadoras, status: 0)
 electrolux_jet_clean.photos.attach(io: File.open(Rails.root.join('app/assets/images/Eletrolux2.jpg')), filename: 'Eletrolux2.jpg')
 electrolux_jet_clean.photos.attach(io: File.open(Rails.root.join('app/assets/images/Eletrolux1.png')), filename: 'Eletrolux1.png')
+electrolux_jet_clean.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 iphone = ProductModel.create!(name: 'iPhone 11', brand: 'Apple', sku: 'IPHONE11-128GB', model: 'iPhone 11 Branco', description: 'iPhone 128GB desbloqueado', weight: 0.2, height: 15, width: 7.5, length: 0.8, sub_category: celulares, status: 0)
 iphone.photos.attach(io: File.open(Rails.root.join('app/assets/images/iphone1.jpg')), filename: 'iphone1.jpg')
 iphone.photos.attach(io: File.open(Rails.root.join('app/assets/images/iphone2.jpg')), filename: 'iphone2.jpg')
 iphone.photos.attach(io: File.open(Rails.root.join('app/assets/images/iphone3.jpg')), filename: 'iphone3.jpg')
+iphone.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 teclado_hyperx = ProductModel.create!(name: 'Teclado Alloy', brand: 'Hyperx', sku: 'HYPERX2022', model: 'Alloy', description: 'Teclado mecanico',weight: 0.7, height: 8, width: 30, length: 1, sub_category: teclados, status: 0)
 teclado_hyperx.photos.attach(io: File.open(Rails.root.join('app/assets/images/teclado1.jpg')), filename: 'teclado1.jpg')
 teclado_hyperx.photos.attach(io: File.open(Rails.root.join('app/assets/images/teclado-2.jpg')), filename: 'teclado-2.jpg')
 teclado_hyperx.photos.attach(io: File.open(Rails.root.join('app/assets/images/teclado-3.jpg')), filename: 'teclado-3.jpg')
-
+teclado_hyperx.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 polystation = ProductModel.create!(name: 'Polystation 5',brand: 'Poly',sku: 'P0LYST4T10N', model: 'Poly Machine 5',fragile: true,description: 'O melhor console da atualidade', weight: 4.0,height: 0.3,width: 0.2, length: 0.3,sub_category: playstation, status: 0)
 polystation.photos.attach(io: File.open(Rails.root.join('app/assets/images/poly1.jpg')), filename: 'poly1.jpg')
 polystation.photos.attach(io: File.open(Rails.root.join('app/assets/images/poly2.jpg')), filename: 'poly2.jpg')
 polystation.photos.attach(io: File.open(Rails.root.join('app/assets/images/poly3.jpg')), filename: 'poly3.jpg')
+polystation.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 batmobile = ProductModel.create!(name: 'Batmovel', brand: 'batcompany', sku: 'B4TM0B1L3', model: 'eletrico', fragile: false, description: 'Carro morcego', weight: 800.0, height: 2.0, width: 2.0, length: 2.0, sub_category: eletricos, status:0)
 batmobile.photos.attach(io: File.open(Rails.root.join('app/assets/images/batmovel.jpg')), filename: 'batmovel.jpg')
 batmobile.photos.attach(io: File.open(Rails.root.join('app/assets/images/batmovel2.jpg')), filename: 'batmovel2.jpg')
+batmobile.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 blackshark = ProductModel.create!(name: 'Black Shark 4', brand: 'Xiaomi', sku: 'BL4CK-SH4RK', model: 'Black Shark 4', fragile: true, description: 'Celular Gamer', weight: 0.1, height: 0.1, width: 0.1, length: 0.1, sub_category: celulares, status:0)
 blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark1.jpg')), filename: 'black-shark1.jpg')
 blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark2.jpg')), filename: 'blackshark2.jpg')
 blackshark.photos.attach(io: File.open(Rails.root.join('app/assets/images/blackshark3.jpg')), filename: 'blackshark3.jpg')
+blackshark.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 caneca = ProductModel.create!(name: 'Caneca Demon Slayer', brand: 'Canecas Ltda', sku: 'C4N3C4-AN1M3', model: 'Zenitsu', fragile: true, description: 'Caneca Anime', weight: 0.1, height: 0.1, width: 0.1, length: 0.1, sub_category: cozinha, status:0)
 caneca.photos.attach(io: File.open(Rails.root.join('app/assets/images/caneca1.jpg')), filename: 'caneca1.jpg')
 caneca.photos.attach(io: File.open(Rails.root.join('app/assets/images/caneca2.jpg')), filename: 'caneca2.jpg')
+caneca.manual.attach(io: File.open(Rails.root.join('app/assets/documents/manual_example.pdf')), filename: 'manual_example.pdf')
 
 # product-prices
 puts('### Criando preços ###')

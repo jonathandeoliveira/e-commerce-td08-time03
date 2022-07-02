@@ -3,11 +3,11 @@ include ActionView::Helpers::NumberHelper
 describe 'usuário visualiza detalhes de produto' do
  
   it 'com sucesso' do
-    product1 = create(:product_model,name:'nome1', status: :enabled)
-    product2 = create(:product_model, status: :enabled)   
+    product1 = create(:product_model, name:'nome1', status: :enabled)
+    product2 = create(:product_model, status: :enabled)
     price1 = create(:product_price, price: 105, product_model: product1)
     price2 = create(:product_price, price: 215, product_model: product2)
-    product2.photos.attach(io: File.open('app/assets/images/pic_example2.jpg'), filename: 'pic_example2.jpg')
+    product2.photos.attach(io: File.open('spec/support/files/pic_example2.jpg'), filename: 'pic_example2.jpg')
 
     visit root_path
     click_on product2.name

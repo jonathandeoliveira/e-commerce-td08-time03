@@ -40,7 +40,7 @@ describe 'Mercador acessa página principal de produtos' do
   it 'e visualiza detalhes de um produto' do
     merchant = create(:merchant)
     product = create(:product_model)
-    product.photos.attach(io: File.open('app/assets/images/pic_example2.jpg'), filename: 'pic_example2.jpg')
+    product.photos.attach(io: File.open('spec/support/files/pic_example2.jpg'), filename: 'pic_example2.jpg')
 
     login_as(merchant, scope: :merchant)
     visit root_path
