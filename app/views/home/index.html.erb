@@ -13,10 +13,10 @@
     <h2 class="text-center display-5 mb-5">Nossos produtos:</h2>
   </div>
   <section style="background-color: #eee;">
-    <div class="container-fluid p-5">
+    <div class="container-fluid p-2">
       <div class="row">
         <% @products.each do | product |%>
-          <div class = "col-sm-12 col-md-3">
+          <div class = "col-sm-12 col-md-3 p-5">
             <div class="card">
               <% if product.photos.attached? %>
                 <%= image_tag product.photos.first, :class => "card-img-top" %>
