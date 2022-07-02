@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :customers
   devise_for :merchants
   root 'home#index'
+
   resources :categories, only: %i[index new create edit update show] do
     patch 'disable', on: :member
     patch 'enable', on: :member
@@ -20,10 +21,15 @@ Rails.application.routes.draw do
     resources :product_prices, only: %i[new create edit update]
   end
 
-  resources :customers do
+  resources :customers do 
     get 'rubi_buy', to: 'customers#rubi_buy'
     post 'rubi_buy', to: 'customers#send_credit_request'
-    resources :orders, only: %i[new create index show]
+    get 'order_with_coupon', to: 'orders#order_with_coupon'
+    post 'order_with_coupon', to: 'orders#send_cupom_params'
+    resources :orders, only: %i[new create index show] do
+      patch 'search-coupon', on: :collection 
+    end
+
     get 'account', on: :member
     resources :product_items, only: %i[index new create destroy] do
       patch 'sum_quantity', on: :member
@@ -31,6 +37,8 @@ Rails.application.routes.draw do
       delete 'remove_all', on: :collection
     end
   end
+
+  resources :promotions, only: %i[index new create show]
 
   get 'merchant-order-index', to: 'orders#merchant_index'
   get 'merchant-order-show/:id', to: 'orders#merchant_show', as: :merchant_order

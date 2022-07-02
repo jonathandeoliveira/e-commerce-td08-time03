@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_233729) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_205709) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_233729) do
     t.integer "status", default: 0
     t.string "address"
     t.decimal "rate"
+    t.string "promotion"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
@@ -127,6 +128,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_233729) do
     t.index ["product_model_id"], name: "index_product_prices_on_product_model_id"
   end
 
+  create_table "promotion_categories", force: :cascade do |t|
+    t.integer "promotion_id", null: false
+    t.integer "sub_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["promotion_id"], name: "index_promotion_categories_on_promotion_id"
+    t.index ["sub_category_id"], name: "index_promotion_categories_on_sub_category_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "used_quantity", default: 0
+    t.integer "max_quantity"
+    t.integer "status", default: 0
+    t.integer "discount_percent"
+    t.decimal "max_discount_money"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sub_categories", force: :cascade do |t|
     t.string "name"
     t.integer "status", default: 10
@@ -144,5 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_233729) do
   add_foreign_key "product_items", "product_models"
   add_foreign_key "product_models", "sub_categories"
   add_foreign_key "product_prices", "product_models"
+  add_foreign_key "promotion_categories", "promotions"
+  add_foreign_key "promotion_categories", "sub_categories"
   add_foreign_key "sub_categories", "categories"
 end
