@@ -22,7 +22,7 @@ describe 'mercador edita categorias cadastradas' do
 
     expect(page).to have_content "Edição da Categoria: #{categories[0].name}"
     expect(page).to have_field 'Nome', with: categories[0].name
-    expect(page).to have_button 'Atualizar'
+    expect(page).to have_button 'Cadastrar'
   end
 
   it 'com sucesso' do
@@ -35,11 +35,12 @@ describe 'mercador edita categorias cadastradas' do
     first(:link, 'Editar Categoria').click
     first_name = categories[0].name
     fill_in 'Nome', with: 'Eletrônicos'
-    click_on 'Atualizar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Categoria atualizada com sucesso.'
     expect(page).not_to have_content "Nome: #{first_name}"
-    expect(page).to have_content 'Nome: Eletrônicos'
+    expect(page).to have_content 'Nome'
+    expect(page).to have_content 'Eletrônicos'
   end
 
   it 'com o nome em branco' do
@@ -51,7 +52,7 @@ describe 'mercador edita categorias cadastradas' do
     click_on 'Categorias'
     first(:link, 'Editar Categoria').click
     fill_in 'Nome', with: ''
-    click_on 'Atualizar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content 'Falha ao atualizar categoria.'
     expect(page).to have_content 'Nome não pode ficar em branco'

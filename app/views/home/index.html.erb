@@ -1,39 +1,44 @@
+ <div class="d-flex justify-content-end">
 <section id = 'query'>
-    <%=form_with(url: search_category_sub_categories_path(@categories), method: :get) do |f| %>
-    <%= f.label :query, 'Categorias' %>:
+  <%=form_with(url: search_category_sub_categories_path(@categories), method: :get) do |f| %>
+    <%= f.label :query, 'Categorias', :class => "fs-4" %>
     <%= f.collection_select :query, @subcategories, :id, :full_description %>
-    <%= f.submit 'Buscar' %>
-    <% end%>
+    <%= f.submit 'Buscar', :class => "btn btn-primary" %>
+  <% end%>
 </section>
+</div>
 
 <% if @products.any? %>
-  <div class="container-fluid">
-    <div class="row"> 
-      <div class="col-12">
-        <h2>Nossos produtos:</h2>
-        <p> Valor atual do Rubi <%= number_to_currency(@rate) %> </p>
-      </div>
-      <% @products.each do | product |%>  
-        <div class = "col-sm-12 col-md-3">
-          <div class="card bg-white mb-3" style="max-width: 20rem;">  
-            <div class="card-images">
+  <div class="col-12">
+    <h2 class="text-center display-5 mb-5">Nossos produtos:</h2>
+  </div>
+  <section style="background-color: #eee;">
+    <div class="container-fluid p-2">
+      <div class="row">
+        <% @products.each do | product |%>
+          <div class = "col-sm-12 col-md-3 p-5">
+            <div class="card">
               <% if product.photos.attached? %>
-                <div class="img-index-container">
-                <%= image_tag product.photos.first ,:class => "img-photo" %>
-                </div>
+                <%= image_tag product.photos.first, :class => "img-photo", :style=>"width: 500px; height: 250px; background-color: rgba(0,0,255,0.1);"  %>
               <% end %>
-            </div>          
-            <div class="card-header"><%= link_to product.name, product_detail_product_model_path(product) %></div>
-            <div class="card-body">
-              <p class="card-title"><%= product.description %></p>
-              RB <%= number_with_precision(product.current_price, precision: 2) %>
-              <a class="card-text"> <%= link_to 'Ver', product_detail_product_model_path(product) %> </a>       
-            </div>  
-          </div>  
-        </div> 
-      <% end %>
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <p class="small"><a href="#!" class="text-muted"><%= product.description %></a></p>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="text-muted mb-0"><%= link_to product.name, product_detail_product_model_path(product), :class => "link-dark" %></h5>
+                  <h5 class="text-dark mb-0">RB <%= number_with_precision(product.current_price, precision: 2) %></h5>
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                  <a class="card-text"> <%= link_to 'Ver', product_detail_product_model_path(product), :class => "btn btn-primary" %> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>  
+  </section>
 <% else %>
   <span> Nenhum produto encontrado com os parâmetros da busca ¯\_(ツ)_/¯</span>
 <% end %>

@@ -28,7 +28,7 @@ class PromotionsController < ApplicationController
   private
 
   def promotion_params
-    params.require(:promotion).permit(:name,:code,:start_date,:end_date,:max_quantity, :discount_percent, :max_discount_money, :sub_category_ids => [])
+    params.require(:promotion).permit(:name,:code,:start_date,:end_date,:max_quantity, :discount_percent, :max_discount_money, :authenticity_token ,:sub_category_ids => [])
   end
 end
 

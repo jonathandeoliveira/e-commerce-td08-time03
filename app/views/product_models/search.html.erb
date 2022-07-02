@@ -1,12 +1,11 @@
 <h2>Resultado da busca por: <%= @query%></h2>
-
 <% if  @product_models.any?%>
   <dl>
-  <%  @product_models.each do | product |%>
-    <dt><%= link_to product.name, product_detail_product_model_path(product) %></dt>
-    <dd>RB <%= number_with_precision(product.current_price, precision: 2)%>
+    <%  @product_models.each do | product |%>
+      <dt><%= link_to product.name, product_detail_product_model_path(product) %></dt>
+      <dd>RB <%= number_with_precision(product.current_price, precision: 2)%>
+      <% end %>
+    </dl>
+  <% else %>
+    <span> Nenhum produto encontrado com os parâmetros da busca ¯\_(ツ)_/¯</span>
   <% end %>
-  </dl>
-<% else %>
-  <span> Nenhum produto encontrado com os parâmetros da busca ¯\_(ツ)_/¯</span>
-<% end %> 

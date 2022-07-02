@@ -27,9 +27,12 @@ describe 'mercador visualiza categorias cadastradas' do
     click_on 'Categorias'
 
     expect(page).to have_content 'Categorias'
-    expect(page).to have_content "Nome: #{first_category.name}"
-    expect(page).to have_content 'Situação: Ativa'
-    expect(page).to have_content "Nome: #{second_category.name}"
-    expect(page).to have_content 'Situação: Ativa'
+    expect(page).to have_content 'Nome'
+    expect(page).to have_content first_category.name
+    expect(page).to have_content 'Situação'
+    expect(page).to have_content 'Ativa'
+    expect(page).to have_content second_category.name
+    expect(page).to have_content 'Situação'
+    expect(page).to have_content 'Ativa'
   end
 end

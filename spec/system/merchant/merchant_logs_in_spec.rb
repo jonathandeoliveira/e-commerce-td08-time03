@@ -8,7 +8,7 @@ describe 'Mercador faz login' do
     click_on 'Entrar - Mercador'
     fill_in 'E-mail', with: 'alan@mercadores.com.br'
     fill_in 'Senha', with: 'password'
-    click_on 'Log in'
+    click_on 'Entrar'
 
     expect(page).to have_content 'Login efetuado com sucesso'
   end
@@ -18,7 +18,7 @@ describe 'Mercador faz login' do
     click_on 'Entrar - Mercador'
     fill_in 'E-mail', with: 'john@mercadores.com.br'
     fill_in 'Senha', with: 'password'
-    click_on 'Log in'
+    click_on 'Entrar'
 
     expect(page).to have_content 'E-mail ou senha inválidos.'
   end
@@ -30,7 +30,7 @@ describe 'Mercador faz login' do
     click_on 'Entrar - Mercador'
     fill_in 'E-mail', with: 'alan@mercadores.com.br'
     fill_in 'Senha', with: 'wrong-password'
-    click_on 'Log in'
+    click_on 'Entrar'
 
     expect(page).to have_content 'E-mail ou senha inválidos.'
   end

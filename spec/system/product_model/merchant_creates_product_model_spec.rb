@@ -53,9 +53,9 @@ describe 'Mercador cria produto' do
     fill_in 'Comprimento', with: '0.15'
     fill_in 'Peso', with: '6'
     attach_file 'Manual do produto', Rails.root.join('app/assets/documents/manual_example.pdf')   
-    attach_file 'Imagens do produto', [Rails.root.join('app/assets/images/pic_example1.jpg'),
-                                        Rails.root.join('app/assets/images/pic_example1.jpg'),
-                                        Rails.root.join('app/assets/images/pic_example1.jpg')]
+    attach_file 'Imagens do produto', [Rails.root.join('spec/support/files/pic_example2.jpg'),
+                                        Rails.root.join('spec/support/files/pic_example2.jpg'),
+                                        Rails.root.join('spec/support/files/pic_example2.jpg')]
     select "#{subcategory.full_description}", from: "#{Category.model_name.human}"
     check 'Frágil'
     click_on 'Cadastrar'

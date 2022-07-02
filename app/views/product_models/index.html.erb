@@ -1,27 +1,39 @@
-<div>
-    <h1>Produtos cadastrados:</h1>
-    <% if @product_models.any? %>
-      <% @product_models.each do |product| %>
-        <dl>
-          <dt>Produto:</dt>
-          <% if product.enabled? %>
-            <dd><%= link_to product.name, product %> <%= button_to 'Desativar', disable_product_model_path(product), method: :patch %></dd>
-          <% elsif product.disabled? %>
-            <dd><%= link_to product.name, product %> <%= button_to 'Ativar', enable_product_model_path(product), method: :patch %> </dd>
-          <%end%>
-          <dt>Marca:</dt>
-          <dd><%= product.brand %></dd>
-          <dt>Modelo:</dt>
-          <dd><%= product.model%></dd>
-          <dt><%= Category.model_name.human %>:</dt>
-          <dd><%= product.sub_category.full_description %></dd>
-          <dt>SKU:</dt>
-          <dd><%= product.sku %></dd>
-          <dt>Situação:</dt>
-          <dd><%= ProductModel.human_attribute_name(product.status) %></dd>
-        </dl>
-      <% end %>
-    <% else %>
-      <p>Não existem produtos cadastrados</p>
-    <% end %>
+<div class="container">
+  <h2>Produtos cadastrados:</h1>
+  <% if @product_models.any? %>
+    <div class="col">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th><%= ProductModel.model_name.human%>:</th>
+            <th><%= ProductModel.human_attribute_name(:brand)%></th>
+            <th><%= ProductModel.human_attribute_name(:model)%></th>
+            <th><%= Category.model_name.human %>:</th>
+            <th><%= ProductModel.human_attribute_name(:sku)%></th>
+            <th><%= ProductModel.human_attribute_name(:status)%></th>
+            <th> Ação </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product_models.each do |product| %>
+            <tr>
+              <td><%= link_to product.name, product %> </td>
+              <td><%= product.brand %></td>
+              <td><%= product.model%></td>
+              <td><%= product.sub_category.full_description %></td>
+              <td><%= product.sku %></td>
+              <td><%= ProductModel.human_attribute_name(product.status) %></td>
+              <% if product.enabled? %>
+                <td><%= button_to 'Desativar', disable_product_model_path(product), method: :patch, :class => "btn btn-primary"%></td>
+              <% elsif product.disabled? %>
+                <td><%= button_to 'Ativar', enable_product_model_path(product), method: :patch, :class => "btn btn-primary" %> </td>
+              <%end%>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p>Não existem produtos cadastrados</p>
+  <% end %>
 </div>

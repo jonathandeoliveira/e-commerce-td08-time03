@@ -64,8 +64,8 @@ describe 'Usuário vê produtos do ecommerce' do
       end
 
       it 'e pesquisa produtos de uma categoria' do
-        first_subcategory = create(:sub_category)
-        second_subcategory = create(:sub_category)
+        first_subcategory = create(:sub_category, name: 'subcategoria1')
+        second_subcategory = create(:sub_category, name: 'subcategoria2')
         visible_product = create(:product_model, sub_category: first_subcategory)
         visible_product2 = create(:product_model, sub_category: first_subcategory)
         not_visible_product = create(:product_model, sub_category: second_subcategory)

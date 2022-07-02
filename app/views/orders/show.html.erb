@@ -1,5 +1,5 @@
 <div class="container">
-<h1> Pedido <%= @order.code %> - <%= Order.human_attribute_name(@order.status) %> </h1>
+  <h1> Pedido <%= @order.code %> - <%= Order.human_attribute_name(@order.status) %> </h1>
 </div>
 <div class="container">
   <div class="col">
@@ -17,14 +17,14 @@
           <tr>
             <td><%= product.product_model.name %></td>
             <td><%= product.quantity %></td>
-            <td>RB <%= number_with_precision(product.product_model.current_price, precision: 2) %></td>  
-            <td>RB <%= number_with_precision(product.calculate_total_product_values, precision: 2) %></td>  
+            <td>RB <%= number_with_precision(product.product_model.current_price, precision: 2) %></td>
+            <td>RB <%= number_with_precision(product.calculate_total_product_values, precision: 2) %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-      <div class = "container fluid bg-dark text-white col-sm-1 col-md-1 text-center">
-       Valor total: <%= @order.total_value %>
-      </div>
-  </div> 
+    <div class = "container fluid bg-dark text-white col-sm-1 col-md-1 text-center">
+      Valor total: <%= @order.total_value %>
+    </div>
+  </div>
 </div>

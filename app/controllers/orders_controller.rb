@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     @order_params = params.permit(:customer_id, :promotion_id)   
     
     if @order_params[:promotion_id].present?
-      @promotion = Promotion.find(@order_params[:promotion_id].to_i)     
+      @promotion = Promotion.find(@order_params[:promotion_id].to_i)
       @discount = calculate_discount
       @discount = verify_discount_value
       @total_value = calculate_total_value_cart - @discount      
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
       if @order.save!
         OrderDataService.send_order(@order)
         if @promotion.present?
-          @promotion.used_quantity += 1
+          @promotion.used_quantity += 1 
           @promotion.save
         end
         redirect_to customer_orders_path(@customer), notice: 'Compra realizada com sucesso'

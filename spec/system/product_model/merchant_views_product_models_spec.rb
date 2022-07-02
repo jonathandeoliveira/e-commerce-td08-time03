@@ -16,11 +16,15 @@ describe 'Mercador acessa página principal de produtos' do
     click_on 'Produtos'
 
     expect(page).to have_content 'Produtos cadastrados'
-    expect(page).to have_content "Produto: #{product.name}"
-    expect(page).to have_content "Marca: #{product.brand}"
-    expect(page).to have_content 'Modelo: Inspiron 15'
-    expect(page).to have_content "SKU: #{product.sku}"
-    expect(page).to have_content "#{product.sub_category.full_description}"
+    expect(page).to have_content 'Produto'
+    expect(page).to have_content product.name
+    expect(page).to have_content 'Marca'
+    expect(page).to have_content product.brand
+    expect(page).to have_content 'Modelo'
+    expect(page).to have_content 'Inspiron 15'
+    expect(page).to have_content 'SKU'
+    expect(page).to have_content product.sku
+    expect(page).to have_content product.sub_category.full_description
   end
 
   it 'e não existem produtos cadastrados' do
@@ -36,14 +40,14 @@ describe 'Mercador acessa página principal de produtos' do
   it 'e visualiza detalhes de um produto' do
     merchant = create(:merchant)
     product = create(:product_model)
-    product.photos.attach(io: File.open('app/assets/images/pic_example2.jpg'), filename: 'pic_example2.jpg')
+    product.photos.attach(io: File.open('spec/support/files/pic_example2.jpg'), filename: 'pic_example2.jpg')
 
     login_as(merchant, scope: :merchant)
     visit root_path
     click_on 'Produtos'
     click_on "#{product.name}"
 
-    expect(current_path).to eq product_model_path(product) 
+    expect(current_path).to eq product_model_path(product)
     expect(page).to have_content "Produto: #{product.name}"
     expect(page).to have_content "SKU: #{product.sku}"
     expect(page).to have_content 'Peso: 6.0kg'
