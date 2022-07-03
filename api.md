@@ -9,7 +9,7 @@ Aprova ou recusa pedido
 }
 ```
 O campo `code` deve ser preenchido com o código do pedido.
-O campo `status` deve ser preenchido com um status válido: 'paid' ou 'refused' 
+O campo `status` deve ser preenchido com um status válido: `paid` ou `refused` 
 
 ### Exemplo de resposta (Requisição bem-sucedida)
 ```json
