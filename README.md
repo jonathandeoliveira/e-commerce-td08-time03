@@ -80,7 +80,7 @@ Execute o comando seed no seu console para popular o banco de dados:
 ___
 
  - A aplicação pode ser utilizada sem o uso da API [pagamentos](https://github.com/TreinaDev/pagamentos-td08-time03), desenvolvida por outro grupo do nosso time, mas recomendamos que ela seja utilizada em conjunto com a nossa. Veja o repositório deles para mais detalhes de uso e instalação. 
- - Nossa aplicação também possui endpoints para receber requisições, que estão disponíveis no arquivo api.md
+ - Nossa aplicação também possui endpoints para receber requisições, que estão disponíveis no arquivo [api.md](https://github.com/TreinaDev/e-commerce-td08-time03/blob/doc/readme/api.md)
 
 ###### Inicializando a aplicação de pagamentos:
 Com a aplicação de pagamentos pronta para uso, utilizaremos ela simultâneamente com a nossa, através da porta 4000 </br>
