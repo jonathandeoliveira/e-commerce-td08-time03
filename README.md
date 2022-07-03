@@ -10,12 +10,13 @@ ____
   🔹	[Funcionalidades](#funcionalidades)</br>
   🔹	[Gems utilizadas](#gems-utilizadas)</br>
   🔹	[Como instalar a aplicação](#como-instalar-a-aplicação)</br>
-  🔹	[Utilizando as API's](#configurando-o-banco-de-dados)</br>
+  🔹	[Utilizando as API's](#utilizando-as-banco-d)</br>
   🔹	[Configurando o banco de dados](#configurando-o-banco-de-dados)</br>
   🔹	[Layout da aplicação](#layout-da-aplicação)</br>
   🔹	[Ideias para implementações futuras](#ideias-para-implementações-futuras)</br>
-___
+
   #### <p align="justify"> Descrição do projeto </p>
+___
   Uma plataforma que permite a compra de produtos em uma loja virtual
   utilizandopagamentos através de pontos chamados Rubis, que podem ser acumulados pelas pessoas. Os Rubis são creditados na conta através de pagamentos convencionais e seu preço é dado por uma taxa de cambio flutuante.
 
@@ -49,6 +50,7 @@ ___
 - [Rubocop](https://github.com/rubocop/rubocop-rails) - Utilizado para padronização de código
 
 ####  <p align="justify"> Como instalar a aplicação 🔌: </p>
+___
 
 Clone o repositório em seu computador: 
 
@@ -67,14 +69,17 @@ Clone o repositório em seu computador:
     rspec
 
 #### Configurando banco de dados 💾:
+___
+
 Execute o comando seed no seu console para popular o banco de dados:
 
     rails db:seed
 
 
 #### Utilizando as API's 🛸:
- - A aplicação pode ser utilizada sem o uso da API [pagamentos](https://github.com/TreinaDev/pagamentos-td08-time03), desenvolvida por outro grupo do nosso time, mas recomendamos que ela seja utilizada em conjunto com a nossa. Veja o repositório deles para mais detalhes de uso e instalação.
-  
+___
+
+ - A aplicação pode ser utilizada sem o uso da API [pagamentos](https://github.com/TreinaDev/pagamentos-td08-time03), desenvolvida por outro grupo do nosso time, mas recomendamos que ela seja utilizada em conjunto com a nossa. Veja o repositório deles para mais detalhes de uso e instalação. 
  - Nossa aplicação também possui endpoints para receber requisições, que estão disponíveis no arquivo api.md
 
 ###### Inicializando a aplicação de pagamentos:
@@ -109,7 +114,9 @@ ___
 ___
 * Utilização da Gem FriendlyId para urls personalizadas
 * Melhorar o front-end da aplicação
-* Implementar sistema de cashback
+* Melhoria no sistema de cupons
+* Implementação sistema de cashback
+* Implementação de estoque de produtos
 
 ### Contribuintes 👨‍💻👩‍💻 : 
 
